@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ca64d3aa6d89d4faf3bd837e5ad7aa, type: 3}
+  m_Name: Blaster
+  m_EditorClassIdentifier: Assembly-CSharp::ChargingWeapon
+  blockingWeapons: 0
+  blockingMovement: 0
+  blockingFacing: 0
+  cooldown: 0.7
+  player: {fileID: 0}
+  unchargedPrefab: {fileID: 494477079849064442, guid: e806ca39e745a724688fc69b801b5cdc,
+    type: 3}
+  chargedPrefab: {fileID: 2266270219253974454, guid: ff1bef03708519642a6158f054af2041,
+    type: 3}
+  chargeTime: 3
+  chargedCooldownModifier: 1.3
