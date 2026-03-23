@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3751d84e113c4e245a3900178255fe32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeBombBehavior
-  timeUntilExplode: 0.2
+  timeUntilExplode: 0.05
   explosionPrefab: {fileID: 6867539659950544939, guid: 3ca603c8f76a3e442b537ea79a9e3d18,
     type: 3}
 --- !u!114 &-732884286421464719

@@ -143,11 +143,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.15319262, y: -0.27925944}
-      - {x: 0.20349431, y: -0.1134334}
-      - {x: 0.16937001, y: 0.2761536}
-      - {x: -0.03963045, y: 0.16904198}
-      - {x: -0.17724805, y: -0.043112513}
+    - - {x: -0.25304478, y: -0.22414191}
+      - {x: 0.06771843, y: -0.3987954}
+      - {x: 0.38775957, y: 0.15747851}
+      - {x: 0.08719779, y: 0.33119237}
+      - {x: -0.072131045, y: 0.20046718}
+      - {x: -0.21530972, y: -0.038862918}
   m_UseDelaunayMesh: 1
 --- !u!50 &1121344801179033097
 Rigidbody2D:
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa270e906a399349b820c6b02ce3355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExpiringBehaviour
-  timeUntilExpire: 0.2
+  timeUntilExpire: 0.3
 --- !u!114 &7251201172849683526
 MonoBehaviour:
   m_ObjectHideFlags: 0

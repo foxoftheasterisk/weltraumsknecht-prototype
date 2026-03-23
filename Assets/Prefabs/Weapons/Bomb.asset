@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bomb
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
   blocksWeapons: 0
-  blocksMovement: 1
+  blocksMovement: 0
   blocksFacing: 0
   cooldown: 2
   player: {fileID: 0}
