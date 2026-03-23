@@ -14,9 +14,9 @@ public class OnlyDamagesWhileMovingProjectile : WeaponProjectile
         if (rb.linearVelocity.magnitude >= speedRequired)
         {
             if (crits)
-                return critDamage;
+                return weapon.GetDamage(true);
             else
-                return standardDamage;
+                return weapon.GetDamage(false);
         }
         else
             return 0;

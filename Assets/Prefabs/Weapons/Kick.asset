@@ -15,7 +15,9 @@ MonoBehaviour:
   blocksWeapons: 1
   blocksMovement: 0
   blocksFacing: 1
-  cooldown: 0
+  standardDamage: 3
+  critDamage: 6
+  cooldown: 0.1
   player: {fileID: 0}
   projectilePrefab: {fileID: 0}
   airPrefab: {fileID: 1128737127766160964, guid: 3ca251c1e97b34048b350e9e85c0a780,

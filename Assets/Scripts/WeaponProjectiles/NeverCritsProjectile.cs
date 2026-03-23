@@ -6,7 +6,7 @@ public class NeverCritsProjectile : WeaponProjectile
 {
     override public int GetDamage()
     {
-        return standardDamage;
+        return weapon.GetDamage(false);
     }
     
     override public void CollidedWithEnemy(EnemyController enemy, bool killed) { }

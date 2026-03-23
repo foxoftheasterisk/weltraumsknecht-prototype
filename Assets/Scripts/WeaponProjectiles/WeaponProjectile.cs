@@ -6,11 +6,9 @@ using static Platformer.Core.Simulation;
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public abstract class WeaponProjectile : MonoBehaviour
 {
-    protected PlayerController player;
+    protected Weapon weapon;
     public Vector2 initialVelocity;
     public float rotateVelocity;
-    public int standardDamage = 9;
-    public int critDamage = 18;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     virtual public void Start()
@@ -34,15 +32,15 @@ public abstract class WeaponProjectile : MonoBehaviour
     }
     
     //Create is called by the Weapon that created this projectile, in order to pass along parameters
-    public void Create(PlayerController player)
+    public void Create(Weapon weapon)
     {
-        this.player = player;
+        this.weapon = weapon;
         
         WeaponProjectile[] children = GetComponentsInChildren<WeaponProjectile>();
         foreach (WeaponProjectile child in children)
         {
             if(child != this)
-                child.Create(player);
+                child.Create(weapon);
         }
     }
 
@@ -50,7 +48,8 @@ public abstract class WeaponProjectile : MonoBehaviour
     virtual public void Update() 
     {
         //...will this slow it down too much
-        
+        //doesn't seem to so far. Probably fine as long as we don't do projectile spam.
+        PlayerController player = weapon.player;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Rigidbody2D prb = player.GetComponent<Rigidbody2D>();
         if(Vector2.Distance(rb.position, prb.position) > 100)
@@ -68,9 +67,9 @@ public abstract class WeaponProjectile : MonoBehaviour
         InteractWith(other);
     }
     
-    public PlayerController GetPlayer()
+    public Weapon GetWeapon()
     {
-        return player;
+        return weapon;
     }
     
     protected virtual void InteractWith(Collider2D other)

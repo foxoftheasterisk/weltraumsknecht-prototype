@@ -6,7 +6,7 @@ public class AlwaysCritsProjectile : WeaponProjectile
 {
     override public int GetDamage()
     {
-        return critDamage;
+        return weapon.GetDamage(true);
     }
     
     override public void CollidedWithEnemy(EnemyController enemy, bool killed) { }

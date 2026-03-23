@@ -7,6 +7,9 @@ public abstract class Weapon : ScriptableObject
     public bool blocksMovement = false;
     public bool blocksFacing = false;
     
+    public int standardDamage = 9;
+    public int critDamage = 18;
+    
     public float cooldown;
     protected float cooldownRemaining;
     
@@ -62,7 +65,7 @@ public abstract class Weapon : ScriptableObject
         WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
         foreach (WeaponProjectile wp in wps)
         {
-            wp.Create(player);
+            wp.Create(this);
             
             //a weaponprojectile requires a rigidbody, so this should be safe
             Rigidbody2D rb = wp.GetComponent<Rigidbody2D>();
@@ -82,6 +85,14 @@ public abstract class Weapon : ScriptableObject
         }
         
         return projectile;
+    }
+    
+    public int GetDamage(bool crit)
+    {
+        if (crit)
+            return critDamage;
+        else
+            return standardDamage;
     }
     
     public virtual void Update()

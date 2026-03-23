@@ -15,11 +15,13 @@ MonoBehaviour:
   blocksWeapons: 0
   blocksMovement: 0
   blocksFacing: 0
-  cooldown: 0.7
+  standardDamage: 3
+  critDamage: 18
+  cooldown: 0.2
   player: {fileID: 0}
   unchargedPrefab: {fileID: 494477079849064442, guid: e806ca39e745a724688fc69b801b5cdc,
     type: 3}
   chargedPrefab: {fileID: 2266270219253974454, guid: ff1bef03708519642a6158f054af2041,
     type: 3}
   chargeTime: 1.5
-  chargedCooldownModifier: 1.3
+  chargedCooldownModifier: 1.8

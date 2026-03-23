@@ -9,12 +9,24 @@ public class BoomerangProjectile : WeaponProjectile
     public float returnSpeed = 7;
     public float timeBeforeReturn = 3;
     
+    private Rigidbody2D player;
+    private Rigidbody2D rb;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     override public void Start()
     {
         base.Start();
         returning = false;
         Invoke("TimeOut", timeBeforeReturn);
+        
+        rb = GetComponent<Rigidbody2D>();
+        
+        player = weapon.player.GetComponent<Rigidbody2D>();
+        if (player == null)
+        {
+            Debug.Log("Cannot find player Rigidbody2D for BoomerangProjectile");
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -22,8 +34,7 @@ public class BoomerangProjectile : WeaponProjectile
     {
         if (returning)
         {
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            Vector2 playerPos = player.GetComponent<Rigidbody2D>().position;
+            Vector2 playerPos = player.position;
             Vector2 direction = playerPos - rb.position;
             Vector2 vel = Vector2.Normalize(direction) * returnSpeed;
             rb.linearVelocity = vel;
@@ -42,10 +53,7 @@ public class BoomerangProjectile : WeaponProjectile
     
     override public int GetDamage()
     {
-        if (returning)
-            return critDamage;
-        else
-            return standardDamage;
+        return weapon.GetDamage(returning);
     }
     
     override public void CollidedWithEnemy(EnemyController enemy, bool killed)
