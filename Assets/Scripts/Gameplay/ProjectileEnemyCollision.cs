@@ -41,6 +41,7 @@ namespace Platformer.Gameplay
                 else
                 {
                     projectile.CollidedWithEnemy(enemy, false);
+                    enemy.TookDamageFrom(projectile);
                 }
             }
             else

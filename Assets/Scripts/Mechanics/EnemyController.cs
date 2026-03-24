@@ -47,18 +47,25 @@ namespace Platformer.Mechanics
 
         void Update()
         {
-            if (path != null)
+            if (!inIFrames)
             {
-                if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
-                control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+                if (path != null)
+                {
+                    if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
+                    control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+                }
             }
         }
         
         public void TookDamageFrom(WeaponProjectile projectile)
         {
+            Debug.Log("Enemy took damage");
             inIFrames = true;
             Invoke("EndIFrames", iTimeAfterHit);
-            //TODO: knockback
+            
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            Vector2 knockback = projectile.GetKnockback(rb.position);
+            rb.linearVelocity = knockback;
         }
 
         public void EndIFrames()

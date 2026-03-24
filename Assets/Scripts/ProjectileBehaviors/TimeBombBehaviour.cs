@@ -27,7 +27,7 @@ public class TimeBombBehaviour : MonoBehaviour
             //but if we do get that situation, we don't want it to cause a crash, so.
             if (wp != null)
             {
-                ewp.Create(wp.GetWeapon());
+                ewp.Create(wp.GetWeapon(), false);
             }
         }
         
