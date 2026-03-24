@@ -14,6 +14,9 @@ namespace Platformer.Mechanics
     {
         public PatrolPath path;
         public AudioClip ouch;
+        
+        public float iTimeAfterHit = .2f;
+        private bool inIFrames = false;
 
         internal PatrolPath.Mover mover;
         internal AnimationController control;
@@ -49,6 +52,23 @@ namespace Platformer.Mechanics
                 if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
             }
+        }
+        
+        public void TookDamageFrom(WeaponProjectile projectile)
+        {
+            inIFrames = true;
+            Invoke("EndIFrames", iTimeAfterHit);
+            //TODO: knockback
+        }
+
+        public void EndIFrames()
+        {
+            inIFrames = false;
+        }
+        
+        public bool IsInIFrames()
+        {
+            return inIFrames;
         }
 
     }

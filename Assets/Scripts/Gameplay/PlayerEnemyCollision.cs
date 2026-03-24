@@ -20,6 +20,12 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
+            if(enemy.IsInIFrames())
+            {
+                //discard collision
+                return;
+            }
+            
             var willHurtEnemy = false;
             //player.Bounds.center.y >= enemy.Bounds.max.y;
 

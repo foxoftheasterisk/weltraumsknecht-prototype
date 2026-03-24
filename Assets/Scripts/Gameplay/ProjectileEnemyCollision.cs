@@ -23,6 +23,11 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
+            if(enemy.IsInIFrames())
+            {
+                //collision is discarded
+                return;
+            }
 
             var enemyHealth = enemy.GetComponent<Health>();
             if (enemyHealth != null)
