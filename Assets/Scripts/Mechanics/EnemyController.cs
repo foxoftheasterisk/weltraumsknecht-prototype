@@ -36,6 +36,14 @@ namespace Platformer.Mechanics
 
         void OnCollisionEnter2D(Collision2D collision)
         {
+            var projectile = collision.gameObject.GetComponent<WeaponProjectile>();
+            if (projectile != null)
+            {
+                var ev = Schedule<ProjectileEnemyCollision>();
+                ev.projectile = projectile;
+                ev.enemy = this;
+            }
+            
             var player = collision.gameObject.GetComponent<PlayerController>();
             if (player != null)
             {
