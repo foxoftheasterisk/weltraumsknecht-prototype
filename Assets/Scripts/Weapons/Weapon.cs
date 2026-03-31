@@ -49,7 +49,10 @@ public abstract class Weapon : ScriptableObject
         }
         else
         {
-            Vector3 position = player.transform.position + prefab.transform.position;
+            Vector3 relativePosition = prefab.transform.position;
+            if(flip)
+                relativePosition.x *= -1;
+            Vector3 position = player.transform.position + relativePosition;
             projectile = Instantiate(prefab, position, Quaternion.identity);
         }
         
@@ -62,6 +65,13 @@ public abstract class Weapon : ScriptableObject
             Vector3 rotation = projectile.transform.localEulerAngles;
             rotation.z *= -1;
             projectile.transform.localEulerAngles = rotation;
+            
+            if(melee)
+            {
+                Vector3 position = projectile.transform.localPosition;
+                position.x *= -1;
+                projectile.transform.localPosition = position;
+            }
         }
         
         WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
