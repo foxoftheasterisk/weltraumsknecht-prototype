@@ -17,6 +17,7 @@ MonoBehaviour:
   blocksFacing: 0
   standardDamage: 3
   critDamage: 18
+  knockbackFactor: 1
   cooldown: 0.2
   player: {fileID: 0}
   unchargedPrefab: {fileID: 494477079849064442, guid: e806ca39e745a724688fc69b801b5cdc,

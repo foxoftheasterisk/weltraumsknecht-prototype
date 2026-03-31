@@ -126,40 +126,41 @@ namespace Platformer.Mechanics
                     Schedule<PlayerStopJump>().player = this;
                 }
                 
-                if(!AreWeaponsBlocked())
+                bool weaponsBlocked = AreWeaponsBlocked();
+                
+                //still need to feed through input for the weapon that's blocking other weapons
+                if (weapon1 != null && (!weaponsBlocked || weapon1.IsBlockingWeapons()))
                 {
-                    if (weapon1 != null)
-                    {
-                        if (m_Weapon1Action.WasPressedThisFrame())
-                            weapon1.ButtonPressed();
-                        if (m_Weapon1Action.WasReleasedThisFrame())
-                            weapon1.ButtonReleased();
-                    }
-                    
-                    if (weapon2 != null)
-                    {
-                        if (m_Weapon2Action.WasPressedThisFrame())
-                            weapon2.ButtonPressed();
-                        if (m_Weapon2Action.WasReleasedThisFrame())
-                            weapon2.ButtonReleased();
-                    }
-                    
-                    if (weapon3 != null)
-                    {
-                        if (m_Weapon3Action.WasPressedThisFrame())
-                            weapon3.ButtonPressed();
-                        if (m_Weapon3Action.WasReleasedThisFrame())
-                            weapon3.ButtonReleased();
-                    }
-                    
-                    if (kickWeapon != null)
-                    {
-                        if (m_KickAction.WasPressedThisFrame())
-                            kickWeapon.ButtonPressed();
-                        if (m_KickAction.WasReleasedThisFrame())
-                            kickWeapon.ButtonReleased();
-                    }
+                    if (m_Weapon1Action.WasPressedThisFrame())
+                        weapon1.ButtonPressed();
+                    if (m_Weapon1Action.WasReleasedThisFrame())
+                        weapon1.ButtonReleased();
                 }
+                
+                if (weapon2 != null && (!weaponsBlocked || weapon2.IsBlockingWeapons()))
+                {
+                    if (m_Weapon2Action.WasPressedThisFrame())
+                        weapon2.ButtonPressed();
+                    if (m_Weapon2Action.WasReleasedThisFrame())
+                        weapon2.ButtonReleased();
+                }
+                
+                if (weapon3 != null && (!weaponsBlocked || weapon3.IsBlockingWeapons()))
+                {
+                    if (m_Weapon3Action.WasPressedThisFrame())
+                        weapon3.ButtonPressed();
+                    if (m_Weapon3Action.WasReleasedThisFrame())
+                        weapon3.ButtonReleased();
+                }
+                
+                if (kickWeapon != null && (!weaponsBlocked || kickWeapon.IsBlockingWeapons()))
+                {
+                    if (m_KickAction.WasPressedThisFrame())
+                        kickWeapon.ButtonPressed();
+                    if (m_KickAction.WasReleasedThisFrame())
+                        kickWeapon.ButtonReleased();
+                }
+                //this block seems awkward, but I'm not really sure how else to do it...
             }
             else
             {
