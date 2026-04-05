@@ -1,7 +1,7 @@
 using UnityEngine;
 using Platformer.Mechanics;
 
-///A basic projectile that never crits and has no interaction with enemies.
+///A basic projectile that never crits and has no special interaction with enemies.
 public class NeverCritsProjectile : WeaponProjectile
 {
     override public int GetDamage()
