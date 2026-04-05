@@ -173,8 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NeverCritsProjectile
   initialVelocity: {x: 3, y: 3.5}
   rotateVelocity: 50
-  standardDamage: 4
-  critDamage: 2
 --- !u!114 &6189496970436385552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3751d84e113c4e245a3900178255fe32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplodingBehavior
-  timeUntilExplode: 0.9
+  timeUntilExplode: 1.5
   explosionPrefab: {fileID: 9050780082967812070, guid: 9da607c690c9c9140b57cab73408e30a,
     type: 3}

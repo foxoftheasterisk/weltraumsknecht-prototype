@@ -35,24 +35,32 @@ public abstract class Weapon : ScriptableObject
     protected abstract bool IsActive();
     
     ///Creates a given projectile (or multiple projectiles in one prefab)
-    ///If melee is true, the projectile is created as a child of the player (and therefore will move with them);
-    ///if false, the projectile is created at the player's location, but not as a child.
+    ///If melee is true, the projectile is created as a child of the parent (and therefore will move with them);
+    ///if false, the projectile is created at the parent's location, but not as a child.
+    ///If no parent is passed, the player will be used.
+    ///(Do not pass in the player, as this will prevent projectile flipping.)
     ///Returns the created projectile.
-    protected GameObject CreateProjectile(GameObject prefab, bool melee = false)
+    protected GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null)
     {
         GameObject projectile;
-        bool flip = player.IsFacingLeft();
+        bool flip = false;
+        
+        if (parent == null)
+        {
+            parent = player.gameObject;
+            flip = player.IsFacingLeft();
+        }
         
         if (melee)
         {
-            projectile = Instantiate(prefab, player.transform);
+            projectile = Instantiate(prefab, parent.transform);
         }
         else
         {
             Vector3 relativePosition = prefab.transform.position;
             if(flip)
                 relativePosition.x *= -1;
-            Vector3 position = player.transform.position + relativePosition;
+            Vector3 position = parent.transform.position + relativePosition;
             projectile = Instantiate(prefab, position, Quaternion.identity);
         }
         

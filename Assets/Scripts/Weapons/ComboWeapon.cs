@@ -11,16 +11,22 @@ public class ComboWeapon : Weapon
     private GameObject projectile;
     private float timeInStep;
     private int currentStep = -1;
-    public bool melee = false;
+    
+    public enum ProjectileLocale
+    {    
+        Melee, 
+        Ranged, 
+        Remote
+    }
 
     [System.Serializable]
     public class ComboStep
     {
         public GameObject projectilePrefab;
+        public ProjectileLocale locale;
         public float nextStepStart;
         public float nextStepEnd;
     }
-    
     
     public override void ButtonPressed()
     {
@@ -32,7 +38,7 @@ public class ComboWeapon : Weapon
         else if (IsActive() && 
                  steps.Length > currentStep && 
                  timeInStep > steps[currentStep].nextStepStart && 
-                 timeInStep < steps[currentStep].nextStepEnd)
+                 (timeInStep < steps[currentStep].nextStepEnd || steps[currentStep].nextStepEnd == 0))
         {
             Debug.Log("Advancing to step " + (currentStep + 2));
             AdvanceStep();
@@ -52,15 +58,23 @@ public class ComboWeapon : Weapon
         base.Fire();
         currentStep = 0;
         timeInStep = 0;
-        projectile = CreateProjectile(steps[currentStep].projectilePrefab, melee);
+        projectile = CreateProjectile(steps[currentStep].projectilePrefab, 
+                                      steps[currentStep].locale == ProjectileLocale.Melee);
     }
     
     protected void AdvanceStep()
     {
-        Destroy(projectile);
+        GameObject lastStep = projectile;
+        
         currentStep++;
         timeInStep = 0;
-        projectile = CreateProjectile(steps[currentStep].projectilePrefab, melee);
+        if(steps[currentStep].locale == ProjectileLocale.Remote)
+            projectile = CreateProjectile(steps[currentStep].projectilePrefab, false, lastStep);
+        else
+            projectile = CreateProjectile(steps[currentStep].projectilePrefab, 
+                                          steps[currentStep].locale == ProjectileLocale.Melee);
+                                      
+        Destroy(lastStep);
     }
     
     protected override bool IsActive()
