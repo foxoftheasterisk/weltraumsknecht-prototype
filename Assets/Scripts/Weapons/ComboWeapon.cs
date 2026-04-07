@@ -32,7 +32,6 @@ public class ComboWeapon : Weapon
     {
         if (CanFire())
         {
-            Debug.Log("Can Fire");
             Fire();
         }
         else if (IsActive() && 
@@ -40,14 +39,7 @@ public class ComboWeapon : Weapon
                  timeInStep > steps[currentStep].nextStepStart && 
                  (timeInStep < steps[currentStep].nextStepEnd || steps[currentStep].nextStepEnd == 0))
         {
-            Debug.Log("Advancing to step " + (currentStep + 2));
             AdvanceStep();
-        }
-        else
-        {
-            Debug.Log("IsActive: " + IsActive());
-            Debug.Log("Current step: " + currentStep);
-            Debug.Log("Time in step: " + timeInStep);
         }
     }
     
