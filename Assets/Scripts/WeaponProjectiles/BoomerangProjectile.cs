@@ -2,12 +2,24 @@ using UnityEngine;
 using Platformer.Mechanics;
 using static Platformer.Core.Simulation;
 
-
+///A projectile that throws in its initial direction for a time, hangs for a time, then returns to the player.
+///Crits when hanging or returning.
+///If it hits an object before it begins hanging, it will immediately begin returning.
+///Behavior may be strange if acceleration exceeds returnSpeed.
 public class BoomerangProjectile : WeaponProjectile
 {
-    public bool returning = false;
     public float returnSpeed = 7;
-    public float timeBeforeReturn = 3;
+    public float throwTime = 3;
+    public float hangTime = .8f;
+    public float acceleration = .5f;
+    
+    private enum TravelState
+    {
+        Throw,
+        Hang,
+        Return
+    }
+    private TravelState state;
     
     private Rigidbody2D player;
     private Rigidbody2D rb;
@@ -16,8 +28,8 @@ public class BoomerangProjectile : WeaponProjectile
     override public void Start()
     {
         base.Start();
-        returning = false;
-        Invoke("TimeOut", timeBeforeReturn);
+        state = TravelState.Throw;
+        Invoke("StartHang", throwTime);
         
         rb = GetComponent<Rigidbody2D>();
         
@@ -32,11 +44,24 @@ public class BoomerangProjectile : WeaponProjectile
     // Update is called once per frame
     override public void Update()
     {
-        if (returning)
+        if (state == TravelState.Hang)
+        {
+            Vector2 vel = rb.linearVelocity;
+            float speed = vel.magnitude;
+            speed = Mathf.Max(speed - acceleration, 0);
+            vel = Vector2.ClampMagnitude(vel, speed);
+            rb.linearVelocity = vel;
+        } 
+        else if (state == TravelState.Return)
         {
             Vector2 playerPos = player.position;
-            Vector2 direction = playerPos - rb.position;
-            Vector2 vel = Vector2.Normalize(direction) * returnSpeed;
+            Vector2 direction = (playerPos - rb.position).normalized;
+            Vector2 deltaV = direction * acceleration;
+            
+            Vector2 vel = rb.linearVelocity;
+            vel = Vector2.ClampMagnitude(vel, returnSpeed - acceleration);
+            vel = vel + deltaV;
+            
             rb.linearVelocity = vel;
         }
     }
@@ -45,24 +70,34 @@ public class BoomerangProjectile : WeaponProjectile
     {
         base.InteractWith(other);
         
-        if (returning && other.gameObject == player.gameObject)
+        if (state == TravelState.Return && Object.ReferenceEquals(other.gameObject, player.gameObject))
         {
             Destroy(gameObject);
+        }
+        else if (!Object.ReferenceEquals(other.gameObject, player.gameObject))
+        {
+            if (state == TravelState.Throw)
+                state = TravelState.Return;
+            //Ideally it would also bounce off this object, but I'm not really sure how to do just one bounce.
         }
     }
     
     override public int GetDamage()
     {
-        return weapon.GetDamage(returning);
+        return weapon.GetDamage(state != TravelState.Throw);
     }
     
-    override public void CollidedWithEnemy(EnemyController enemy, bool killed)
+    private void StartHang()
     {
-        returning = true;
+        if (state == TravelState.Throw)
+        {
+            state = TravelState.Hang;
+            Invoke("StartReturn", hangTime);
+        }
     }
     
-    private void TimeOut()
+    private void StartReturn()
     {
-        returning = true;
+        state = TravelState.Return;
     }
 }

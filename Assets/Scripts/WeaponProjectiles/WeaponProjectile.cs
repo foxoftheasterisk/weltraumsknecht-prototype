@@ -116,5 +116,5 @@ public abstract class WeaponProjectile : MonoBehaviour
         
     }
     
-    public abstract void CollidedWithEnemy(EnemyController enemy, bool killed);
+    public virtual void CollidedWithEnemy(EnemyController enemy, bool killed) { }
 }

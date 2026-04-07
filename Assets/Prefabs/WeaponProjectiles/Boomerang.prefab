@@ -140,7 +140,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7931930256311781865}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -148,7 +148,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 79b297eea728cad47989798eb2173a58, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -173,8 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoomerangProjectile
   initialVelocity: {x: 5, y: 0}
   rotateVelocity: -200
-  standardDamage: 9
-  critDamage: 18
-  returning: 0
-  returnSpeed: 5
-  timeBeforeReturn: 0.8
+  returnSpeed: 7
+  throwTime: 0.4
+  hangTime: 0.3
+  acceleration: 0.05

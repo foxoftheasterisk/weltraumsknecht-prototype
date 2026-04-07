@@ -9,6 +9,4 @@ public class NoDamageProjectile : WeaponProjectile
     {
         return 0;
     }
-    
-    override public void CollidedWithEnemy(EnemyController enemy, bool killed) { }
 }
