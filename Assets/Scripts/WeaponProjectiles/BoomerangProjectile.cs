@@ -44,6 +44,11 @@ public class BoomerangProjectile : WeaponProjectile
     // Update is called once per frame
     override public void Update()
     {
+        if (state == TravelState.Throw)
+            return; //In "throw", the physics engine handles movement.
+        
+        
+        
         if (state == TravelState.Hang)
         {
             Vector2 vel = rb.linearVelocity;
@@ -77,8 +82,8 @@ public class BoomerangProjectile : WeaponProjectile
         else if (!Object.ReferenceEquals(other.gameObject, player.gameObject))
         {
             if (state == TravelState.Throw)
-                state = TravelState.Return;
-            //Ideally it would also bounce off this object, but I'm not really sure how to do just one bounce.
+                StartReturn();
+            
         }
     }
     
@@ -93,11 +98,14 @@ public class BoomerangProjectile : WeaponProjectile
         {
             state = TravelState.Hang;
             Invoke("StartReturn", hangTime);
+            //Possibly "hang" should also be a trigger-only mode?
         }
     }
     
     private void StartReturn()
     {
         state = TravelState.Return;
+        Collider2D col = GetComponent<Collider2D>();
+        col.isTrigger = true;
     }
 }
