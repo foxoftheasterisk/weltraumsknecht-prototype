@@ -66,16 +66,10 @@ MonoBehaviour:
   dashSpeed: 7
   maxDashDistance: 1000
   minDashDistance: 50
-  m_WeaponOneAction:
-    m_Name: Weapon One
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d452876c-b441-4f09-a457-8b9084601bf8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  weapon1: {fileID: 0}
+  westSlot: {fileID: 11400000, guid: c5496c35335139b44b74b5edaba38135, type: 2}
+  northSlot: {fileID: 11400000, guid: 11de0154b9708954aa5cf647c9f16892, type: 2}
+  eastSlot: {fileID: 11400000, guid: 950a25371d5bd994da94cadb2ba73e4d, type: 2}
+  kickSlot: {fileID: 11400000, guid: 92cac553b829aea4dba468b8a45b0cf0, type: 2}
 --- !u!212 &212064061491315838
 SpriteRenderer:
   serializedVersion: 2
