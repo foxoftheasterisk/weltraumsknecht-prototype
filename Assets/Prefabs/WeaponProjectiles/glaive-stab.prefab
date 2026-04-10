@@ -81,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1636711541
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6673983778746822831, guid: 3747435de6cec094f892a8621eb2dd2e,
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa270e906a399349b820c6b02ce3355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExpiringBehaviour
-  timeUntilExpire: 0.1
+  timeUntilExpire: 0.2
 --- !u!70 &446112449330646511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 6682850047200166795}
   - component: {fileID: 3689772679869816041}
   - component: {fileID: 1731625103980036033}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: glaive-stab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

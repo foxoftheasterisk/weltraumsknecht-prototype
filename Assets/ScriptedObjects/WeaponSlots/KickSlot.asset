@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e175638741f747145aecb35866ccbed3, type: 3}
   m_Name: KickSlot
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSlot
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 2a1ac91d30dfd0d41a22d574cb2f0aaa, type: 2}

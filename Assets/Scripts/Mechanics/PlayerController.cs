@@ -74,13 +74,13 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
 
-            if (westSlot.hasWeapon())
+            if (westSlot.HasWeapon())
                 westSlot.weapon.player = this;
-            if (northSlot.hasWeapon())
+            if (northSlot.HasWeapon())
                 northSlot.weapon.player = this;
-            if (eastSlot.hasWeapon())
+            if (eastSlot.HasWeapon())
                 eastSlot.weapon.player = this;
-            if (kickSlot.hasWeapon())
+            if (kickSlot.HasWeapon())
                 kickSlot.weapon.player = this;
 
             m_MoveAction = InputSystem.actions.FindAction("Player/Move");
@@ -129,7 +129,7 @@ namespace Platformer.Mechanics
                 bool weaponsBlocked = AreWeaponsBlocked();
                 
                 //still need to feed through input for the weapon that's blocking other weapons
-                if (westSlot.hasWeapon() && (!weaponsBlocked || westSlot.weapon.IsBlockingWeapons()))
+                if (westSlot.HasWeapon() && (!weaponsBlocked || westSlot.weapon.IsBlockingWeapons()))
                 {
                     if (m_WestWeaponAction.WasPressedThisFrame())
                         westSlot.weapon.ButtonPressed();
@@ -137,7 +137,7 @@ namespace Platformer.Mechanics
                         westSlot.weapon.ButtonReleased();
                 }
                 
-                if (northSlot.hasWeapon() && (!weaponsBlocked || northSlot.weapon.IsBlockingWeapons()))
+                if (northSlot.HasWeapon() && (!weaponsBlocked || northSlot.weapon.IsBlockingWeapons()))
                 {
                     if (m_NorthWeaponAction.WasPressedThisFrame())
                         northSlot.weapon.ButtonPressed();
@@ -145,7 +145,7 @@ namespace Platformer.Mechanics
                         northSlot.weapon.ButtonReleased();
                 }
                 
-                if (eastSlot.hasWeapon() && (!weaponsBlocked || eastSlot.weapon.IsBlockingWeapons()))
+                if (eastSlot.HasWeapon() && (!weaponsBlocked || eastSlot.weapon.IsBlockingWeapons()))
                 {
                     if (m_EastWeaponAction.WasPressedThisFrame())
                         eastSlot.weapon.ButtonPressed();
@@ -153,7 +153,7 @@ namespace Platformer.Mechanics
                         eastSlot.weapon.ButtonReleased();
                 }
                 
-                if (kickSlot.hasWeapon() && (!weaponsBlocked || kickSlot.weapon.IsBlockingWeapons()))
+                if (kickSlot.HasWeapon() && (!weaponsBlocked || kickSlot.weapon.IsBlockingWeapons()))
                 {
                     if (m_KickAction.WasPressedThisFrame())
                         kickSlot.weapon.ButtonPressed();
@@ -205,13 +205,13 @@ namespace Platformer.Mechanics
 
         private void UpdateWeapons()
         {
-            if (westSlot.hasWeapon())
+            if (westSlot.HasWeapon())
                 westSlot.weapon.Update();
-            if (northSlot.hasWeapon())
+            if (northSlot.HasWeapon())
                 northSlot.weapon.Update();
-            if (eastSlot.hasWeapon())
+            if (eastSlot.HasWeapon())
                 eastSlot.weapon.Update();
-            if (kickSlot.hasWeapon())
+            if (kickSlot.HasWeapon())
                 kickSlot.weapon.Update();
         }
 
@@ -278,26 +278,26 @@ namespace Platformer.Mechanics
         
         private bool IsFacingBlocked()
         {
-            return IsDashing() || (westSlot.hasWeapon() && westSlot.weapon.IsBlockingFacing()) 
-                    || (northSlot.hasWeapon() && northSlot.weapon.IsBlockingFacing()) 
-                    || (eastSlot.hasWeapon() && eastSlot.weapon.IsBlockingFacing()) 
-                    || (kickSlot.hasWeapon() && kickSlot.weapon.IsBlockingFacing());
+            return IsDashing() || (westSlot.HasWeapon() && westSlot.weapon.IsBlockingFacing()) 
+                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingFacing()) 
+                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingFacing()) 
+                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingFacing());
         }
         
         private bool IsMovementBlocked()
         {
-            return (westSlot.hasWeapon() && westSlot.weapon.IsBlockingMovement()) 
-                    || (northSlot.hasWeapon() && northSlot.weapon.IsBlockingMovement()) 
-                    || (eastSlot.hasWeapon() && eastSlot.weapon.IsBlockingMovement()) 
-                    || (kickSlot.hasWeapon() && kickSlot.weapon.IsBlockingMovement());
+            return (westSlot.HasWeapon() && westSlot.weapon.IsBlockingMovement()) 
+                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingMovement()) 
+                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingMovement()) 
+                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingMovement());
         }
         
         private bool AreWeaponsBlocked()
         {
-            return (westSlot.hasWeapon() && westSlot.weapon.IsBlockingWeapons()) 
-                    || (northSlot.hasWeapon() && northSlot.weapon.IsBlockingWeapons()) 
-                    || (eastSlot.hasWeapon() && eastSlot.weapon.IsBlockingWeapons()) 
-                    || (kickSlot.hasWeapon() && kickSlot.weapon.IsBlockingWeapons());
+            return (westSlot.HasWeapon() && westSlot.weapon.IsBlockingWeapons()) 
+                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingWeapons()) 
+                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingWeapons()) 
+                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingWeapons());
         }
 
         private bool AttemptDashCancel()

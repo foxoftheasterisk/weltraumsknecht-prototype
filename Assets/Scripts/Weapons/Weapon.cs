@@ -15,12 +15,16 @@ public abstract class Weapon : ScriptableObject
     public float cooldown;
     protected float cooldownRemaining;
     
-    public abstract void ButtonPressed();
-    
-    public abstract void ButtonReleased();
+    public Sprite icon;
     
     [HideInInspector]
     public PlayerController player;
+    
+    
+    
+    public abstract void ButtonPressed();
+    
+    public abstract void ButtonReleased();
     
     public bool CanFire()
     {

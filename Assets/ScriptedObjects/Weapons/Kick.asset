@@ -17,7 +17,9 @@ MonoBehaviour:
   blocksFacing: 1
   standardDamage: 3
   critDamage: 6
+  knockbackFactor: 1
   cooldown: 0.1
+  icon: {fileID: 21300000, guid: 2639956117bf92941b7e24b1468ad190, type: 3}
   player: {fileID: 0}
   projectilePrefab: {fileID: 0}
   airPrefab: {fileID: 1128737127766160964, guid: 3ca251c1e97b34048b350e9e85c0a780,

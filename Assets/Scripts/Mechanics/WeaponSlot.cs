@@ -9,7 +9,7 @@ public class WeaponSlot : ScriptableObject
     PlayerController player;
     //TODO: separate into WeaponData and WeaponInstance
     
-    public bool hasWeapon()
+    public bool HasWeapon()
     {
         return (weapon != null);
     }

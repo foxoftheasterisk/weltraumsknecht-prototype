@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e175638741f747145aecb35866ccbed3, type: 3}
   m_Name: NorthSlot
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSlot
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 925ead119ee5ffd40a920de4bbc294ab, type: 2}

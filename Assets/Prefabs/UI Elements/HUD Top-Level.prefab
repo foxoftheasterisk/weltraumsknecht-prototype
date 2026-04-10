@@ -118,6 +118,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Slot (North)
       objectReference: {fileID: 0}
+    - target: {fileID: 2386753375749373023, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: slot
+      value: 
+      objectReference: {fileID: 11400000, guid: 11de0154b9708954aa5cf647c9f16892,
+        type: 2}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_Pivot.x
@@ -131,32 +137,32 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -196,12 +202,12 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 460
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 210
+      value: -41
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -216,6 +222,11 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -242,6 +253,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Slot (West)
       objectReference: {fileID: 0}
+    - target: {fileID: 2386753375749373023, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: slot
+      value: 
+      objectReference: {fileID: 11400000, guid: c5496c35335139b44b74b5edaba38135,
+        type: 2}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_Pivot.x
@@ -255,32 +272,32 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -320,12 +337,12 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 430
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 180
+      value: -71
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -340,6 +357,11 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -366,6 +388,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Slot (East)
       objectReference: {fileID: 0}
+    - target: {fileID: 2386753375749373023, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: slot
+      value: 
+      objectReference: {fileID: 11400000, guid: 950a25371d5bd994da94cadb2ba73e4d,
+        type: 2}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_Pivot.x
@@ -379,32 +407,32 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -444,12 +472,12 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 490
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 180
+      value: -71
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -464,6 +492,11 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -490,6 +523,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Slot (Kick)
       objectReference: {fileID: 0}
+    - target: {fileID: 2386753375749373023, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: slot
+      value: 
+      objectReference: {fileID: 11400000, guid: 92cac553b829aea4dba468b8a45b0cf0,
+        type: 2}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_Pivot.x
@@ -503,32 +542,32 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -568,12 +607,12 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 460
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150.3
+      value: -101
       objectReference: {fileID: 0}
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
@@ -588,6 +627,11 @@ PrefabInstance:
     - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866071432727693181, guid: f3923cb0d797ec6429fa64b9329baa74,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
