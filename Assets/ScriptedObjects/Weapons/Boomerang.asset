@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14eac0259232154e936edf5954f5afb, type: 3}
   m_Name: Boomerang
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
-  blockingWeapons: 0
-  blockingMovement: 0
-  blockingFacing: 0
+  blocksWeapons: 0
+  blocksMovement: 0
+  blocksFacing: 0
+  standardDamage: 9
+  critDamage: 18
+  knockbackFactor: 1
   cooldown: 2
+  icon: {fileID: 21300000, guid: abd95590bf0996c40b17cf1b715a713e, type: 3}
   player: {fileID: 0}
   projectilePrefab: {fileID: 7931930256311781865, guid: 4f8effdea79dbce4d9931a50664a37de,
     type: 3}
+  airPrefab: {fileID: 0}
+  melee: 0
