@@ -19,14 +19,16 @@ MonoBehaviour:
   critDamage: 18
   knockbackFactor: 1
   cooldown: 0.2
+  icon: {fileID: 21300000, guid: 47de2401d39305141a7acbfc5bc29bdc, type: 3}
   player: {fileID: 0}
   steps:
   - projectilePrefab: {fileID: 503919131007370825, guid: fbb1d9a274c1a1e4a8c7a847952625c9,
       type: 3}
+    locale: 0
     nextStepStart: 0.1
     nextStepEnd: 0.5
   - projectilePrefab: {fileID: 3114498546124109308, guid: 0414feefb0d539c4ab96cb61dee78c2e,
       type: 3}
+    locale: 0
     nextStepStart: 0
     nextStepEnd: 0
-  melee: 1

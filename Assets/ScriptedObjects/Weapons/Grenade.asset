@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e505ef4f07d920c41877d76160170209, type: 3}
-  m_Name: Bomb
+  m_Name: Grenade
   m_EditorClassIdentifier: Assembly-CSharp::ComboWeapon
   blocksWeapons: 0
   blocksMovement: 0
@@ -19,6 +19,7 @@ MonoBehaviour:
   critDamage: 18
   knockbackFactor: 1
   cooldown: 2
+  icon: {fileID: 21300000, guid: 6687d4d6c8ae21b4f970175cc5846936, type: 3}
   player: {fileID: 0}
   steps:
   - projectilePrefab: {fileID: 8733897078109884503, guid: b429db0b460e3e04aac68495097d0ca9,

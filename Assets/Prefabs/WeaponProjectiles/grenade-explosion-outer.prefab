@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1751870751624447308}
   - component: {fileID: 8660612712039651096}
   m_Layer: 3
-  m_Name: bomb-explosion-outer
+  m_Name: grenade-explosion-outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
