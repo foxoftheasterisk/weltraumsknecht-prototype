@@ -69,7 +69,7 @@ public class ComboWeapon : Weapon
         Destroy(lastStep);
     }
     
-    protected override bool IsActive()
+    public override bool IsActive()
     {
         if (projectile == null)
             return false;

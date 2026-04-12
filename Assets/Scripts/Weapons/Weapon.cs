@@ -36,7 +36,7 @@ public abstract class Weapon : ScriptableObject
         cooldownRemaining = cooldown;
     }
     
-    protected abstract bool IsActive();
+    public abstract bool IsActive();
     
     ///Creates a given projectile (or multiple projectiles in one prefab)
     ///If melee is true, the projectile is created as a child of the parent (and therefore will move with them);

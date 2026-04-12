@@ -9,7 +9,14 @@ public class WeaponSlotDisplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (slot != null && slot.HasWeapon())
+        if (slot == null)
+        {
+            Debug.Log("Weapon Slot Display not linked to a slot! " + this.name);
+            Destroy(this);
+            return;
+        }
+        
+        if (slot.HasWeapon())
         {
             display.overrideSprite = slot.weapon.icon;
             //If the override sprite is null, will display its default sprite, which is exactly the behavior we want.
@@ -21,6 +28,24 @@ public class WeaponSlotDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(slot.HasWeapon())
+        {
+            Weapon weapon = slot.weapon;
+            if (!weapon.CanFire())
+            {
+                if (weapon.IsActive())
+                {
+                    display.color = Color.yellow;
+                }
+                else
+                {
+                    display.color = Color.gray;
+                }
+            }
+            else
+            {
+                display.color = Color.white;
+            }
+        }
     }
 }

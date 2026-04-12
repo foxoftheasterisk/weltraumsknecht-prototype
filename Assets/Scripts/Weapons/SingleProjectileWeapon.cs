@@ -35,7 +35,7 @@ public class SingleProjectileWeapon : Weapon
         }
     }
     
-    protected override bool IsActive()
+    public override bool IsActive()
     {
         if (projectile == null)
             return false;

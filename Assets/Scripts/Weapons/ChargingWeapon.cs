@@ -45,7 +45,7 @@ public class ChargingWeapon : Weapon
         }
     }
     
-    protected override bool IsActive()
+    public override bool IsActive()
     {
         return charging;
     }
