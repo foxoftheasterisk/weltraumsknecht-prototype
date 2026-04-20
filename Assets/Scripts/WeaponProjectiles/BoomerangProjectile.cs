@@ -11,7 +11,7 @@ public class BoomerangProjectile : WeaponProjectile
     public float returnSpeed = 7;
     public float throwTime = 3;
     public float hangTime = .8f;
-    public float acceleration = .5f;
+    public float acceleration = 3;
     
     private enum TravelState
     {
@@ -53,22 +53,11 @@ public class BoomerangProjectile : WeaponProjectile
         {
             Vector2 vel = rb.linearVelocity;
             float speed = vel.magnitude;
-            speed = Mathf.Max(speed - acceleration, 0);
+            float deltaSpeed = acceleration * Time.deltaTime;
+            speed = Mathf.Max(speed - deltaSpeed, 0);
             vel = Vector2.ClampMagnitude(vel, speed);
             rb.linearVelocity = vel;
         } 
-        else if (state == TravelState.Return)
-        {
-            Vector2 playerPos = player.position;
-            Vector2 direction = (playerPos - rb.position).normalized;
-            Vector2 deltaV = direction * acceleration;
-            
-            Vector2 vel = rb.linearVelocity;
-            vel = Vector2.ClampMagnitude(vel, returnSpeed - acceleration);
-            vel = vel + deltaV;
-            
-            rb.linearVelocity = vel;
-        }
     }
     
     override protected void InteractWith(Collider2D other)
@@ -107,5 +96,11 @@ public class BoomerangProjectile : WeaponProjectile
         state = TravelState.Return;
         Collider2D col = GetComponent<Collider2D>();
         col.isTrigger = true;
+        HomingBehaviour hb = gameObject.AddComponent<HomingBehaviour>();
+
+        hb.targetSpeed = returnSpeed;
+        hb.acceleration = acceleration;
+        hb.target = player;
+        //Rotate max will need to be passed through as well
     }
 }

@@ -171,9 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e40f019099836f44b00522cce57bff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoomerangProjectile
-  initialVelocity: {x: 7, y: 0}
+  initialVelocity: {x: 6, y: 0}
   rotateVelocity: -200
-  returnSpeed: 7
+  returnSpeed: 6
   throwTime: 0.3
-  hangTime: 0.25
-  acceleration: 0.08
+  hangTime: 0.4
+  acceleration: 18
