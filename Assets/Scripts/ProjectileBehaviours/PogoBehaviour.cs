@@ -9,7 +9,7 @@ using Platformer.Mechanics;
 /// (Unknown behavior if it collides with two objects in the same frame.)
 ///Currently only works with collisions, so does nothing on projectiles set to trigger.
 ///(TODO: fix that.)
-public class PogoBehavior : MonoBehaviour
+public class PogoBehaviour : MonoBehaviour
 {
     private KinematicObject objectToBounce;
     public float bounceMagnitude = 4;
