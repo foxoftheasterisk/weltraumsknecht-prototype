@@ -1,11 +1,14 @@
 using UnityEngine;
 
-///A simple script that causes the attached object to be destroyed after any collision.
+///A simple script that causes the attached object to be destroyed after collisions.
+///It can also have a number of non-destroying collisions beforehand.
 ///(Because Destroy occurs at the end of the frame, other collision effects still apply.)
 ///Currently only works with collisions, so does nothing on projectiles set to trigger.
 ///(TODO: fix that.)
 public class BreakOnContactBehaviour : MonoBehaviour
 {
+    public int nonDestroyingCollisions = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() { }
 
@@ -14,8 +17,17 @@ public class BreakOnContactBehaviour : MonoBehaviour
     
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Projectile breaking from contact with " + collision.gameObject.name);
-        Destroy(gameObject);
+        if(nonDestroyingCollisions > 0)
+        {
+            Debug.Log("Non-destroying collision with " + collision.gameObject.name);
+            nonDestroyingCollisions--;
+        }
+        else
+        {
+            Debug.Log("Projectile breaking from contact with " + collision.gameObject.name);
+            Destroy(gameObject);
+        }
+        
     }
     
     /*
