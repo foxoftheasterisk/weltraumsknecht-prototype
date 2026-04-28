@@ -17,17 +17,17 @@ namespace Platformer.Gameplay
         public WeaponProjectile projectile;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
-        
+
         //TODO: debounce these collisions
         //(Probably not in this class. But maybe!)
 
+        public override bool Precondition()
+        {
+            return !enemy.IsInIFrames();
+        }
+
         public override void Execute()
         {
-            if(enemy.IsInIFrames())
-            {
-                //collision is discarded
-                return;
-            }
 
             var enemyHealth = enemy.GetComponent<Health>();
             if (enemyHealth != null)

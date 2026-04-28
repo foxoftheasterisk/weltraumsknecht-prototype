@@ -19,12 +19,10 @@ public class BreakOnContactBehaviour : MonoBehaviour
     {
         if(nonDestroyingCollisions > 0)
         {
-            Debug.Log("Non-destroying collision with " + collision.gameObject.name);
             nonDestroyingCollisions--;
         }
         else
         {
-            Debug.Log("Projectile breaking from contact with " + collision.gameObject.name);
             Destroy(gameObject);
         }
         
