@@ -16,7 +16,7 @@ TagManager:
   - Enemies
   - Enemy Projectiles
   - Cinemachine
-  - 
+  - Environment
   - 
   - 
   - 
@@ -54,3 +54,4 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+  m_MigratedRenderPipelines: []
