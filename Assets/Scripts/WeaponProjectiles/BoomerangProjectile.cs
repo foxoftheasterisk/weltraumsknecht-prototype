@@ -60,19 +60,16 @@ public class BoomerangProjectile : WeaponProjectile
         } 
     }
     
-    override protected void InteractWith(Collider2D other)
+    override public void CollidedWithAny(GameObject other)
     {
-        base.InteractWith(other);
-        
-        if (state == TravelState.Return && Object.ReferenceEquals(other.gameObject, player.gameObject))
+        if (state == TravelState.Return && Object.ReferenceEquals(other, player.gameObject))
         {
             Destroy(gameObject);
         }
-        else if (!Object.ReferenceEquals(other.gameObject, player.gameObject))
+        else if (!Object.ReferenceEquals(other, player.gameObject))
         {
             if (state == TravelState.Throw)
                 StartReturn();
-            
         }
     }
     

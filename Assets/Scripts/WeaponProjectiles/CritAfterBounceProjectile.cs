@@ -7,10 +7,8 @@ public class CritAfterBounceProjectile : WeaponProjectile
 {
     private bool hasBounced = false;
     
-    override protected void InteractWith(Collider2D other)
+    override public void CollidedWithAny(GameObject other)
     {
-        base.InteractWith(other);
-
         hasBounced = true;
     }
     

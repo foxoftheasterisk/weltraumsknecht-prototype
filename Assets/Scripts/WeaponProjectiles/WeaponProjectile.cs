@@ -2,6 +2,7 @@ using UnityEngine;
 using Platformer.Mechanics;
 using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
+using System;
 
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public abstract class WeaponProjectile : MonoBehaviour
@@ -78,7 +79,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         return weapon;
     }
     
-    protected virtual void InteractWith(Collider2D other)
+    protected void InteractWith(Collider2D other)
     {
         var enemy = other.gameObject.GetComponent<EnemyController>();
         if (enemy != null)
@@ -86,6 +87,10 @@ public abstract class WeaponProjectile : MonoBehaviour
             var ev = Schedule<ProjectileEnemyCollision>();
             ev.projectile = this;
             ev.enemy = enemy;
+        }
+        else
+        {
+            CollidedWithOther(other.gameObject);
         }
     }
     
@@ -116,5 +121,15 @@ public abstract class WeaponProjectile : MonoBehaviour
         
     }
     
-    public virtual void CollidedWithEnemy(EnemyController enemy, bool killed) { }
+    public virtual void CollidedWithEnemy(EnemyController enemy, bool killed) 
+    {
+        CollidedWithAny(enemy.gameObject);
+    }
+
+    public virtual void CollidedWithOther(GameObject other) 
+    {
+        CollidedWithAny(other);
+    }
+
+    public virtual void CollidedWithAny(GameObject other) { }
 }
