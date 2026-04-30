@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e175638741f747145aecb35866ccbed3, type: 3}
   m_Name: WestSlot
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSlot
-  weapon: {fileID: 11400000, guid: 2da37d4c1d0615c41a326402a791f2e7, type: 2}
+  weapon: {fileID: 11400000, guid: 2004566097cdf7f4789bcb1b20130d06, type: 2}
