@@ -64,7 +64,7 @@ public class SuccessiveProjectileWeapon : Weapon
         if (IsActive())
         {
             timeInStep += Time.deltaTime;
-            if(timeInStep > steps[currentStep].nextStep)
+            if(timeInStep > steps[currentStep].nextStep && currentStep < steps.Length - 1)
             {
                 AdvanceStep();
             }

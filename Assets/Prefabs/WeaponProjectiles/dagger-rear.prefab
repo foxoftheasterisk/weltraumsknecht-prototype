@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5144034486345533011}
   - component: {fileID: 214105835794598504}
   - component: {fileID: 179693981734383022}
-  - component: {fileID: 819605175871321688}
+  - component: {fileID: 4519150531974191995}
   m_Layer: 3
   m_Name: dagger-rear
   m_TagString: Untagged
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExpiringBehaviour
   timeUntilExpire: 0.3
---- !u!114 &819605175871321688
+--- !u!114 &4519150531974191995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,9 +183,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2736335973647754164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 522d6e0ca8636544498c47781fb8f2a2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NeverCritsProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::AlwaysCritsProjectile
   initialVelocity: {x: 0, y: 0}
   rotateVelocity: 0
 --- !u!1 &6515220129526550252
