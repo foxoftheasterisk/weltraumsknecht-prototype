@@ -4,6 +4,8 @@ using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using System;
 
+using Weltraumsknecht.Weapons;
+
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public abstract class WeaponProjectile : MonoBehaviour
 {
