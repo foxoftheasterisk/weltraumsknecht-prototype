@@ -5,6 +5,7 @@ namespace Weltraumsknecht.Weapons
 
     /// <summary>
     /// Defines when and how a weapon changes phases.
+    /// Each transition can only activate once per active phase.
     /// </summary>
     [System.Serializable]
     public abstract class WeaponTransition
@@ -17,7 +18,6 @@ namespace Weltraumsknecht.Weapons
         /// </summary>
         public int advancePhases = 1;
 
-
-
+        abstract internal bool ShouldAdvance(ActivePhase phaseState);
     }
 }

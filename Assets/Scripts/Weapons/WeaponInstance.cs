@@ -1,71 +1,82 @@
-using NUnit.Framework;
 using Platformer.Mechanics;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using static ComboWeapon;
+using static Weltraumsknecht.Weapons.WeaponDefinition;
 
 namespace Weltraumsknecht.Weapons
 {
-    public class Weapon : ScriptableObject
+
+    //Not sure if this should be a MonoBehaviour actually
+    public class WeaponInstance : MonoBehaviour
     {
-        public WeaponPhase[] phases;
+        public WeaponDefinition Definition
+        {
+            get;
+            private set;
+        }
+
         private List<ActivePhase> activePhases;
 
-        public bool blocksWeapons = false;
-        public bool blocksMovement = false;
-        public bool blocksFacing = false;
-    
-        public int standardDamage = 10;
-        public int critDamage = 20;
-    
-        public float knockbackFactor = 1;
-
-        public enum CooldownType
+        public float CooldownRemaining
         {
-            Time,
-            Hits
-        };
+            get;
+            private set;
+        }
+        //we will probably eventually want a public ReduceCooldown method
 
-        public CooldownType cooldownType = CooldownType.Time;
-        public float cooldown;
-        protected float cooldownRemaining;
-    
-        public Sprite icon;
-    
         [HideInInspector]
         public PlayerController player;
-    
-        public abstract void ButtonPressed();
-    
-        public abstract void ButtonReleased();
 
-        public virtual void Update()
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            activePhases = new List<ActivePhase>();
+        }
+
+        // Update is called once per frame
+        void Update()
         {
             if (IsActive())
             {
-                List<ActivePhase> inactive;
+                List<ActivePhase> inactive = new List<ActivePhase>();
                 foreach (ActivePhase phase in activePhases)
                 {
-                    if(!phase.isActive())
+                    if (!phase.isActive())
                     {
-                        activePhases.Remove(phase);
+                        inactive.Add(phase);
+                    }
+                    else
+                    {
+                        phase.timeInPhase += Time.deltaTime;
+                        phase.checkTransitions();
                     }
                 }
+
             }
             else if (cooldownRemaining > 0 && cooldownType == CooldownType.Time)
                 cooldownRemaining -= Time.deltaTime;
         }
 
+
+
+
+        public abstract void ButtonPressed();
+
+        public abstract void ButtonReleased();
+
+
+
         public bool CanFire()
         {
             return !IsActive() && cooldownRemaining <= 0;
         }
-    
+
         protected virtual void Fire()
         {
             cooldownRemaining = cooldown;
         }
-    
+
         public bool IsActive()
         {
             foreach (ActivePhase phase in activePhases)
@@ -88,13 +99,13 @@ namespace Weltraumsknecht.Weapons
         {
             GameObject projectile;
             bool flip = false;
-        
+
             if (parent == null)
             {
                 parent = player.gameObject;
                 flip = player.IsFacingLeft();
             }
-        
+
             if (melee)
             {
                 projectile = Instantiate(prefab, parent.transform);
@@ -102,35 +113,35 @@ namespace Weltraumsknecht.Weapons
             else
             {
                 Vector3 relativePosition = prefab.transform.position;
-                if(flip)
+                if (flip)
                     relativePosition.x *= -1;
                 Vector3 position = parent.transform.position + relativePosition;
                 projectile = Instantiate(prefab, position, Quaternion.identity);
             }
-        
+
             if (flip)
             {
                 Vector3 scale = projectile.transform.localScale;
                 scale.x *= -1;
                 projectile.transform.localScale = scale;
-            
+
                 Vector3 rotation = projectile.transform.localEulerAngles;
                 rotation.z *= -1;
                 projectile.transform.localEulerAngles = rotation;
-            
-                if(melee)
+
+                if (melee)
                 {
                     Vector3 position = projectile.transform.localPosition;
                     position.x *= -1;
                     projectile.transform.localPosition = position;
                 }
             }
-        
+
             WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
             foreach (WeaponProjectile wp in wps)
             {
                 wp.Create(this, melee);
-            
+
                 //a weaponprojectile requires a rigidbody, so this should be safe
                 Rigidbody2D rb = wp.GetComponent<Rigidbody2D>();
                 if (rb.bodyType != RigidbodyType2D.Static)
@@ -147,10 +158,10 @@ namespace Weltraumsknecht.Weapons
                     }
                 }
             }
-        
+
             return projectile;
         }
-    
+
         public int GetDamage(bool crit)
         {
             if (crit)
@@ -158,38 +169,20 @@ namespace Weltraumsknecht.Weapons
             else
                 return standardDamage;
         }
-    
-        
-    
+
         public virtual bool IsBlockingFacing()
         {
             return blocksFacing && IsActive();
         }
-    
+
         public virtual bool IsBlockingMovement()
         {
             return blocksMovement && IsActive();
         }
-    
+
         public virtual bool IsBlockingWeapons()
         {
             return blocksWeapons && IsActive();
-        }
-
-        private class ActivePhase
-        {
-            public WeaponPhase definition;
-
-            public GameObject linkedProjectile;
-
-            public float timeInPhase;
-
-            public bool isActive()
-            {
-                if (linkedProjectile == null)
-                    return false;
-                return linkedProjectile.activeInHierarchy;
-            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Weltraumsknecht.Weapons
         public bool isWarmup;
         
         public bool blocksMovement;
-        //TODO: implement movement-slowing phases
+        public float moveSpeedPenalty = 0; //1 for no horizontal movement, 0 for no penalty
         public bool blocksWeapons;
         public bool blocksFacing;
 
