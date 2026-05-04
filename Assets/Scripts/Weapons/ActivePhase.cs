@@ -10,13 +10,26 @@ namespace Weltraumsknecht.Weapons
     //TODO: it should probably manage itself, for best code practices
     internal class ActivePhase
     {
-        public WeaponPhase definition;
+        public WeaponPhase Definition
+        {
+            get;
+            private set;
+        }
 
         public GameObject linkedProjectile;
 
-        public float timeInPhase;
+        public float TimeInPhase
+        {
+            get;
+            private set;
+        } = 0;
 
         public List<WeaponTransition> potentialTransitions;
+
+        public int Position
+        {
+            get;
+        }
 
         public bool isActive()
         {
@@ -24,6 +37,19 @@ namespace Weltraumsknecht.Weapons
                 return false;
             return linkedProjectile.activeInHierarchy;
         }
+
+        public ActivePhase(int _position, WeaponPhase _definition, GameObject projectile)
+        {
+            Position = _position;
+            Definition = _definition;
+            potentialTransitions = new List<WeaponTransition>(Definition.transitions);
+        }
+
+        public void AdvanceTime(float deltaTime)
+        {
+            TimeInPhase += deltaTime;
+        }
+
     }
 
 }

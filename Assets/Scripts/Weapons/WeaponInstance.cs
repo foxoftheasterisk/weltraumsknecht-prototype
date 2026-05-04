@@ -45,46 +45,104 @@ namespace Weltraumsknecht.Weapons
                     if (!phase.isActive())
                     {
                         inactive.Add(phase);
+                        CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate);
                     }
                     else
                     {
-                        phase.timeInPhase += Time.deltaTime;
-                        phase.checkTransitions();
+                        phase.AdvanceTime(Time.deltaTime);
+                        CheckTransitions(phase, WeaponTransition.TriggerType.Update);
                     }
                 }
 
+                activePhases.RemoveAll(p => inactive.Contains(p));
             }
-            else if (cooldownRemaining > 0 && cooldownType == CooldownType.Time)
-                cooldownRemaining -= Time.deltaTime;
+            else if (CooldownRemaining > 0 && Definition.cooldownType == CooldownType.Time)
+                CooldownRemaining -= Time.deltaTime;
         }
 
 
 
 
-        public abstract void ButtonPressed();
+        public void ButtonPressed()
+        {
+            if (IsActive())
+            {
+                CheckAllTransitions(WeaponTransition.TriggerType.ButtonPress);
+            }
+            else if (CanFire())
+            {
+                Fire();
+            }
+        }
 
-        public abstract void ButtonReleased();
+        public void ButtonReleased()
+        {
+            if (IsActive())
+            {
+                CheckAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
+            }
+        }
 
 
+        private void CheckAllTransitions(WeaponTransition.TriggerType triggerType)
+        {
+            foreach(ActivePhase phase in activePhases)
+            {
+                CheckTransitions(phase, triggerType);
+            }
+        }
+
+        private void CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType)
+        {
+            List<WeaponTransition> activating = new List<WeaponTransition>();
+            foreach(WeaponTransition transition in phase.potentialTransitions)
+            {
+                if (transition.triggerType == triggerType && transition.ShouldAdvance(phase))
+                    activating.Add(transition);
+            }
+
+            foreach(WeaponTransition transition in activating)
+            {
+                AdvancePhase(phase, transition);
+                if (transition.destroyLastPhase)
+                {
+                    return;
+                }
+                else
+                {
+                    phase.potentialTransitions.Remove(transition);
+                }
+            }
+        }
 
         public bool CanFire()
         {
-            return !IsActive() && cooldownRemaining <= 0;
+            return !IsActive() && CooldownRemaining <= 0;
         }
 
         protected virtual void Fire()
         {
-            cooldownRemaining = cooldown;
+            StartPhase(0);
         }
 
         public bool IsActive()
         {
             foreach (ActivePhase phase in activePhases)
             {
-                if (phase.isActive() && phase.definition.activeLink)
+                if (phase.isActive() && phase.Definition.activeLink)
                     return true;
             }
             return false;
+        }
+
+        private void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
+        {
+            //TODO
+        }
+
+        private void StartPhase(int phasePosition)
+        {
+            //TODO
         }
 
         /// <summary>
@@ -165,24 +223,45 @@ namespace Weltraumsknecht.Weapons
         public int GetDamage(bool crit)
         {
             if (crit)
-                return critDamage;
+                return Definition.critDamage;
             else
-                return standardDamage;
+                return Definition.standardDamage;
         }
 
         public virtual bool IsBlockingFacing()
         {
-            return blocksFacing && IsActive();
+            if (!IsActive())
+                return false;
+            foreach (ActivePhase phase in activePhases)
+            {
+                if (phase.Definition.blocksFacing && phase.isActive())
+                    return true;
+            }
+            return false;
         }
 
         public virtual bool IsBlockingMovement()
         {
-            return blocksMovement && IsActive();
+            if (!IsActive())
+                return false;
+            foreach (ActivePhase phase in activePhases)
+            {
+                if (phase.Definition.blocksMovement && phase.isActive())
+                    return true;
+            }
+            return false;
         }
 
         public virtual bool IsBlockingWeapons()
         {
-            return blocksWeapons && IsActive();
+            if (!IsActive())
+                return false;
+            foreach (ActivePhase phase in activePhases)
+            {
+                if (phase.Definition.blocksWeapons && phase.isActive())
+                    return true;
+            }
+            return false;
         }
     }
 }

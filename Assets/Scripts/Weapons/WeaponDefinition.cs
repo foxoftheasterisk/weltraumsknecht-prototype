@@ -24,8 +24,5 @@ namespace Weltraumsknecht.Weapons
         public float cooldown;
     
         public Sprite icon;
-    
-
-
     }
 }
