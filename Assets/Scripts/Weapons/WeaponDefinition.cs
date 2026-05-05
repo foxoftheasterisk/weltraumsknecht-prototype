@@ -2,7 +2,6 @@ using NUnit.Framework;
 using Platformer.Mechanics;
 using System.Collections.Generic;
 using UnityEngine;
-using static ComboWeapon;
 
 namespace Weltraumsknecht.Weapons
 {
