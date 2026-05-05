@@ -5,16 +5,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Weltraumsknecht.Weapons.WeaponDefinition;
 
+
 using Weltraumsknecht.Weapons;
 
-//Not sure if this should be a MonoBehaviour actually
-public class WeaponInstance : MonoBehaviour
+[Serializable]
+public class WeaponInstance
 {
-    public WeaponDefinition Definition
-    {
-        get;
-        private set;
-    }
+    [Serialize]
+    public WeaponDefinition definition;
 
     private List<ActivePhase> activePhases;
 
@@ -26,16 +24,21 @@ public class WeaponInstance : MonoBehaviour
     //we will probably eventually want a public ReduceCooldown method
 
     [HideInInspector]
-    public PlayerController player;
+    public PlayerController Player
+    {
+        get;
+        private set;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Initialize(PlayerController player)
     {
         activePhases = new List<ActivePhase>();
+        Player = player;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (IsActive())
         {
@@ -56,7 +59,7 @@ public class WeaponInstance : MonoBehaviour
 
             activePhases.RemoveAll(p => inactive.Contains(p));
         }
-        else if (CooldownRemaining > 0 && Definition.cooldownType == CooldownType.Time)
+        else if (CooldownRemaining > 0 && definition.cooldownType == CooldownType.Time)
             CooldownRemaining -= Time.deltaTime;
     }
 
@@ -122,7 +125,7 @@ public class WeaponInstance : MonoBehaviour
 
     protected virtual void Fire()
     {
-        StartPhase(Definition.initialPhase);
+        StartPhase(definition.initialPhase);
     }
 
     public bool IsActive()
@@ -142,7 +145,7 @@ public class WeaponInstance : MonoBehaviour
         if (transition.destroyLastPhase)
         {
             activePhases.Remove(lastPhase);
-            Destroy(lastPhase.linkedProjectile);
+            GameObject.Destroy(lastPhase.linkedProjectile);
         }
     }
 
@@ -150,7 +153,7 @@ public class WeaponInstance : MonoBehaviour
     {
         if (!phase.isWarmup)
         {
-            CooldownRemaining = Definition.cooldown;
+            CooldownRemaining = definition.cooldown;
         }
 
         GameObject projectile;
@@ -159,9 +162,11 @@ public class WeaponInstance : MonoBehaviour
         {
             case WeaponPhase.ProjectileLocale.Melee:
             case WeaponPhase.ProjectileLocale.Ranged:
+                Debug.Log("Creating Melee/Ranged projectile");
                 projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee);
                 break;
             case WeaponPhase.ProjectileLocale.Remote:
+                Debug.Log("Creating Remote projectile");
                 if (lastPhaseObject == null)
                     throw new MissingReferenceException("Tried to start remote phase with no parent!");
                 projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject);
@@ -183,18 +188,21 @@ public class WeaponInstance : MonoBehaviour
     /// </summary>
     internal GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null)
     {
+        Debug.Log("Starting Create Projectile");
         GameObject projectile;
         bool flip = false;
 
         if (parent == null)
         {
-            parent = player.gameObject;
-            flip = player.IsFacingLeft();
+            parent = Player.gameObject;
+            flip = Player.IsFacingLeft();
         }
+
+        Debug.Log("Determined Flip");
 
         if (melee)
         {
-            projectile = Instantiate(prefab, parent.transform);
+            projectile = GameObject.Instantiate(prefab, parent.transform);
         }
         else
         {
@@ -202,7 +210,7 @@ public class WeaponInstance : MonoBehaviour
             if (flip)
                 relativePosition.x *= -1;
             Vector3 position = parent.transform.position + relativePosition;
-            projectile = Instantiate(prefab, position, Quaternion.identity);
+            projectile = GameObject.Instantiate(prefab, position, Quaternion.identity);
         }
 
         if (flip)
@@ -251,9 +259,9 @@ public class WeaponInstance : MonoBehaviour
     public int GetDamage(bool crit)
     {
         if (crit)
-            return Definition.critDamage;
+            return definition.critDamage;
         else
-            return Definition.standardDamage;
+            return definition.standardDamage;
     }
 
     public virtual bool IsBlockingFacing()

@@ -75,13 +75,13 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
 
             if (westSlot.HasWeapon())
-                westSlot.weapon.player = this;
+                westSlot.weapon.Initialize(this);
             if (northSlot.HasWeapon())
-                northSlot.weapon.player = this;
+                northSlot.weapon.Initialize(this);
             if (eastSlot.HasWeapon())
-                eastSlot.weapon.player = this;
+                eastSlot.weapon.Initialize(this);
             if (kickSlot.HasWeapon())
-                kickSlot.weapon.player = this;
+                kickSlot.weapon.Initialize(this);
 
             m_MoveAction = InputSystem.actions.FindAction("Player/Move");
             m_JumpAction = InputSystem.actions.FindAction("Player/Jump");
@@ -181,7 +181,7 @@ namespace Platformer.Mechanics
             
             wasFacingLeft = IsFacingLeft();
             spriteRenderer.flipX = wasFacingLeft;
-            //UpdateWeapons();
+            UpdateWeapons();
             UpdateJumpState();
             base.Update();
         }
@@ -203,7 +203,6 @@ namespace Platformer.Mechanics
                 jumpState = JumpState.DashingRight;
         }
 
-        /*
         private void UpdateWeapons()
         {
             if (westSlot.HasWeapon())

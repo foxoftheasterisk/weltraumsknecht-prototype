@@ -8,10 +8,19 @@ public class WeaponSlot : ScriptableObject
 {
     public WeaponInstance weapon;
     PlayerController player;
-    //TODO: separate into WeaponData and WeaponInstance
     
     public bool HasWeapon()
     {
-        return (weapon != null);
+        if (weapon == null)
+            return false;
+
+        //TODO: remove this kludge
+        if (weapon.definition == null)
+        {
+            weapon = null;
+            return false;
+        }
+
+        return true;
     }
 }

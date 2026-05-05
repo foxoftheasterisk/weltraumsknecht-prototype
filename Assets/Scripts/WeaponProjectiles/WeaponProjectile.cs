@@ -57,7 +57,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         //doesn't seem to so far. Probably fine as long as we don't do projectile spam.
         if (!melee)
         {
-            PlayerController player = weapon.player;
+            PlayerController player = weapon.Player;
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             Rigidbody2D prb = player.GetComponent<Rigidbody2D>();
             if(Vector2.Distance(rb.position, prb.position) > 100)
@@ -105,7 +105,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         //starting with a naive algorithm
         Rigidbody2D actor;
         if (melee) {
-            actor = weapon.player.GetComponent<Rigidbody2D>();
+            actor = weapon.Player.GetComponent<Rigidbody2D>();
         }
         else {
             actor = GetComponent<Rigidbody2D>();
@@ -119,7 +119,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         Vector2 direction = fromCenter + velocity;
         direction.Normalize();
         
-        return direction * weapon.Definition.knockbackFactor;
+        return direction * weapon.definition.knockbackFactor;
         
     }
     

@@ -33,7 +33,7 @@ public class BoomerangProjectile : WeaponProjectile
         
         rb = GetComponent<Rigidbody2D>();
         
-        player = weapon.player.GetComponent<Rigidbody2D>();
+        player = weapon.Player.GetComponent<Rigidbody2D>();
         if (player == null)
         {
             Debug.Log("Cannot find player Rigidbody2D for BoomerangProjectile");

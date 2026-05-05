@@ -9,8 +9,7 @@ namespace Weltraumsknecht.Weapons
     /// A single copy of each Transition exists per game, so Transitions should not contain any temporary data;
     /// any required data should be obtained from the ActivePhase.
     /// </summary>
-    [System.Serializable]
-    public abstract class WeaponTransition
+    public abstract class WeaponTransition : ScriptableObject
     {
         public bool destroyLastPhase = true;
 

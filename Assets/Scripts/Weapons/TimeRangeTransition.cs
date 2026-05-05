@@ -6,6 +6,7 @@ namespace Weltraumsknecht.Weapons
     /// <summary>
     /// A simple transition that advances from any triggers that fall within the correct time range.
     /// </summary>
+    [CreateAssetMenu(fileName = "TimeRangeTransition", menuName = "Weapon Transitions/TimeRangeTransition")]
     public class TimeRangeTransition : WeaponTransition
     {
         //The minimum amount of time elapsed.
