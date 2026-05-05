@@ -9,19 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e14eac0259232154e936edf5954f5afb, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Boomerang
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
-  blocksWeapons: 0
-  blocksMovement: 0
-  blocksFacing: 0
-  standardDamage: 9
-  critDamage: 18
+  initialPhase: {fileID: 0}
+  standardDamage: 10
+  critDamage: 20
   knockbackFactor: 1
-  cooldown: 2
+  cooldownType: 0
+  cooldown: 0
   icon: {fileID: 21300000, guid: abd95590bf0996c40b17cf1b715a713e, type: 3}
-  player: {fileID: 0}
-  projectilePrefab: {fileID: 7931930256311781865, guid: 4f8effdea79dbce4d9931a50664a37de,
-    type: 3}
-  airPrefab: {fileID: 0}
-  melee: 0

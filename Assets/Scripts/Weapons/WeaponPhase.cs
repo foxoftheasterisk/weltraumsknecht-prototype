@@ -6,6 +6,7 @@ namespace Weltraumsknecht.Weapons
     /// A phase in a weapon's activation.
     /// Most weapons have at least a warmup phase and a projectile phase.
     /// </summary>
+    [CreateAssetMenu(fileName = "WeaponPhase", menuName = "Scriptable Objects/WeaponPhase")]
     public class WeaponPhase : ScriptableObject
     {
         /// <summary>

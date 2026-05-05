@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Weltraumsknecht.Weapons
 {
+    [CreateAssetMenu(fileName = "WeaponDefinition", menuName = "Scriptable Objects/WeaponDefinition")]
     public class WeaponDefinition : ScriptableObject
     {
         public WeaponPhase initialPhase;
