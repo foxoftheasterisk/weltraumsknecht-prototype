@@ -6,7 +6,7 @@ using Weltraumsknecht.Weapons;
 [CreateAssetMenu(fileName = "WeaponSlot", menuName = "Scriptable Objects/WeaponSlot")]
 public class WeaponSlot : ScriptableObject
 {
-    public Weapon weapon;
+    public WeaponInstance weapon;
     PlayerController player;
     //TODO: separate into WeaponData and WeaponInstance
     

@@ -9,7 +9,7 @@ using Weltraumsknecht.Weapons;
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public abstract class WeaponProjectile : MonoBehaviour
 {
-    protected Weapon weapon;
+    protected WeaponInstance weapon;
     public Vector2 initialVelocity;
     public float rotateVelocity;
     
@@ -37,7 +37,7 @@ public abstract class WeaponProjectile : MonoBehaviour
     }
     
     //Create is called by the Weapon that created this projectile, in order to pass along parameters
-    public void Create(Weapon weapon, bool melee)
+    public void Create(WeaponInstance weapon, bool melee)
     {
         this.weapon = weapon;
         this.melee = melee;
@@ -76,7 +76,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         InteractWith(other);
     }
     
-    public Weapon GetWeapon()
+    public WeaponInstance GetWeapon()
     {
         return weapon;
     }
@@ -119,7 +119,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         Vector2 direction = fromCenter + velocity;
         direction.Normalize();
         
-        return direction * weapon.knockbackFactor;
+        return direction * weapon.Definition.knockbackFactor;
         
     }
     

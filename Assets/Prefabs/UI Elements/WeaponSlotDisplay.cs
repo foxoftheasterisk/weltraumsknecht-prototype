@@ -18,7 +18,7 @@ public class WeaponSlotDisplay : MonoBehaviour
         
         if (slot.HasWeapon())
         {
-            display.overrideSprite = slot.weapon.icon;
+            display.overrideSprite = slot.weapon.Definition.icon;
             //If the override sprite is null, will display its default sprite, which is exactly the behavior we want.
             
             display.color = Color.white;
@@ -30,7 +30,7 @@ public class WeaponSlotDisplay : MonoBehaviour
     {
         if(slot.HasWeapon())
         {
-            Weapon weapon = slot.weapon;
+            WeaponInstance weapon = slot.weapon;
             if (!weapon.CanFire())
             {
                 if (weapon.IsActive())

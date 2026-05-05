@@ -5,292 +5,291 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Weltraumsknecht.Weapons.WeaponDefinition;
 
-namespace Weltraumsknecht.Weapons
+using Weltraumsknecht.Weapons;
+
+//Not sure if this should be a MonoBehaviour actually
+public class WeaponInstance : MonoBehaviour
 {
-
-    //Not sure if this should be a MonoBehaviour actually
-    public class WeaponInstance : MonoBehaviour
+    public WeaponDefinition Definition
     {
-        public WeaponDefinition Definition
+        get;
+        private set;
+    }
+
+    private List<ActivePhase> activePhases;
+
+    public float CooldownRemaining
+    {
+        get;
+        private set;
+    }
+    //we will probably eventually want a public ReduceCooldown method
+
+    [HideInInspector]
+    public PlayerController player;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        activePhases = new List<ActivePhase>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (IsActive())
         {
-            get;
-            private set;
-        }
-
-        private List<ActivePhase> activePhases;
-
-        public float CooldownRemaining
-        {
-            get;
-            private set;
-        }
-        //we will probably eventually want a public ReduceCooldown method
-
-        [HideInInspector]
-        public PlayerController player;
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-            activePhases = new List<ActivePhase>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            if (IsActive())
+            List<ActivePhase> inactive = new List<ActivePhase>();
+            foreach (ActivePhase phase in activePhases)
             {
-                List<ActivePhase> inactive = new List<ActivePhase>();
-                foreach (ActivePhase phase in activePhases)
+                if (!phase.isActive())
                 {
-                    if (!phase.isActive())
-                    {
-                        inactive.Add(phase);
-                        CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate);
-                    }
-                    else
-                    {
-                        phase.AdvanceTime(Time.deltaTime);
-                        CheckTransitions(phase, WeaponTransition.TriggerType.Update);
-                    }
-                }
-
-                activePhases.RemoveAll(p => inactive.Contains(p));
-            }
-            else if (CooldownRemaining > 0 && Definition.cooldownType == CooldownType.Time)
-                CooldownRemaining -= Time.deltaTime;
-        }
-
-
-
-
-        public void ButtonPressed()
-        {
-            if (IsActive())
-            {
-                CheckAllTransitions(WeaponTransition.TriggerType.ButtonPress);
-            }
-            else if (CanFire())
-            {
-                Fire();
-            }
-        }
-
-        public void ButtonReleased()
-        {
-            if (IsActive())
-            {
-                CheckAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
-            }
-        }
-
-
-        private void CheckAllTransitions(WeaponTransition.TriggerType triggerType)
-        {
-            foreach(ActivePhase phase in activePhases)
-            {
-                CheckTransitions(phase, triggerType);
-            }
-        }
-
-        private void CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType)
-        {
-            List<WeaponTransition> activating = new List<WeaponTransition>();
-            foreach(WeaponTransition transition in phase.potentialTransitions)
-            {
-                if (transition.triggerType == triggerType && transition.ShouldAdvance(phase))
-                    activating.Add(transition);
-            }
-
-            foreach(WeaponTransition transition in activating)
-            {
-                AdvancePhase(phase, transition);
-                if (transition.destroyLastPhase)
-                {
-                    return;
+                    inactive.Add(phase);
+                    CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate);
                 }
                 else
                 {
-                    phase.potentialTransitions.Remove(transition);
+                    phase.AdvanceTime(Time.deltaTime);
+                    CheckTransitions(phase, WeaponTransition.TriggerType.Update);
                 }
             }
+
+            activePhases.RemoveAll(p => inactive.Contains(p));
+        }
+        else if (CooldownRemaining > 0 && Definition.cooldownType == CooldownType.Time)
+            CooldownRemaining -= Time.deltaTime;
+    }
+
+
+
+
+    public void ButtonPressed()
+    {
+        if (IsActive())
+        {
+            CheckAllTransitions(WeaponTransition.TriggerType.ButtonPress);
+        }
+        else if (CanFire())
+        {
+            Fire();
+        }
+    }
+
+    public void ButtonReleased()
+    {
+        if (IsActive())
+        {
+            CheckAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
+        }
+    }
+
+
+    private void CheckAllTransitions(WeaponTransition.TriggerType triggerType)
+    {
+        foreach (ActivePhase phase in activePhases)
+        {
+            CheckTransitions(phase, triggerType);
+        }
+    }
+
+    private void CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType)
+    {
+        List<WeaponTransition> activating = new List<WeaponTransition>();
+        foreach (WeaponTransition transition in phase.potentialTransitions)
+        {
+            if (transition.triggerType == triggerType && transition.ShouldAdvance(phase))
+                activating.Add(transition);
         }
 
-        public bool CanFire()
+        foreach (WeaponTransition transition in activating)
         {
-            return !IsActive() && CooldownRemaining <= 0;
-        }
-
-        protected virtual void Fire()
-        {
-            StartPhase(Definition.initialPhase);
-        }
-
-        public bool IsActive()
-        {
-            foreach (ActivePhase phase in activePhases)
+            AdvancePhase(phase, transition);
+            if (transition.destroyLastPhase)
             {
-                if (phase.isActive() && phase.Definition.activeLink)
-                    return true;
+                return;
             }
-            return false;
-        }
-
-        private void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
-        {
-            StartPhase(transition.nextPhase, lastPhase.linkedProjectile);
-
-            if(transition.destroyLastPhase)
+            else
             {
-                activePhases.Remove(lastPhase);
-                Destroy(lastPhase.linkedProjectile);
+                phase.potentialTransitions.Remove(transition);
             }
         }
+    }
 
-        private void StartPhase(WeaponPhase phase, GameObject lastPhaseObject = null)
+    public bool CanFire()
+    {
+        return !IsActive() && CooldownRemaining <= 0;
+    }
+
+    protected virtual void Fire()
+    {
+        StartPhase(Definition.initialPhase);
+    }
+
+    public bool IsActive()
+    {
+        foreach (ActivePhase phase in activePhases)
         {
-            if (!phase.isWarmup)
-            {
-                CooldownRemaining = Definition.cooldown;
-            }
+            if (phase.isActive() && phase.Definition.activeLink)
+                return true;
+        }
+        return false;
+    }
 
-            GameObject projectile;
+    private void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
+    {
+        StartPhase(transition.nextPhase, lastPhase.linkedProjectile);
 
-            switch (phase.locale)
-            {
-                case WeaponPhase.ProjectileLocale.Melee:
-                case WeaponPhase.ProjectileLocale.Ranged:
-                    projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee);
-                    break;
-                case WeaponPhase.ProjectileLocale.Remote:
-                    if (lastPhaseObject == null)
-                        throw new MissingReferenceException("Tried to start remote phase with no parent!");
-                    projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject);
-                    break;
-                default:
-                    throw new NotImplementedException("Undefined projectile locale: " + phase.locale);
-            }
+        if (transition.destroyLastPhase)
+        {
+            activePhases.Remove(lastPhase);
+            Destroy(lastPhase.linkedProjectile);
+        }
+    }
 
-            activePhases.Add(new ActivePhase(phase, projectile));
+    private void StartPhase(WeaponPhase phase, GameObject lastPhaseObject = null)
+    {
+        if (!phase.isWarmup)
+        {
+            CooldownRemaining = Definition.cooldown;
         }
 
-        /// <summary>
-        ///Creates a given projectile (or multiple projectiles in one prefab)
-        ///If melee is true, the projectile is created as a child of the parent (and therefore will move with them);
-        ///if false, the projectile is created at the parent's location, but not as a child.
-        ///If no parent is passed, the player will be used.
-        ///(Do not pass in the player, as this will prevent projectile flipping.)
-        ///Returns the created projectile.
-        /// </summary>
-        internal GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null)
-        {
-            GameObject projectile;
-            bool flip = false;
+        GameObject projectile;
 
-            if (parent == null)
-            {
-                parent = player.gameObject;
-                flip = player.IsFacingLeft();
-            }
+        switch (phase.locale)
+        {
+            case WeaponPhase.ProjectileLocale.Melee:
+            case WeaponPhase.ProjectileLocale.Ranged:
+                projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee);
+                break;
+            case WeaponPhase.ProjectileLocale.Remote:
+                if (lastPhaseObject == null)
+                    throw new MissingReferenceException("Tried to start remote phase with no parent!");
+                projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject);
+                break;
+            default:
+                throw new NotImplementedException("Undefined projectile locale: " + phase.locale);
+        }
+
+        activePhases.Add(new ActivePhase(phase, projectile));
+    }
+
+    /// <summary>
+    ///Creates a given projectile (or multiple projectiles in one prefab)
+    ///If melee is true, the projectile is created as a child of the parent (and therefore will move with them);
+    ///if false, the projectile is created at the parent's location, but not as a child.
+    ///If no parent is passed, the player will be used.
+    ///(Do not pass in the player, as this will prevent projectile flipping.)
+    ///Returns the created projectile.
+    /// </summary>
+    internal GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null)
+    {
+        GameObject projectile;
+        bool flip = false;
+
+        if (parent == null)
+        {
+            parent = player.gameObject;
+            flip = player.IsFacingLeft();
+        }
+
+        if (melee)
+        {
+            projectile = Instantiate(prefab, parent.transform);
+        }
+        else
+        {
+            Vector3 relativePosition = prefab.transform.position;
+            if (flip)
+                relativePosition.x *= -1;
+            Vector3 position = parent.transform.position + relativePosition;
+            projectile = Instantiate(prefab, position, Quaternion.identity);
+        }
+
+        if (flip)
+        {
+            Vector3 scale = projectile.transform.localScale;
+            scale.x *= -1;
+            projectile.transform.localScale = scale;
+
+            Vector3 rotation = projectile.transform.localEulerAngles;
+            rotation.z *= -1;
+            projectile.transform.localEulerAngles = rotation;
 
             if (melee)
             {
-                projectile = Instantiate(prefab, parent.transform);
+                Vector3 position = projectile.transform.localPosition;
+                position.x *= -1;
+                projectile.transform.localPosition = position;
             }
-            else
+        }
+
+        WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
+        foreach (WeaponProjectile wp in wps)
+        {
+            wp.Create(this, melee);
+
+            //a weaponprojectile requires a rigidbody, so this should be safe
+            Rigidbody2D rb = wp.GetComponent<Rigidbody2D>();
+            if (rb.bodyType != RigidbodyType2D.Static)
             {
-                Vector3 relativePosition = prefab.transform.position;
                 if (flip)
-                    relativePosition.x *= -1;
-                Vector3 position = parent.transform.position + relativePosition;
-                projectile = Instantiate(prefab, position, Quaternion.identity);
-            }
-
-            if (flip)
-            {
-                Vector3 scale = projectile.transform.localScale;
-                scale.x *= -1;
-                projectile.transform.localScale = scale;
-
-                Vector3 rotation = projectile.transform.localEulerAngles;
-                rotation.z *= -1;
-                projectile.transform.localEulerAngles = rotation;
-
-                if (melee)
                 {
-                    Vector3 position = projectile.transform.localPosition;
-                    position.x *= -1;
-                    projectile.transform.localPosition = position;
+                    rb.linearVelocity = new Vector2(wp.initialVelocity.x * -1, wp.initialVelocity.y);
+                    rb.angularVelocity = wp.rotateVelocity * -1;
+                }
+                else
+                {
+                    rb.linearVelocity = wp.initialVelocity;
+                    rb.angularVelocity = wp.rotateVelocity;
                 }
             }
-
-            WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
-            foreach (WeaponProjectile wp in wps)
-            {
-                wp.Create(this, melee);
-
-                //a weaponprojectile requires a rigidbody, so this should be safe
-                Rigidbody2D rb = wp.GetComponent<Rigidbody2D>();
-                if (rb.bodyType != RigidbodyType2D.Static)
-                {
-                    if (flip)
-                    {
-                        rb.linearVelocity = new Vector2(wp.initialVelocity.x * -1, wp.initialVelocity.y);
-                        rb.angularVelocity = wp.rotateVelocity * -1;
-                    }
-                    else
-                    {
-                        rb.linearVelocity = wp.initialVelocity;
-                        rb.angularVelocity = wp.rotateVelocity;
-                    }
-                }
-            }
-
-            return projectile;
         }
 
-        public int GetDamage(bool crit)
-        {
-            if (crit)
-                return Definition.critDamage;
-            else
-                return Definition.standardDamage;
-        }
+        return projectile;
+    }
 
-        public virtual bool IsBlockingFacing()
-        {
-            if (!IsActive())
-                return false;
-            foreach (ActivePhase phase in activePhases)
-            {
-                if (phase.Definition.blocksFacing && phase.isActive())
-                    return true;
-            }
+    public int GetDamage(bool crit)
+    {
+        if (crit)
+            return Definition.critDamage;
+        else
+            return Definition.standardDamage;
+    }
+
+    public virtual bool IsBlockingFacing()
+    {
+        if (!IsActive())
             return false;
-        }
-
-        public virtual bool IsBlockingMovement()
+        foreach (ActivePhase phase in activePhases)
         {
-            if (!IsActive())
-                return false;
-            foreach (ActivePhase phase in activePhases)
-            {
-                if (phase.Definition.blocksMovement && phase.isActive())
-                    return true;
-            }
-            return false;
+            if (phase.Definition.blocksFacing && phase.isActive())
+                return true;
         }
+        return false;
+    }
 
-        public virtual bool IsBlockingWeapons()
-        {
-            if (!IsActive())
-                return false;
-            foreach (ActivePhase phase in activePhases)
-            {
-                if (phase.Definition.blocksWeapons && phase.isActive())
-                    return true;
-            }
+    public virtual bool IsBlockingMovement()
+    {
+        if (!IsActive())
             return false;
+        foreach (ActivePhase phase in activePhases)
+        {
+            if (phase.Definition.blocksMovement && phase.isActive())
+                return true;
         }
+        return false;
+    }
+
+    public virtual bool IsBlockingWeapons()
+    {
+        if (!IsActive())
+            return false;
+        foreach (ActivePhase phase in activePhases)
+        {
+            if (phase.Definition.blocksWeapons && phase.isActive())
+                return true;
+        }
+        return false;
     }
 }
+

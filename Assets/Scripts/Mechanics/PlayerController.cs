@@ -181,7 +181,7 @@ namespace Platformer.Mechanics
             
             wasFacingLeft = IsFacingLeft();
             spriteRenderer.flipX = wasFacingLeft;
-            UpdateWeapons();
+            //UpdateWeapons();
             UpdateJumpState();
             base.Update();
         }
@@ -203,6 +203,7 @@ namespace Platformer.Mechanics
                 jumpState = JumpState.DashingRight;
         }
 
+        /*
         private void UpdateWeapons()
         {
             if (westSlot.HasWeapon())
@@ -214,6 +215,7 @@ namespace Platformer.Mechanics
             if (kickSlot.HasWeapon())
                 kickSlot.weapon.Update();
         }
+        //*/
 
         void UpdateJumpState()
         {
