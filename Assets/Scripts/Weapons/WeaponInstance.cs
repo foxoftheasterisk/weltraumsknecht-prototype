@@ -1,4 +1,5 @@
 using Platformer.Mechanics;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -122,7 +123,7 @@ namespace Weltraumsknecht.Weapons
 
         protected virtual void Fire()
         {
-            StartPhase(0);
+            StartPhase(Definition.initialPhase);
         }
 
         public bool IsActive()
@@ -137,12 +138,40 @@ namespace Weltraumsknecht.Weapons
 
         private void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
         {
-            //TODO
+            StartPhase(transition.nextPhase, lastPhase.linkedProjectile);
+
+            if(transition.destroyLastPhase)
+            {
+                activePhases.Remove(lastPhase);
+                Destroy(lastPhase.linkedProjectile);
+            }
         }
 
-        private void StartPhase(int phasePosition)
+        private void StartPhase(WeaponPhase phase, GameObject lastPhaseObject = null)
         {
-            //TODO
+            if (!phase.isWarmup)
+            {
+                CooldownRemaining = Definition.cooldown;
+            }
+
+            GameObject projectile;
+
+            switch (phase.locale)
+            {
+                case WeaponPhase.ProjectileLocale.Melee:
+                case WeaponPhase.ProjectileLocale.Ranged:
+                    projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee);
+                    break;
+                case WeaponPhase.ProjectileLocale.Remote:
+                    if (lastPhaseObject == null)
+                        throw new MissingReferenceException("Tried to start remote phase with no parent!");
+                    projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject);
+                    break;
+                default:
+                    throw new NotImplementedException("Undefined projectile locale: " + phase.locale);
+            }
+
+            activePhases.Add(new ActivePhase(phase, projectile));
         }
 
         /// <summary>

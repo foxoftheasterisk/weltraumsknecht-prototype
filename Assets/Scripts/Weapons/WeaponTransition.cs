@@ -15,10 +15,11 @@ namespace Weltraumsknecht.Weapons
         public bool destroyLastPhase = true;
 
         /// <summary>
-        /// The number of phases to advance. Usually one. Can be negative.
-        /// If outside the range of existing phases, the transition will do nothing.
+        /// The phase to advance to.
+        /// Note that phases can repeat or even have multiple active instances at once.
+        /// If null, the transition will process but no new phase will start. (This is useful for ending phases on triggers.)
         /// </summary>
-        public int advancePhases = 1;
+        public WeaponPhase nextPhase;
 
         /// <summary>
         /// Controls when the weapon should check if the phase is ready to advance.

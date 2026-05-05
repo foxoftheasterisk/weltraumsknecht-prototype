@@ -8,7 +8,7 @@ namespace Weltraumsknecht.Weapons
 {
     public class WeaponDefinition : ScriptableObject
     {
-        public WeaponPhase[] phases;
+        public WeaponPhase initialPhase;
     
         public int standardDamage = 10;
         public int critDamage = 20;

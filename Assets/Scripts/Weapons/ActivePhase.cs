@@ -26,11 +26,6 @@ namespace Weltraumsknecht.Weapons
 
         public List<WeaponTransition> potentialTransitions;
 
-        public int Position
-        {
-            get;
-        }
-
         public bool isActive()
         {
             if (linkedProjectile == null)
@@ -38,9 +33,8 @@ namespace Weltraumsknecht.Weapons
             return linkedProjectile.activeInHierarchy;
         }
 
-        public ActivePhase(int _position, WeaponPhase _definition, GameObject projectile)
+        public ActivePhase(WeaponPhase _definition, GameObject projectile)
         {
-            Position = _position;
             Definition = _definition;
             potentialTransitions = new List<WeaponTransition>(Definition.transitions);
         }
