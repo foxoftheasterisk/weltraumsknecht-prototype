@@ -43,35 +43,51 @@ public class WeaponInstance
     {
         if (IsActive())
         {
-            List<ActivePhase> inactive = new List<ActivePhase>();
+            List<Tuple<ActivePhase, List<WeaponTransition>>> inactive = new();
+            List<Tuple<ActivePhase, List<WeaponTransition>>> active = new();
             foreach (ActivePhase phase in activePhases)
             {
                 if (!phase.isActive())
                 {
-                    inactive.Add(phase);
-                    CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate);
+                    inactive.Add(new(phase, CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate)));
                 }
                 else
                 {
                     phase.AdvanceTime(Time.deltaTime);
-                    CheckTransitions(phase, WeaponTransition.TriggerType.Update);
+                    List<WeaponTransition> activating = CheckTransitions(phase, WeaponTransition.TriggerType.Update);
+                    if(activating.Count > 0)
+                    {
+                        active.Add(new(phase, activating));
+                    }
                 }
             }
 
-            activePhases.RemoveAll(p => inactive.Contains(p));
+            foreach(Tuple<ActivePhase, List<WeaponTransition>> inactivePair in inactive)
+            {
+                if (inactivePair.Item2.Count > 0)
+                {
+                    Debug.Log("Inactive phase transition");
+                    ProcessTransitions(inactivePair.Item1, inactivePair.Item2);
+                }
+                activePhases.Remove(inactivePair.Item1);
+            }
+
+            foreach (Tuple<ActivePhase, List<WeaponTransition>> activePair in active)
+            {
+                Debug.Log("Active phase transition");
+                ProcessTransitions(activePair.Item1, activePair.Item2);
+            }
+
         }
         else if (CooldownRemaining > 0 && definition.cooldownType == CooldownType.Time)
             CooldownRemaining -= Time.deltaTime;
     }
 
-
-
-
     public void ButtonPressed()
     {
         if (IsActive())
         {
-            CheckAllTransitions(WeaponTransition.TriggerType.ButtonPress);
+            ProcessAllTransitions(WeaponTransition.TriggerType.ButtonPress);
         }
         else if (CanFire())
         {
@@ -83,20 +99,40 @@ public class WeaponInstance
     {
         if (IsActive())
         {
-            CheckAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
+            ProcessAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
         }
     }
 
-
-    private void CheckAllTransitions(WeaponTransition.TriggerType triggerType)
+    private void ProcessAllTransitions(WeaponTransition.TriggerType triggerType)
     {
+        List<Tuple<ActivePhase, List<WeaponTransition>>> activatingTransitions = new();
+
         foreach (ActivePhase phase in activePhases)
         {
-            CheckTransitions(phase, triggerType);
+            List<WeaponTransition> transitions = CheckTransitions(phase, triggerType);
+            if(transitions.Count > 0)
+            {
+                activatingTransitions.Add(new(phase, transitions));
+            }
+        }
+
+        foreach (Tuple<ActivePhase, List<WeaponTransition>> phaseTransitions in activatingTransitions)
+        {
+            ProcessTransitions(phaseTransitions.Item1, phaseTransitions.Item2);
         }
     }
 
-    private void CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType)
+    private void ProcessTransitions(ActivePhase phase, List<WeaponTransition> transitions)
+    {
+        foreach(WeaponTransition transition in transitions)
+        {
+            AdvancePhase(phase, transition);
+            if (transition.destroyLastPhase)
+                return;
+        }
+    }
+
+    private List<WeaponTransition> CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType)
     {
         List<WeaponTransition> activating = new List<WeaponTransition>();
         foreach (WeaponTransition transition in phase.potentialTransitions)
@@ -105,18 +141,7 @@ public class WeaponInstance
                 activating.Add(transition);
         }
 
-        foreach (WeaponTransition transition in activating)
-        {
-            AdvancePhase(phase, transition);
-            if (transition.destroyLastPhase)
-            {
-                return;
-            }
-            else
-            {
-                phase.potentialTransitions.Remove(transition);
-            }
-        }
+        return activating;
     }
 
     public bool CanFire()
