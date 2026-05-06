@@ -20,4 +20,6 @@ MonoBehaviour:
   locale: 1
   projectilePrefab: {fileID: 926501878284924327, guid: b8e583aa7206f8541b771a24c18617e2,
     type: 3}
+  linkedToProjectile: 1
   activeLink: 1
+  transitions: []

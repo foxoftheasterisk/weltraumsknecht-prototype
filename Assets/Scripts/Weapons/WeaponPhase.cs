@@ -37,6 +37,12 @@ namespace Weltraumsknecht.Weapons
         public GameObject projectilePrefab;
 
         /// <summary>
+        /// If true, this phase will become inactive when its projectile does not exist or is not active.
+        /// Use false for phases without projectile-creating effects, such as warmups.
+        /// </summary>
+        public bool linkedToProjectile = true;
+
+        /// <summary>
         /// If false, the weapon is considered inactive even if this phase is active.
         /// In most cases, this is not desired.
         /// </summary>

@@ -11,11 +11,12 @@ using Weltraumsknecht.Weapons;
 [Serializable]
 public class WeaponInstance
 {
-    [Serialize]
+    [SerializeField]
     public WeaponDefinition definition;
 
     private List<ActivePhase> activePhases;
 
+    [DoNotSerialize]
     public float CooldownRemaining
     {
         get;
@@ -23,7 +24,7 @@ public class WeaponInstance
     }
     //we will probably eventually want a public ReduceCooldown method
 
-    [HideInInspector]
+    [HideInInspector, DoNotSerialize]
     public PlayerController Player
     {
         get;
@@ -145,7 +146,8 @@ public class WeaponInstance
         if (transition.destroyLastPhase)
         {
             activePhases.Remove(lastPhase);
-            GameObject.Destroy(lastPhase.linkedProjectile);
+            if(lastPhase.linkedProjectile != null)
+                GameObject.Destroy(lastPhase.linkedProjectile);
         }
     }
 
@@ -154,6 +156,12 @@ public class WeaponInstance
         if (!phase.isWarmup)
         {
             CooldownRemaining = definition.cooldown;
+        }
+
+        if (phase.projectilePrefab == null)
+        {
+            activePhases.Add(new ActivePhase(phase, null));
+            return;
         }
 
         GameObject projectile;

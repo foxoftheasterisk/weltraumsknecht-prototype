@@ -28,9 +28,13 @@ namespace Weltraumsknecht.Weapons
 
         public bool isActive()
         {
-            if (linkedProjectile == null)
-                return false;
-            return linkedProjectile.activeInHierarchy;
+            if (Definition.linkedToProjectile)
+            {
+                if (linkedProjectile == null)
+                    return false;
+                return linkedProjectile.activeInHierarchy;
+            }
+            return true;
         }
 
         public ActivePhase(WeaponPhase _definition, GameObject projectile)
