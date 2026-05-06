@@ -15,5 +15,5 @@ MonoBehaviour:
   destroyLastPhase: 1
   nextPhase: {fileID: 11400000, guid: 1c218a829e0b0b94dbd53f22172bad72, type: 2}
   triggerType: 0
-  minimumTime: 0.2
+  minimumTime: 0.1
   maximumTime: Infinity

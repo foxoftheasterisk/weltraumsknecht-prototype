@@ -22,4 +22,5 @@ MonoBehaviour:
     type: 3}
   linkedToProjectile: 1
   activeLink: 1
-  transitions: []
+  transitions:
+  - {fileID: 11400000, guid: 6d33a0038f15c4942a47f495896d687f, type: 2}

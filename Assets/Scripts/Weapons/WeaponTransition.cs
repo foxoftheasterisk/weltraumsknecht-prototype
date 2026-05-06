@@ -1,3 +1,4 @@
+using Platformer.Mechanics;
 using UnityEngine;
 
 namespace Weltraumsknecht.Weapons
@@ -32,6 +33,6 @@ namespace Weltraumsknecht.Weapons
         }
         public TriggerType triggerType;
 
-        abstract internal bool ShouldAdvance(ActivePhase phaseState);
+        abstract internal bool ShouldAdvance(ActivePhase phaseState, PlayerController player);
     }
 }

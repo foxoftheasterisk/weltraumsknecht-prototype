@@ -136,7 +136,7 @@ public class WeaponInstance
         List<WeaponTransition> activating = new List<WeaponTransition>();
         foreach (WeaponTransition transition in phase.potentialTransitions)
         {
-            if (transition.triggerType == triggerType && transition.ShouldAdvance(phase))
+            if (transition.triggerType == triggerType && transition.ShouldAdvance(phase, Player))
                 activating.Add(transition);
         }
 
