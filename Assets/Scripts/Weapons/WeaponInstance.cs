@@ -47,7 +47,7 @@ public class WeaponInstance
             List<Tuple<ActivePhase, List<WeaponTransition>>> active = new();
             foreach (ActivePhase phase in activePhases)
             {
-                if (!phase.isActive())
+                if (!phase.IsActive())
                 {
                     inactive.Add(new(phase, CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate)));
                 }
@@ -74,7 +74,6 @@ public class WeaponInstance
 
             foreach (Tuple<ActivePhase, List<WeaponTransition>> activePair in active)
             {
-                Debug.Log("Active phase transition");
                 ProcessTransitions(activePair.Item1, activePair.Item2);
             }
 
@@ -158,7 +157,7 @@ public class WeaponInstance
     {
         foreach (ActivePhase phase in activePhases)
         {
-            if (phase.isActive() && phase.Definition.activeLink)
+            if (phase.IsActive() && phase.Definition.activeLink)
                 return true;
         }
         return false;
@@ -195,11 +194,9 @@ public class WeaponInstance
         {
             case WeaponPhase.ProjectileLocale.Melee:
             case WeaponPhase.ProjectileLocale.Ranged:
-                Debug.Log("Creating Melee/Ranged projectile");
                 projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee);
                 break;
             case WeaponPhase.ProjectileLocale.Remote:
-                Debug.Log("Creating Remote projectile");
                 if (lastPhaseObject == null)
                     throw new MissingReferenceException("Tried to start remote phase with no parent!");
                 projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject);
@@ -221,7 +218,6 @@ public class WeaponInstance
     /// </summary>
     internal GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null)
     {
-        Debug.Log("Starting Create Projectile");
         GameObject projectile;
         bool flip = false;
 
@@ -230,8 +226,6 @@ public class WeaponInstance
             parent = Player.gameObject;
             flip = Player.IsFacingLeft();
         }
-
-        Debug.Log("Determined Flip");
 
         if (melee)
         {
@@ -303,7 +297,7 @@ public class WeaponInstance
             return false;
         foreach (ActivePhase phase in activePhases)
         {
-            if (phase.Definition.blocksFacing && phase.isActive())
+            if (phase.Definition.blocksFacing && phase.IsActive())
                 return true;
         }
         return false;
@@ -315,7 +309,7 @@ public class WeaponInstance
             return false;
         foreach (ActivePhase phase in activePhases)
         {
-            if (phase.Definition.blocksMovement && phase.isActive())
+            if (phase.Definition.blocksMovement && phase.IsActive())
                 return true;
         }
         return false;
@@ -327,7 +321,7 @@ public class WeaponInstance
             return false;
         foreach (ActivePhase phase in activePhases)
         {
-            if (phase.Definition.blocksWeapons && phase.isActive())
+            if (phase.Definition.blocksWeapons && phase.IsActive())
                 return true;
         }
         return false;
