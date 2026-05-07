@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
-  m_Name: AxeWarmup
+  m_Name: Warmup_Kick
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 1
   blocksMovement: 0
@@ -18,13 +18,17 @@ MonoBehaviour:
   blocksWeapons: 1
   blocksFacing: 0
   locale: 0
-  projectilePrefab: {fileID: 1955616226405833871, guid: 94743875a1c31f64d9bb4c6fbb144004,
-    type: 3}
+  projectilePrefab: {fileID: 0}
   linkedToProjectile: 0
   activeLink: 1
   transitions:
   - destroyLastPhase: 1
-    nextPhase: {fileID: 11400000, guid: ae87fd1307fc46b47916e5ebb11fca1c, type: 2}
+    nextPhase: {fileID: 11400000, guid: 1c218a829e0b0b94dbd53f22172bad72, type: 2}
     triggerType: 0
     conditions:
-    - {fileID: 11400000, guid: 7a5249a32b118ba4790db78ce6465297, type: 2}
+    - {fileID: 11400000, guid: 2125aab5c35cb594f870365e44ee8f57, type: 2}
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 0}
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: 08602934e2e7dcc4da1fc4279fa80464, type: 2}
