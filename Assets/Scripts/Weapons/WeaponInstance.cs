@@ -128,6 +128,8 @@ public class WeaponInstance
             AdvancePhase(phase, transition);
             if (transition.destroyLastPhase)
                 return;
+            else
+                phase.potentialTransitions.Remove(transition);
         }
     }
 

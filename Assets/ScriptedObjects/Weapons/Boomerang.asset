@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Boomerang
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
-  initialPhase: {fileID: 0}
+  initialPhase: {fileID: 11400000, guid: b4114055315ecf24f9bcb02a5faec165, type: 2}
   standardDamage: 10
   critDamage: 20
   knockbackFactor: 1
   cooldownType: 0
-  cooldown: 0
+  cooldown: 1
   icon: {fileID: 21300000, guid: abd95590bf0996c40b17cf1b715a713e, type: 3}

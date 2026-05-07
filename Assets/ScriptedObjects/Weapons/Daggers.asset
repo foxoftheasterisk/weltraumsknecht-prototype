@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Daggers
   m_EditorClassIdentifier: Assembly-CSharp::SuccessiveProjectileWeapon
-  initialPhase: {fileID: 0}
+  initialPhase: {fileID: 11400000, guid: 8a08801568e1a824796b49de15ee9922, type: 2}
   standardDamage: 10
   critDamage: 20
   knockbackFactor: 1
   cooldownType: 0
-  cooldown: 0
+  cooldown: 0.5
   icon: {fileID: 0}
