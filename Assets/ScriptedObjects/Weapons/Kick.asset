@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Kick
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
   initialPhase: {fileID: 11400000, guid: 319259d8f38b9d5488f55f4fcebaa787, type: 2}
-  standardDamage: 10
-  critDamage: 20
+  standardDamage: 3
+  critDamage: 6
   knockbackFactor: 1
   cooldownType: 0
   cooldown: 0.05

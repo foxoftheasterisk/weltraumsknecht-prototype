@@ -1,4 +1,5 @@
 using Platformer.Mechanics;
+using System;
 using UnityEngine;
 
 namespace Weltraumsknecht.Weapons
@@ -10,7 +11,8 @@ namespace Weltraumsknecht.Weapons
     /// A single copy of each Transition exists per game, so Transitions should not contain any temporary data;
     /// any required data should be obtained from the ActivePhase.
     /// </summary>
-    public abstract class WeaponTransition : ScriptableObject
+    [Serializable]
+    public class WeaponTransition
     {
         public bool destroyLastPhase = true;
 
@@ -33,6 +35,21 @@ namespace Weltraumsknecht.Weapons
         }
         public TriggerType triggerType;
 
-        abstract internal bool ShouldAdvance(ActivePhase phaseState, PlayerController player);
+        /// <summary>
+        /// The conditions to be fulfilled.
+        /// All conditions must be satisfied (AND) for the phase to advance.
+        /// If there are no conditions, the phase will always advance when the trigger occurs.
+        /// </summary>
+        public TransitionCondition[] conditions;
+
+        internal bool ShouldAdvance(ActivePhase phaseState, PlayerController player)
+        {
+            foreach (TransitionCondition condition in conditions)
+            {
+                if (!condition.CheckCondition(phaseState, player))
+                    return false;
+            }
+            return true;
+        }
     }
 }

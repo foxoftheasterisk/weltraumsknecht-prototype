@@ -10,10 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28b4bc45b71ce2b458201b929d12303b, type: 3}
-  m_Name: EndWarmup
-  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.TimeRangeTransition
-  destroyLastPhase: 1
-  nextPhase: {fileID: 11400000, guid: 1c218a829e0b0b94dbd53f22172bad72, type: 2}
-  triggerType: 0
-  minimumTime: 0.1
+  m_Name: NormalRangedWarmupTime
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.TimeRangeCondition
+  minimumTime: 0.2
   maximumTime: Infinity

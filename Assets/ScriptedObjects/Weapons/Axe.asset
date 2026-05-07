@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
-  initialPhase: {fileID: 11400000, guid: ae87fd1307fc46b47916e5ebb11fca1c, type: 2}
+  initialPhase: {fileID: 11400000, guid: c87fd76b9a0ef2e46acd84c16d7d0ffa, type: 2}
   standardDamage: 10
   critDamage: 20
   knockbackFactor: 1

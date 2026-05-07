@@ -165,7 +165,10 @@ public class WeaponInstance
 
     private void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
     {
-        StartPhase(transition.nextPhase, lastPhase.linkedProjectile);
+        if (transition.nextPhase != null)
+        {
+            StartPhase(transition.nextPhase, lastPhase.linkedProjectile);
+        }
 
         if (transition.destroyLastPhase)
         {

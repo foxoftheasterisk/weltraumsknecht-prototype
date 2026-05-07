@@ -8,8 +8,8 @@ namespace Weltraumsknecht.Weapons
     /// <summary>
     /// A transition that checks the player's current state against certain movement states to determine if it should activate.
     /// </summary>
-    [CreateAssetMenu(fileName = "PlayerMoveStateTransition", menuName = "Weapon Transitions/PlayerMoveStateTransition")]
-    public class PlayerMoveStateTransition : WeaponTransition
+    [CreateAssetMenu(fileName = "PlayerMoveStateCondition", menuName = "Weapon Conditions/PlayerMoveStateCondition")]
+    public class PlayerMoveStateCondition : TransitionCondition
     {
         public enum PlayerMoveState
         {
@@ -17,9 +17,9 @@ namespace Weltraumsknecht.Weapons
             Ground,
             Dashing
         }
-        PlayerMoveState targetState;
+        public PlayerMoveState targetState;
 
-        internal override bool ShouldAdvance(ActivePhase phaseState, PlayerController player)
+        internal override bool CheckCondition(ActivePhase phaseState, PlayerController player)
         {
             switch (targetState)
             {
@@ -30,7 +30,7 @@ namespace Weltraumsknecht.Weapons
                 case PlayerMoveState.Dashing:
                     return player.IsDashing();
                 default:
-                    throw new NotImplementedException("Undefined PlayerMoveState for PlayerMoveStateTransition!");
+                    throw new NotImplementedException("Undefined PlayerMoveState for PlayerMoveStateCondition!");
             }
         }
     }

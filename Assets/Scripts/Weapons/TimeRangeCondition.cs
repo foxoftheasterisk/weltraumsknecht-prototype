@@ -7,8 +7,8 @@ namespace Weltraumsknecht.Weapons
     /// <summary>
     /// A simple transition that advances from any triggers that fall within the correct time range.
     /// </summary>
-    [CreateAssetMenu(fileName = "TimeRangeTransition", menuName = "Weapon Transitions/TimeRangeTransition")]
-    public class TimeRangeTransition : WeaponTransition
+    [CreateAssetMenu(fileName = "TimeRangeCondition", menuName = "Weapon Conditions/TimeRangeCondition")]
+    public class TimeRangeCondition : TransitionCondition
     {
         //The minimum amount of time elapsed.
         public float minimumTime = 0;
@@ -16,7 +16,7 @@ namespace Weltraumsknecht.Weapons
         //The maximum amount of time elapsed.
         public float maximumTime = float.PositiveInfinity;
 
-        internal override bool ShouldAdvance(ActivePhase phaseState, PlayerController player)
+        internal override bool CheckCondition(ActivePhase phaseState, PlayerController player)
         {
             return (phaseState.TimeInPhase >= minimumTime && phaseState.TimeInPhase <= maximumTime);
         }
