@@ -18,7 +18,8 @@ MonoBehaviour:
   blocksWeapons: 1
   blocksFacing: 0
   locale: 0
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1955616226405833871, guid: 94743875a1c31f64d9bb4c6fbb144004,
+    type: 3}
   linkedToProjectile: 0
   activeLink: 1
   transitions:
