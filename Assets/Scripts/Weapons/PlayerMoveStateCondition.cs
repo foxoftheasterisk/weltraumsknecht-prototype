@@ -15,7 +15,8 @@ namespace Weltraumsknecht.Weapons
         {
             Air,
             Ground,
-            Dashing
+            Dashing,
+            NotDashing
         }
         public PlayerMoveState targetState;
 
@@ -29,6 +30,8 @@ namespace Weltraumsknecht.Weapons
                     return player.IsGrounded;
                 case PlayerMoveState.Dashing:
                     return player.IsDashing();
+                case PlayerMoveState.NotDashing:
+                    return !player.IsDashing();
                 default:
                     throw new NotImplementedException("Undefined PlayerMoveState for PlayerMoveStateCondition!");
             }
