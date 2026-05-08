@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Grenade
   m_EditorClassIdentifier: Assembly-CSharp::ComboWeapon
-  initialPhase: {fileID: 0}
+  initialPhase: {fileID: 11400000, guid: e8d1876264bb590449fe15cdaf8145b7, type: 2}
   standardDamage: 10
   critDamage: 20
   knockbackFactor: 1
   cooldownType: 0
-  cooldown: 0
+  cooldown: 4
   icon: {fileID: 21300000, guid: 6687d4d6c8ae21b4f970175cc5846936, type: 3}

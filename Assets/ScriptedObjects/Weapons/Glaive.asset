@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Glaive
   m_EditorClassIdentifier: Assembly-CSharp::ComboWeapon
-  initialPhase: {fileID: 0}
+  initialPhase: {fileID: 11400000, guid: f67f7f772df87014aae368eb78141eb2, type: 2}
   standardDamage: 10
   critDamage: 20
   knockbackFactor: 1
   cooldownType: 0
-  cooldown: 0
+  cooldown: 0.5
   icon: {fileID: 21300000, guid: 47de2401d39305141a7acbfc5bc29bdc, type: 3}

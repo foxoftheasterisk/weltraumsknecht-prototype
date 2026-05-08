@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 32613447349144945}
   - component: {fileID: 6212712558597987042}
   - component: {fileID: 1751870751624447308}
-  - component: {fileID: 8660612712039651096}
   m_Layer: 3
   m_Name: grenade-explosion-outer
   m_TagString: Untagged
@@ -640,16 +639,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NeverCritsProjectile
   initialVelocity: {x: 0, y: 0}
   rotateVelocity: 0
---- !u!114 &8660612712039651096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6867539659950544939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa270e906a399349b820c6b02ce3355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ExpiringBehavior
-  timeUntilExpire: 0.2

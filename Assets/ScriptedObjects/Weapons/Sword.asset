@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
-  initialPhase: {fileID: 0}
+  initialPhase: {fileID: 11400000, guid: d5bbb1de3245a9d46855b662ebe0714d, type: 2}
   standardDamage: 10
   critDamage: 20
   knockbackFactor: 1
   cooldownType: 0
-  cooldown: 0
+  cooldown: 0.3
   icon: {fileID: 21300000, guid: 4e8ee157318b541439171c179733c4b6, type: 3}

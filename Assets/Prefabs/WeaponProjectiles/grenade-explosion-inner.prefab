@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8784796461409269761}
   - component: {fileID: 1840372266299111701}
   - component: {fileID: 4622656527875746941}
-  - component: {fileID: 8871572333963293359}
   - component: {fileID: -732884286421464719}
   m_Layer: 3
   m_Name: grenade-explosion-inner
@@ -562,21 +561,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.00000031308372}
   m_Size: {x: 0.7073322, y: 0.1599163}
   m_Direction: 1
---- !u!114 &8871572333963293359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9050780082967812070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3751d84e113c4e245a3900178255fe32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimeBombBehavior
-  timeUntilExplode: 0.05
-  explosionPrefab: {fileID: 6867539659950544939, guid: 3ca603c8f76a3e442b537ea79a9e3d18,
-    type: 3}
 --- !u!114 &-732884286421464719
 MonoBehaviour:
   m_ObjectHideFlags: 0

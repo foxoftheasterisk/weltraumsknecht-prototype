@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8853066068002506924}
   - component: {fileID: 8519523449762339809}
   - component: {fileID: 7958898113667912374}
-  - component: {fileID: 6189496970436385552}
   m_Layer: 3
   m_Name: Grenade
   m_TagString: Untagged
@@ -173,18 +172,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NoDamageProjectile
   initialVelocity: {x: 3, y: 3.5}
   rotateVelocity: 50
---- !u!114 &6189496970436385552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8733897078109884503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3751d84e113c4e245a3900178255fe32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ExplodingBehavior
-  timeUntilExplode: 1.5
-  explosionPrefab: {fileID: 9050780082967812070, guid: 9da607c690c9c9140b57cab73408e30a,
-    type: 3}
