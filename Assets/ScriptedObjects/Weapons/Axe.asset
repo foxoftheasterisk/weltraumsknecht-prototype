@@ -9,20 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e14eac0259232154e936edf5954f5afb, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::SingleProjectileWeapon
-  blocksWeapons: 0
-  blocksMovement: 0
-  blocksFacing: 0
-  standardDamage: 9
-  critDamage: 18
+  initialPhase: {fileID: 11400000, guid: c87fd76b9a0ef2e46acd84c16d7d0ffa, type: 2}
+  standardDamage: 10
+  critDamage: 20
   knockbackFactor: 1
   cooldownType: 0
-  cooldown: 2
+  cooldown: 0.2
   icon: {fileID: 0}
-  player: {fileID: 0}
-  projectilePrefab: {fileID: 926501878284924327, guid: b8e583aa7206f8541b771a24c18617e2,
-    type: 3}
-  airPrefab: {fileID: 0}
-  melee: 0

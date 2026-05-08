@@ -9,26 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e505ef4f07d920c41877d76160170209, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a34de39eca5c94d9911d3fc066636d, type: 3}
   m_Name: Grenade
   m_EditorClassIdentifier: Assembly-CSharp::ComboWeapon
-  blocksWeapons: 0
-  blocksMovement: 0
-  blocksFacing: 0
-  standardDamage: 9
-  critDamage: 18
+  initialPhase: {fileID: 11400000, guid: e8d1876264bb590449fe15cdaf8145b7, type: 2}
+  standardDamage: 10
+  critDamage: 20
   knockbackFactor: 1
-  cooldown: 2
+  cooldownType: 0
+  cooldown: 4
   icon: {fileID: 21300000, guid: 6687d4d6c8ae21b4f970175cc5846936, type: 3}
-  player: {fileID: 0}
-  steps:
-  - projectilePrefab: {fileID: 8733897078109884503, guid: b429db0b460e3e04aac68495097d0ca9,
-      type: 3}
-    locale: 1
-    nextStepStart: 0.2
-    nextStepEnd: 0
-  - projectilePrefab: {fileID: 9050780082967812070, guid: 9da607c690c9c9140b57cab73408e30a,
-      type: 3}
-    locale: 2
-    nextStepStart: 0
-    nextStepEnd: 0

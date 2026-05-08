@@ -4,10 +4,12 @@ using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using System;
 
+using Weltraumsknecht.Weapons;
+
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public abstract class WeaponProjectile : MonoBehaviour
 {
-    protected Weapon weapon;
+    protected WeaponInstance weapon;
     public Vector2 initialVelocity;
     public float rotateVelocity;
     
@@ -35,7 +37,7 @@ public abstract class WeaponProjectile : MonoBehaviour
     }
     
     //Create is called by the Weapon that created this projectile, in order to pass along parameters
-    public void Create(Weapon weapon, bool melee)
+    public void Create(WeaponInstance weapon, bool melee)
     {
         this.weapon = weapon;
         this.melee = melee;
@@ -55,7 +57,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         //doesn't seem to so far. Probably fine as long as we don't do projectile spam.
         if (!melee)
         {
-            PlayerController player = weapon.player;
+            PlayerController player = weapon.Player;
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             Rigidbody2D prb = player.GetComponent<Rigidbody2D>();
             if(Vector2.Distance(rb.position, prb.position) > 100)
@@ -74,7 +76,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         InteractWith(other);
     }
     
-    public Weapon GetWeapon()
+    public WeaponInstance GetWeapon()
     {
         return weapon;
     }
@@ -103,7 +105,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         //starting with a naive algorithm
         Rigidbody2D actor;
         if (melee) {
-            actor = weapon.player.GetComponent<Rigidbody2D>();
+            actor = weapon.Player.GetComponent<Rigidbody2D>();
         }
         else {
             actor = GetComponent<Rigidbody2D>();
@@ -117,7 +119,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         Vector2 direction = fromCenter + velocity;
         direction.Normalize();
         
-        return direction * weapon.knockbackFactor;
+        return direction * weapon.definition.knockbackFactor;
         
     }
     
