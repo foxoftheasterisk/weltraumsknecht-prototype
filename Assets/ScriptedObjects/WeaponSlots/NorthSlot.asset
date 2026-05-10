@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: NorthSlot
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSlot
   weapon:
-    definition: {fileID: 11400000, guid: 925ead119ee5ffd40a920de4bbc294ab, type: 2}
+    definition: {fileID: 11400000, guid: d5ef68ab92e533842a01e0bf5ef36bdc, type: 2}
