@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b4bc45b71ce2b458201b929d12303b, type: 3}
   m_Name: ShortMeleeWarmupTime
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.TimeRangeCondition
-  minimumTime: 0.07
+  minimumTime: 0.04
   maximumTime: Infinity

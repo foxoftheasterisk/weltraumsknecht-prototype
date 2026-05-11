@@ -16,7 +16,7 @@ MonoBehaviour:
   blocksMovement: 0
   moveSpeedPenalty: 0
   blocksWeapons: 1
-  blocksFacing: 0
+  blocksFacing: 1
   locale: 0
   projectilePrefab: {fileID: 0}
   linkedToProjectile: 0
