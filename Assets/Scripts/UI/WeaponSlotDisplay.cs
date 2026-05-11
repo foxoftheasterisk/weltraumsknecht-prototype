@@ -30,6 +30,9 @@ public class WeaponSlotDisplay : MonoBehaviour
     {
         if(slot.HasWeapon())
         {
+            //TODO: make this triggered instead of a constant replacement
+            display.overrideSprite = slot.weapon.definition.icon;
+
             WeaponInstance weapon = slot.weapon;
             if (!weapon.CanFire())
             {

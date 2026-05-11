@@ -5,7 +5,7 @@ public abstract class Interactable : MonoBehaviour
 {
     /// <summary>
     /// A method that performs any initial steps the Interactable needs (such as randomly choosing an offer)
-    /// Currently occurs on Start, but this may not always be the case.
+    /// Currently occurs on Start, but this may not remain true.
     /// </summary>
     public abstract void Initialize();
 
@@ -23,10 +23,5 @@ public abstract class Interactable : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
+    protected virtual void Update() { }
 }

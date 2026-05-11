@@ -31,14 +31,17 @@ public class WeaponInstance
         private set;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public WeaponInstance(WeaponDefinition _definition)
+    {
+        definition = _definition;
+    }
+
     public void Initialize(PlayerController player)
     {
         activePhases = new List<ActivePhase>();
         Player = player;
     }
 
-    // Update is called once per frame
     public void Update()
     {
         if (IsActive())

@@ -66,6 +66,12 @@ namespace Platformer.Mechanics
         public WeaponSlot eastSlot;
         public WeaponSlot kickSlot;
 
+        //Having PlayerController track this feels awkward, but I'm not really sure how else to do it...?
+        //It also definitely gets weird if multiple interactables overlap (or are close enough the player bounds can touch both)
+        //but hopefully we can just avoid that problem.
+        private Interactable nearbyInteractable = null;
+        private InputAction m_InteractAction;
+
         void Awake()
         {
             health = GetComponent<Health>();
@@ -74,12 +80,14 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
 
+            //TODO: make weapons clear only on game reset
             if (westSlot.HasWeapon())
-                westSlot.weapon.Initialize(this);
+                westSlot.weapon = null;
             if (northSlot.HasWeapon())
-                northSlot.weapon.Initialize(this);
+                northSlot.weapon = null;
             if (eastSlot.HasWeapon())
-                eastSlot.weapon.Initialize(this);
+                eastSlot.weapon = null;
+
             if (kickSlot.HasWeapon())
                 kickSlot.weapon.Initialize(this);
 
@@ -102,6 +110,9 @@ namespace Platformer.Mechanics
             m_NorthWeaponAction.Enable();
             m_EastWeaponAction.Enable();
             m_KickAction.Enable();
+
+            m_InteractAction = InputSystem.actions.FindAction("Player/Interact");
+            m_InteractAction.Enable();
         }
 
         protected override void Update()
@@ -161,6 +172,12 @@ namespace Platformer.Mechanics
                         kickSlot.weapon.ButtonReleased();
                 }
                 //this block seems awkward, but I'm not really sure how else to do it...
+
+
+                if(m_InteractAction.WasPressedThisFrame() && nearbyInteractable != null)
+                {
+                    nearbyInteractable.Interact(this);
+                }
             }
             else
             {
@@ -368,6 +385,20 @@ namespace Platformer.Mechanics
         public void Land()
         {
             dashExpended = false;
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            Interactable i = other.GetComponent<Interactable>();
+            if (i != null)
+                nearbyInteractable = i;
+        }
+
+        public void OnTriggerExit2D(Collider2D other)
+        {
+            Interactable i = other.GetComponent<Interactable>();
+            if (i == nearbyInteractable)
+                nearbyInteractable = null;
         }
     }
 }

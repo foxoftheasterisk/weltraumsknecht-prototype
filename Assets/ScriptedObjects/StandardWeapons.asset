@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44249b57edfec2748a03e3df94032d9d, type: 3}
+  m_Name: StandardWeapons
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponGroup
+  weapons:
+  - {fileID: 11400000, guid: d5ef68ab92e533842a01e0bf5ef36bdc, type: 2}
+  - {fileID: 11400000, guid: 931e66bc700a67647be17f8522806749, type: 2}
+  - {fileID: 11400000, guid: 0ce1e645603509d41b3af9071189ca4b, type: 2}
+  - {fileID: 11400000, guid: 2004566097cdf7f4789bcb1b20130d06, type: 2}
+  - {fileID: 11400000, guid: 2da37d4c1d0615c41a326402a791f2e7, type: 2}
+  - {fileID: 11400000, guid: 925ead119ee5ffd40a920de4bbc294ab, type: 2}
+  - {fileID: 11400000, guid: aae0a6f93d8c5c840b1ce319ab4cefdd, type: 2}

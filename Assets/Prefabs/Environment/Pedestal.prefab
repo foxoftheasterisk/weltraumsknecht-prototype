@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 774569736425594437}
   - component: {fileID: 8495981736377959334}
   - component: {fileID: 2217915511899988743}
+  - component: {fileID: 6915392474817952760}
   m_Layer: 10
   m_Name: Pedestal
   m_TagString: Untagged
@@ -230,3 +231,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &6915392474817952760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382015788705966539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d06cfdc58cc8a54bb49bcd479c99eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponOffer
+  group: {fileID: 11400000, guid: f8f33c54561ee6a45a3dcbb3bbcc6077, type: 2}
+  preview: {fileID: 491940021055250150}
