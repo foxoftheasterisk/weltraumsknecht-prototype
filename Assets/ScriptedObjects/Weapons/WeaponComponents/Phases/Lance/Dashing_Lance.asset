@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
+  m_Name: Dashing_Lance
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
+  isWarmup: 0
+  blocksMovement: 0
+  moveSpeedPenalty: 0
+  blocksWeapons: 1
+  blocksFacing: 1
+  locale: 0
+  projectilePrefab: {fileID: 7461316765189010005, guid: 909fef963d386b449842f84ecf15cf81,
+    type: 3}
+  linkedToProjectile: 1
+  activeLink: 1
+  transitions:
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 11400000, guid: 10df26685d9ed3043a276700a2c441c7, type: 2}
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: 5c61c371057dc7b43b9e15addacdf732, type: 2}
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 0}
+    triggerType: 2
+    conditions: []
