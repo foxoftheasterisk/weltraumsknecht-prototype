@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
+  m_Name: Charge3_Knives
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
+  isWarmup: 1
+  blocksMovement: 0
+  moveSpeedPenalty: 0
+  blocksWeapons: 1
+  blocksFacing: 0
+  locale: 0
+  projectilePrefab: {fileID: 1201208661578920346, guid: e2d072a9f4af7244c9cdbf854af90972,
+    type: 3}
+  linkedToProjectile: 1
+  activeLink: 1
+  transitions:
+  - destroyLastPhase: 0
+    nextPhase: {fileID: 11400000, guid: f31179b5ef1547f43a751bb30761759e, type: 2}
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: a1b75816c97e0cc4da4887b412d0c455, type: 2}
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 11400000, guid: 84eba607722d7c141b53adc66557c5f7, type: 2}
+    triggerType: 2
+    conditions: []
