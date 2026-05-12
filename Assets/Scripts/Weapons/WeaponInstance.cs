@@ -245,7 +245,7 @@ public class WeaponInstance
             if (flip)
                 relativePosition.x *= -1;
             Vector3 position = parent.transform.position + relativePosition;
-            projectile = GameObject.Instantiate(prefab, position, Quaternion.identity);
+            projectile = GameObject.Instantiate(prefab, position, prefab.transform.rotation);
         }
 
         if (flip)
