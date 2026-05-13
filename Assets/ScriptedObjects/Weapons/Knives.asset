@@ -17,5 +17,5 @@ MonoBehaviour:
   critDamage: 20
   knockbackFactor: 1
   cooldownType: 0
-  cooldown: 0
+  cooldown: 1
   icon: {fileID: 21300000, guid: b1ac863eb41b3394ba987c9971956104, type: 3}

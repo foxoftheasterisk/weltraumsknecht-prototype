@@ -18,7 +18,7 @@ MonoBehaviour:
   blocksWeapons: 0
   blocksFacing: 0
   locale: 1
-  projectilePrefab: {fileID: 1201208661578920346, guid: 52e050625e530b54aab5bbbad1c1bfda,
+  projectilePrefab: {fileID: 1201208661578920346, guid: 8daef0774704c864bb6ebbd5e171257c,
     type: 3}
   linkedToProjectile: 1
   activeLink: 1

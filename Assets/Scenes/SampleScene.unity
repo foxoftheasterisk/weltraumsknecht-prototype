@@ -97701,6 +97701,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal (Start)
       objectReference: {fileID: 0}
+    - target: {fileID: 6915392474817952760, guid: a4a4eeb397019964d8eff799d0e249d4,
+        type: 3}
+      propertyPath: group
+      value: 
+      objectReference: {fileID: 11400000, guid: 3723073216c97db45a1a878d5b9b4ace,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
