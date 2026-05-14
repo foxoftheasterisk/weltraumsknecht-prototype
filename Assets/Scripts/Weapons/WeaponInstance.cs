@@ -105,6 +105,7 @@ public class WeaponInstance
         }
     }
 
+    //TODO: move transition checking to ActivePhase
     private void ProcessAllTransitions(WeaponTransition.TriggerType triggerType)
     {
         List<Tuple<ActivePhase, List<WeaponTransition>>> activatingTransitions = new();
@@ -168,7 +169,7 @@ public class WeaponInstance
         return false;
     }
 
-    private void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
+    internal void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
     {
         if (transition.nextPhase != null)
         {
@@ -192,7 +193,7 @@ public class WeaponInstance
 
         if (phase.projectilePrefab == null)
         {
-            activePhases.Add(new ActivePhase(phase, null));
+            activePhases.Add(new ActivePhase(phase, null, this));
             return;
         }
 
@@ -213,7 +214,7 @@ public class WeaponInstance
                 throw new NotImplementedException("Undefined projectile locale: " + phase.locale);
         }
 
-        activePhases.Add(new ActivePhase(phase, projectile));
+        activePhases.Add(new ActivePhase(phase, projectile, this));
     }
 
     /// <summary>
@@ -263,6 +264,11 @@ public class WeaponInstance
                 Vector3 position = projectile.transform.localPosition;
                 position.x *= -1;
                 projectile.transform.localPosition = position;
+            }
+
+            foreach (FlippableBehaviour flippable in projectile.GetComponents<FlippableBehaviour>())
+            {
+                flippable.Flip();
             }
         }
 

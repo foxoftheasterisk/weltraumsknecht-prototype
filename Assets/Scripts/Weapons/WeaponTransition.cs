@@ -31,7 +31,8 @@ namespace Weltraumsknecht.Weapons
             Update,
             ButtonPress,
             ButtonRelease,
-            Inactivate
+            Inactivate,  //Not sure if Inactivate actually makes sense to have.
+            Contact   //TODO: figure out passing the collision details without it being a total kludge
         }
         public TriggerType triggerType;
 

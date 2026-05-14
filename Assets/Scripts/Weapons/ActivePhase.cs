@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditorInternal;
 using UnityEngine;
+using static UnityEngine.UI.Selectable;
 
 namespace Weltraumsknecht.Weapons
 {
@@ -37,16 +40,48 @@ namespace Weltraumsknecht.Weapons
             return true;
         }
 
-        public ActivePhase(WeaponPhase definition, GameObject projectile)
+        private WeaponInstance parent;
+
+        public ActivePhase(WeaponPhase definition, GameObject projectile, WeaponInstance _parent)
         {
             Definition = definition;
             linkedProjectile = projectile;
+            parent = _parent;
+
             potentialTransitions = new List<WeaponTransition>(Definition.transitions);
+
+            if(potentialTransitions.Any(p => p.triggerType == WeaponTransition.TriggerType.Contact))
+            {
+                ContactListener listener = projectile.AddComponent<ContactListener>();
+                listener.function = p => CheckTransitions(WeaponTransition.TriggerType.Contact);
+            }
         }
 
         public void AdvanceTime(float deltaTime)
         {
             TimeInPhase += deltaTime;
+        }
+
+        public void CheckTransitions(WeaponTransition.TriggerType triggerType)
+        {
+            Debug.Log("Checking transitions " + triggerType);
+
+            List<WeaponTransition> activating = new List<WeaponTransition>();
+            foreach (WeaponTransition transition in potentialTransitions)
+            {
+                if (transition.triggerType == triggerType && transition.ShouldAdvance(this, parent.Player))
+                    activating.Add(transition);
+            }
+
+            foreach(WeaponTransition transition in activating)
+            {
+                parent.AdvancePhase(this, transition);
+                if (transition.destroyLastPhase)
+                    return;
+                else
+                    potentialTransitions.Remove(transition);
+                
+            }
         }
 
     }

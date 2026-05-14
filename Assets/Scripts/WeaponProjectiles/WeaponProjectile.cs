@@ -83,10 +83,10 @@ public abstract class WeaponProjectile : MonoBehaviour
     
     protected void InteractWith(Collider2D other)
     {
-        var enemy = other.gameObject.GetComponent<EnemyController>();
-        if (enemy != null)
+        EnemyController enemy;
+        if (other.TryGetComponent<EnemyController>(out enemy))
         {
-            var ev = Schedule<ProjectileEnemyCollision>();
+            ProjectileEnemyCollision ev = Schedule<ProjectileEnemyCollision>();
             ev.projectile = this;
             ev.enemy = enemy;
         }
