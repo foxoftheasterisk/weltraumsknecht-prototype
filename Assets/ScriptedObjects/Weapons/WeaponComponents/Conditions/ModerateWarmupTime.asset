@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28b4bc45b71ce2b458201b929d12303b, type: 3}
-  m_Name: LongMeleeWarmupTime
+  m_Name: ModerateWarmupTime
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.TimeRangeCondition
-  minimumTime: 0.25
+  minimumTime: 0.2
   maximumTime: Infinity
