@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestWeaponGroup
   m_EditorClassIdentifier: Assembly-CSharp::WeaponGroup
   weapons:
-  - {fileID: 11400000, guid: 8f6cc7f872ee4584fbbbd7136f51c69e, type: 2}
+  - {fileID: 11400000, guid: bc5794e6c01eeb5488c25d8ef9356be3, type: 2}

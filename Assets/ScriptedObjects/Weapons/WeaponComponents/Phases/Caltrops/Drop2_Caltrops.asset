@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
+  m_Name: Drop2_Caltrops
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
+  isWarmup: 0
+  blocksMovement: 0
+  moveSpeedPenalty: 0
+  blocksWeapons: 0
+  blocksFacing: 0
+  locale: 0
+  projectilePrefab: {fileID: 3737017168360966271, guid: 1553b3c8f21024140a10c0dbd4497f38,
+    type: 3}
+  linkedToProjectile: 1
+  activeLink: 1
+  transitions:
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 11400000, guid: f2964d2dceabf4c42aaf22a5a6c39853, type: 2}
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: 9d795dcf7c49d9b478e9eeb736b19f76, type: 2}

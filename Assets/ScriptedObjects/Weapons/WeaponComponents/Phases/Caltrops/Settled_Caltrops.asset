@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
+  m_Name: Settled_Caltrops
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
+  isWarmup: 0
+  blocksMovement: 0
+  moveSpeedPenalty: 0
+  blocksWeapons: 0
+  blocksFacing: 0
+  locale: 2
+  projectilePrefab: {fileID: 3737017168360966271, guid: aa82b8d248ef30f41b8296e66f651b2a,
+    type: 3}
+  linkedToProjectile: 1
+  activeLink: 0
+  transitions:
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 0}
+    triggerType: 1
+    conditions: []

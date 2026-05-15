@@ -44,54 +44,49 @@ public class WeaponInstance
 
     public void Update()
     {
-        if (IsActive())
+        List<Tuple<ActivePhase, List<WeaponTransition>>> inactive = new();
+        List<Tuple<ActivePhase, List<WeaponTransition>>> active = new();
+        foreach (ActivePhase phase in activePhases)
         {
-            List<Tuple<ActivePhase, List<WeaponTransition>>> inactive = new();
-            List<Tuple<ActivePhase, List<WeaponTransition>>> active = new();
-            foreach (ActivePhase phase in activePhases)
+            if (!phase.IsActive())
             {
-                if (!phase.IsActive())
+                inactive.Add(new(phase, CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate)));
+            }
+            else
+            {
+                phase.AdvanceTime(Time.deltaTime);
+                List<WeaponTransition> activating = CheckTransitions(phase, WeaponTransition.TriggerType.Update);
+                if(activating.Count > 0)
                 {
-                    inactive.Add(new(phase, CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate)));
-                }
-                else
-                {
-                    phase.AdvanceTime(Time.deltaTime);
-                    List<WeaponTransition> activating = CheckTransitions(phase, WeaponTransition.TriggerType.Update);
-                    if(activating.Count > 0)
-                    {
-                        active.Add(new(phase, activating));
-                    }
+                    active.Add(new(phase, activating));
                 }
             }
-
-            foreach(Tuple<ActivePhase, List<WeaponTransition>> inactivePair in inactive)
-            {
-                if (inactivePair.Item2.Count > 0)
-                {
-                    Debug.Log("Inactive phase transition");
-                    ProcessTransitions(inactivePair.Item1, inactivePair.Item2);
-                }
-                activePhases.Remove(inactivePair.Item1);
-            }
-
-            foreach (Tuple<ActivePhase, List<WeaponTransition>> activePair in active)
-            {
-                ProcessTransitions(activePair.Item1, activePair.Item2);
-            }
-
         }
-        else if (CooldownRemaining > 0 && definition.cooldownType == CooldownType.Time)
+
+        foreach(Tuple<ActivePhase, List<WeaponTransition>> inactivePair in inactive)
+        {
+            if (inactivePair.Item2.Count > 0)
+            {
+                Debug.Log("Inactive phase transition");
+                ProcessTransitions(inactivePair.Item1, inactivePair.Item2);
+            }
+            activePhases.Remove(inactivePair.Item1);
+        }
+
+        foreach (Tuple<ActivePhase, List<WeaponTransition>> activePair in active)
+        {
+            ProcessTransitions(activePair.Item1, activePair.Item2);
+        }
+
+        if (CooldownRemaining > 0 && definition.cooldownType == CooldownType.Time)
             CooldownRemaining -= Time.deltaTime;
     }
 
     public void ButtonPressed()
     {
-        if (IsActive())
-        {
-            ProcessAllTransitions(WeaponTransition.TriggerType.ButtonPress);
-        }
-        else if (CanFire())
+        ProcessAllTransitions(WeaponTransition.TriggerType.ButtonPress);
+
+        if (CanFire())
         {
             Fire();
         }
@@ -99,10 +94,8 @@ public class WeaponInstance
 
     public void ButtonReleased()
     {
-        if (IsActive())
-        {
-            ProcessAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
-        }
+        ProcessAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
+        
     }
 
     //TODO: move transition checking to ActivePhase
