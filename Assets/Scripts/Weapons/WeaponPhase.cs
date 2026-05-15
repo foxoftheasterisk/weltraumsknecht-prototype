@@ -25,12 +25,16 @@ namespace Weltraumsknecht.Weapons
         /// A Melee projectile is centered on the player, and follows them as they move;
         /// a Ranged projectile is created at the player's location, but then moves independently;
         /// a Remote projectile is created at the previous phase's center, and moves independently.
+        /// Replace will create the projectile at the previous phase's location and apply the same rotation and velocities 
+        /// (adding them to those defined by the new phase).
+        /// (Note that Replace does not automatically remove the last phase, that's controlled by DestroyLastPhase).
         /// </summary>
         public enum ProjectileLocale
         {
             Melee,
             Ranged,
-            Remote
+            Remote,
+            Replace
         }
         public ProjectileLocale locale;
 

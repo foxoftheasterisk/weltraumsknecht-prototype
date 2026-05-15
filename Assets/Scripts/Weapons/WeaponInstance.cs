@@ -203,6 +203,11 @@ public class WeaponInstance
                     throw new MissingReferenceException("Tried to start remote phase with no parent!");
                 projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject);
                 break;
+            case WeaponPhase.ProjectileLocale.Replace:
+                if (lastPhaseObject == null)
+                    throw new MissingReferenceException("Tried to start replace phase with no parent!");
+                projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject, true);
+                break;
             default:
                 throw new NotImplementedException("Undefined projectile locale: " + phase.locale);
         }
@@ -215,10 +220,10 @@ public class WeaponInstance
     ///If melee is true, the projectile is created as a child of the parent (and therefore will move with them);
     ///if false, the projectile is created at the parent's location, but not as a child.
     ///If no parent is passed, the player will be used.
-    ///(Do not pass in the player, as this will prevent projectile flipping.)
+    ///(Do not pass in the player, as this will make projectile flipping inaccurate.)
     ///Returns the created projectile.
     /// </summary>
-    internal GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null)
+    internal GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null, bool inheritProperties = false)
     {
         GameObject projectile;
         bool flip = false;
@@ -228,6 +233,8 @@ public class WeaponInstance
             parent = Player.gameObject;
             flip = Player.IsFacingLeft();
         }
+        else if (parent.TryGetComponent<Rigidbody2D>(out Rigidbody2D prb))
+            flip = prb.linearVelocityX < 0;
 
         if (melee)
         {
@@ -284,6 +291,17 @@ public class WeaponInstance
                     rb.linearVelocity = wp.initialVelocity;
                     rb.angularVelocity = wp.rotateVelocity;
                 }
+            }
+        }
+
+        if (inheritProperties)
+        {
+            projectile.transform.localEulerAngles += parent.transform.localEulerAngles;
+            if (projectile.TryGetComponent<Rigidbody2D>(out Rigidbody2D projectileRB) && parent.TryGetComponent<Rigidbody2D>(out Rigidbody2D parentRB)
+                && projectileRB.bodyType != RigidbodyType2D.Static && parentRB.bodyType != RigidbodyType2D.Static)
+            {
+                projectileRB.linearVelocity += parentRB.linearVelocity;
+                projectileRB.angularVelocity += parentRB.angularVelocity;
             }
         }
 
