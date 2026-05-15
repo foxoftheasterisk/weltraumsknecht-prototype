@@ -23,8 +23,13 @@ MonoBehaviour:
   linkedToProjectile: 0
   activeLink: 1
   transitions:
-  - destroyLastPhase: 1
+  - destroyLastPhase: 0
     nextPhase: {fileID: 11400000, guid: a128e3230e7cdd44eb8b8e68517575cd, type: 2}
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: 2125aab5c35cb594f870365e44ee8f57, type: 2}
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 0}
     triggerType: 0
     conditions:
     - {fileID: 11400000, guid: 99b5225d00fd96540bf7baaa7093444e, type: 2}
