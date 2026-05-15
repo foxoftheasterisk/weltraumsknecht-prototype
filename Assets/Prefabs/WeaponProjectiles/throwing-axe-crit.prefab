@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2585245102439756271}
   - component: {fileID: 9169073245620153727}
   - component: {fileID: 2693617218452076294}
-  - component: {fileID: 8891239965651717733}
+  - component: {fileID: -890985156572837584}
   m_Layer: 3
-  m_Name: throwing-axe
+  m_Name: throwing-axe-crit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 926501878284924327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 9b3e7b811a4cf8b4ea3f4f0bcb135e35, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6895bd62da872a5429795038e1542bce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -157,7 +157,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.002987653, y: -0.0035852045}
   m_Radius: 0.12657285
---- !u!114 &8891239965651717733
+--- !u!114 &-890985156572837584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,8 +166,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 926501878284924327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 522d6e0ca8636544498c47781fb8f2a2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NeverCritsProjectile
-  initialVelocity: {x: 4, y: 4}
-  rotateVelocity: -800
+  m_EditorClassIdentifier: Assembly-CSharp::AlwaysCritsProjectile
+  initialVelocity: {x: 0, y: 0}
+  rotateVelocity: 0

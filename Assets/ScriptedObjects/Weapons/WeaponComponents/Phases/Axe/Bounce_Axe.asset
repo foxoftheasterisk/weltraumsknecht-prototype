@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
-  m_Name: Settled_Caltrops
+  m_Name: Bounce_Axe
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
   blocksMovement: 0
@@ -18,12 +18,13 @@ MonoBehaviour:
   blocksWeapons: 0
   blocksFacing: 0
   locale: 3
-  projectilePrefab: {fileID: 3737017168360966271, guid: aa82b8d248ef30f41b8296e66f651b2a,
+  projectilePrefab: {fileID: 926501878284924327, guid: 067d2f4ac932e2b40a02af8950b05ee5,
     type: 3}
   linkedToProjectile: 1
-  activeLink: 0
+  activeLink: 1
   transitions:
   - destroyLastPhase: 1
     nextPhase: {fileID: 0}
-    triggerType: 1
-    conditions: []
+    triggerType: 4
+    conditions:
+    - {fileID: 11400000, guid: 61120554a5af8a340ae24eace7a86ea9, type: 2}
