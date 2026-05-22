@@ -25,5 +25,5 @@ MonoBehaviour:
   transitions:
   - destroyLastPhase: 1
     nextPhase: {fileID: 11400000, guid: bab7ee664334ca24fa87f599c58306bd, type: 2}
-    triggerType: 4
+    triggerType: 3
     conditions: []

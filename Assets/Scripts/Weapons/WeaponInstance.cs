@@ -44,13 +44,13 @@ public class WeaponInstance
 
     public void Update()
     {
-        List<Tuple<ActivePhase, List<WeaponTransition>>> inactive = new();
+        List<ActivePhase> inactive = new();
         List<Tuple<ActivePhase, List<WeaponTransition>>> active = new();
         foreach (ActivePhase phase in activePhases)
         {
             if (!phase.IsActive())
             {
-                inactive.Add(new(phase, CheckTransitions(phase, WeaponTransition.TriggerType.Inactivate)));
+                inactive.Add(phase);
             }
             else
             {
@@ -63,14 +63,9 @@ public class WeaponInstance
             }
         }
 
-        foreach(Tuple<ActivePhase, List<WeaponTransition>> inactivePair in inactive)
+        foreach(ActivePhase phase in inactive)
         {
-            if (inactivePair.Item2.Count > 0)
-            {
-                Debug.Log("Inactive phase transition");
-                ProcessTransitions(inactivePair.Item1, inactivePair.Item2);
-            }
-            activePhases.Remove(inactivePair.Item1);
+            activePhases.Remove(phase);
         }
 
         foreach (Tuple<ActivePhase, List<WeaponTransition>> activePair in active)

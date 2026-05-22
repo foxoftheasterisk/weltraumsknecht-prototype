@@ -25,13 +25,15 @@ namespace Weltraumsknecht.Weapons
 
         /// <summary>
         /// Controls when the weapon should check if the phase is ready to advance.
+        /// Update: triggered each Update phase
+        /// ButtonPress, ButtonRelease: triggered when the action happens (not constantly while in the down or up state). (TODO: add handling for the other as well.)
+        /// Contact: triggered when the linked projectile enters a trigger/collision with another object.
         /// </summary>
         public enum TriggerType
         {
             Update,
             ButtonPress,
             ButtonRelease,
-            Inactivate,  //Not sure if Inactivate actually makes sense to have.
             Contact   //TODO: figure out passing the collision details without it being a total kludge
         }
         public TriggerType triggerType;
