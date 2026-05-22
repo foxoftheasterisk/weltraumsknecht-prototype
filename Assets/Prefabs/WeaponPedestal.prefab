@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4001342022803660298}
   - component: {fileID: 491940021055250150}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Weapon Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,8 +103,8 @@ GameObject:
   - component: {fileID: 8495981736377959334}
   - component: {fileID: 2217915511899988743}
   - component: {fileID: 6915392474817952760}
-  m_Layer: 10
-  m_Name: Pedestal
+  m_Layer: 11
+  m_Name: WeaponPedestal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
