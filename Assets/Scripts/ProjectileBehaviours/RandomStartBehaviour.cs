@@ -1,13 +1,14 @@
 using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Audio.GeneratorInstance;
 
 /// <summary>
 /// A script that randomizes the initial values for an attached projectile, then destroys itself.
-/// Will overwrite any existing velocity settings on the attached object.
+/// All values are relative to any currently existing values on the projectile.
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-public class RandomStartBehaviour : MonoBehaviour
+public class RandomStartBehaviour : FlippableBehaviour
 {
     [System.Serializable]
     public struct RandomRange
@@ -24,10 +25,25 @@ public class RandomStartBehaviour : MonoBehaviour
 
             return result;
         }
+
+        /// <summary>
+        /// Flips the range's signs. (For example, a range of 1 to 3 would become -3 to -1.)
+        /// </summary>
+        public void Invert()
+        {
+            if (randomizeSign)
+                return; //There's no point inverting if the sign is randomized anyway
+
+            float newMax = min * -1;
+            min = max * -1;
+            max = newMax;
+        }
     }
 
     public RandomRange displaceX;
     public RandomRange displaceY;
+
+    public RandomRange rotate;
 
     public RandomRange velocityX;
     public RandomRange velocityY;
@@ -40,12 +56,24 @@ public class RandomStartBehaviour : MonoBehaviour
         Vector2 displace = new Vector2(displaceX.Generate(), displaceY.Generate());
         transform.position += (Vector3)displace;
 
+        Vector3 rotation = transform.localEulerAngles;
+        rotation.z += rotate.Generate();
+        transform.localEulerAngles = rotation;
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         Vector2 velocity = new Vector2(velocityX.Generate(), velocityY.Generate());
-        rb.linearVelocity = velocity;
-        rb.angularVelocity = angularVelocity.Generate();
+        rb.linearVelocity += velocity;
+        rb.angularVelocity += angularVelocity.Generate();
 
         Destroy(this);
+    }
+
+    public override void Flip()
+    {
+        displaceX.Invert();
+        rotate.Invert();
+        velocityX.Invert();
+        angularVelocity.Invert();
     }
 }

@@ -184,8 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NeverCritsProjectile
-  initialVelocity: {x: 0.1, y: 0.4}
-  rotateVelocity: 70
+  initialVelocity: {x: 0, y: 0}
+  rotateVelocity: 0
+  crits: 0
 --- !u!114 &8028133603258832646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +204,10 @@ MonoBehaviour:
     max: 0
     randomizeSign: 0
   displaceY:
+    min: 0
+    max: 0
+    randomizeSign: 0
+  rotate:
     min: 0
     max: 0
     randomizeSign: 0
