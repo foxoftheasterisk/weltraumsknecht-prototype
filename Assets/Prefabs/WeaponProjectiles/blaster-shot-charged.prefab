@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5012088262560876565}
   - component: {fileID: 3625363168614373169}
   - component: {fileID: -7478967787770453889}
+  - component: {fileID: -4963057778704072052}
   m_Layer: 3
   m_Name: blaster-shot-charged
   m_TagString: Untagged
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522d6e0ca8636544498c47781fb8f2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlwaysCritsProjectile
-  initialVelocity: {x: 12, y: 0}
+  initialVelocity: {x: 0, y: 0}
   rotateVelocity: 0
 --- !u!114 &-7478967787770453889
 MonoBehaviour:
@@ -186,3 +187,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakOnContactBehavior
   nonDestroyingCollisions: 0
+--- !u!114 &-4963057778704072052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266270219253974454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b3594198bcdfd4eb8b825d5180036c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartWithPropertiesBehaviour
+  properties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialVelocity: {x: 12, y: 0}
+    initialRotateVelocity: 0

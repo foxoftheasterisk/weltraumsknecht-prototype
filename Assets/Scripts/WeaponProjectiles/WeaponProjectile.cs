@@ -10,8 +10,6 @@ using Weltraumsknecht.Weapons;
 public abstract class WeaponProjectile : MonoBehaviour
 {
     protected WeaponInstance weapon;
-    public Vector2 initialVelocity;
-    public float rotateVelocity;
     
     private bool melee;
     
@@ -41,13 +39,6 @@ public abstract class WeaponProjectile : MonoBehaviour
     {
         this.weapon = weapon;
         this.melee = melee;
-        
-        WeaponProjectile[] children = GetComponentsInChildren<WeaponProjectile>();
-        foreach (WeaponProjectile child in children)
-        {
-            if(child != this)
-                child.Create(weapon, melee);
-        }
     }
 
     // Update is called once per frame

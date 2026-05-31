@@ -287,22 +287,6 @@ public class WeaponInstance
         foreach (WeaponProjectile wp in wps)
         {
             wp.Create(this, melee);
-
-            //a weaponprojectile requires a rigidbody, so this should be safe
-            Rigidbody2D rb = wp.GetComponent<Rigidbody2D>();
-            if (rb.bodyType != RigidbodyType2D.Static)
-            {
-                if (flip)
-                {
-                    rb.linearVelocity = new Vector2(wp.initialVelocity.x * -1, wp.initialVelocity.y);
-                    rb.angularVelocity = wp.rotateVelocity * -1;
-                }
-                else
-                {
-                    rb.linearVelocity = wp.initialVelocity;
-                    rb.angularVelocity = wp.rotateVelocity;
-                }
-            }
         }
 
         if (inheritProperties)

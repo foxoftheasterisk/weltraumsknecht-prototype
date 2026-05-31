@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7753135483171371502}
   - component: {fileID: 8853066068002506924}
   - component: {fileID: 8519523449762339809}
-  - component: {fileID: 7958898113667912374}
+  - component: {fileID: 8630771671250730911}
   m_Layer: 3
   m_Name: Grenade
   m_TagString: Untagged
@@ -158,7 +158,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &7958898113667912374
+--- !u!114 &8630771671250730911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,8 +167,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8733897078109884503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b17c92625004b549a6791179316ca73, type: 3}
+  m_Script: {fileID: 11500000, guid: 63b3594198bcdfd4eb8b825d5180036c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NoDamageProjectile
-  initialVelocity: {x: 3, y: 3.5}
-  rotateVelocity: 50
+  m_EditorClassIdentifier: Assembly-CSharp::StartWithPropertiesBehaviour
+  properties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialVelocity: {x: 3, y: 3.5}
+    initialRotateVelocity: 50

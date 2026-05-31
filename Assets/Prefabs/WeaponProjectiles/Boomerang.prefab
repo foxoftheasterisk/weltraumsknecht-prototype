@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6940354720738777541}
   - component: {fileID: 271413275817768652}
   - component: {fileID: 189381488083701640}
+  - component: {fileID: -3290855682818958050}
   m_Layer: 3
   m_Name: Boomerang
   m_TagString: Untagged
@@ -148,7 +149,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 79b297eea728cad47989798eb2173a58, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -171,9 +172,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e40f019099836f44b00522cce57bff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoomerangProjectile
-  initialVelocity: {x: 6, y: 0}
-  rotateVelocity: -200
+  initialVelocity: {x: 0, y: 0}
+  rotateVelocity: 0
   returnSpeed: 6
   throwTime: 0.3
   hangTime: 0.4
   acceleration: 18
+--- !u!114 &-3290855682818958050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7931930256311781865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b3594198bcdfd4eb8b825d5180036c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartWithPropertiesBehaviour
+  properties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialVelocity: {x: 6, y: 0}
+    initialRotateVelocity: -200

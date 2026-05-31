@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9169073245620153727}
   - component: {fileID: 2693617218452076294}
   - component: {fileID: 8891239965651717733}
+  - component: {fileID: -9014522290628885081}
   m_Layer: 3
   m_Name: throwing-axe
   m_TagString: Untagged
@@ -169,5 +170,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NeverCritsProjectile
-  initialVelocity: {x: 4, y: 4}
-  rotateVelocity: -800
+  initialVelocity: {x: 0, y: 0}
+  rotateVelocity: 0
+  crits: 0
+--- !u!114 &-9014522290628885081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926501878284924327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b3594198bcdfd4eb8b825d5180036c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartWithPropertiesBehaviour
+  properties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialVelocity: {x: 4, y: 4}
+    initialRotateVelocity: -800
