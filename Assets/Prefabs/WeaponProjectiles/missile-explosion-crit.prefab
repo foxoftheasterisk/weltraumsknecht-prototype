@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3952700824038948972}
   - component: {fileID: 9187312843411186867}
   - component: {fileID: 8143327880845730416}
-  - component: {fileID: 1011096128818852616}
+  - component: {fileID: -6246384778718860778}
   m_Layer: 3
   m_Name: missile-explosion-crit
   m_TagString: Untagged
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1011096128818852616
+--- !u!114 &-6246384778718860778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,8 +166,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7931314084751617676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522d6e0ca8636544498c47781fb8f2a2, type: 3}
+  m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlwaysCritsProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::BasicProjectile
   initialVelocity: {x: 0, y: 0}
   rotateVelocity: 0
+  crits: 1

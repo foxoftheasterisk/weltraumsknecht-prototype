@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2585245102439756271}
   - component: {fileID: 9169073245620153727}
   - component: {fileID: 2693617218452076294}
-  - component: {fileID: -890985156572837584}
+  - component: {fileID: -9220069128911851398}
   m_Layer: 3
   m_Name: throwing-axe-crit
   m_TagString: Untagged
@@ -157,7 +157,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.002987653, y: -0.0035852045}
   m_Radius: 0.12657285
---- !u!114 &-890985156572837584
+--- !u!114 &-9220069128911851398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,8 +166,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 926501878284924327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522d6e0ca8636544498c47781fb8f2a2, type: 3}
+  m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlwaysCritsProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::BasicProjectile
   initialVelocity: {x: 0, y: 0}
   rotateVelocity: 0
+  crits: 1

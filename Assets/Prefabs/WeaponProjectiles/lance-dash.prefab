@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5658648299656094238}
   - component: {fileID: 4995065121426458864}
   - component: {fileID: 6088194313401868157}
-  - component: {fileID: 5431530966436457363}
+  - component: {fileID: 6402404189247365364}
   m_Layer: 3
   m_Name: lance-initial_0
   m_TagString: Untagged
@@ -168,7 +168,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5431530966436457363
+--- !u!114 &6402404189247365364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,11 +177,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 87483971064734600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522d6e0ca8636544498c47781fb8f2a2, type: 3}
+  m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlwaysCritsProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::BasicProjectile
   initialVelocity: {x: 0, y: 0}
   rotateVelocity: 0
+  crits: 1
 --- !u!1 &7461316765189010005
 GameObject:
   m_ObjectHideFlags: 0
