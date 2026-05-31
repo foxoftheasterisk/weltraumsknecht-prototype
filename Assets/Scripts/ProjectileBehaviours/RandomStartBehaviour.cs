@@ -8,6 +8,7 @@ using static UnityEngine.Audio.GeneratorInstance;
 /// All values are relative to any currently existing values on the projectile.
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
+[AddComponentMenu("Projectile Behaviours/Random Start")]
 public class RandomStartBehaviour : FlippableBehaviour
 {
     [System.Serializable]

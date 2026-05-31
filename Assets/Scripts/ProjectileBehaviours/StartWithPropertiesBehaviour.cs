@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[AddComponentMenu("Projectile Behaviours/Starting Properties")]
 public class StartWithPropertiesBehaviour : FlippableBehaviour
 {
     public ProjectileProperties properties;

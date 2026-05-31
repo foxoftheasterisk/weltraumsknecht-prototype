@@ -5,6 +5,7 @@ using UnityEngine;
 ///(Because Destroy occurs at the end of the frame, other collision effects still apply.)
 ///Currently only works with collisions, so does nothing on projectiles set to trigger.
 ///(TODO: fix that.)
+[AddComponentMenu("Projectile Behaviours/Break On Contact")]
 public class BreakOnContactBehaviour : MonoBehaviour
 {
     public int nonDestroyingCollisions = 0;

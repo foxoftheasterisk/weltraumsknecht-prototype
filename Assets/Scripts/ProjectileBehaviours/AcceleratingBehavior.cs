@@ -5,6 +5,7 @@ using UnityEngine;
 /// A simple behaviour that applies a constant acceleration per second every frame.
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
+[AddComponentMenu("Projectile Behaviours/Accelerating")]
 public class AcceleratingBehavior : FlippableBehaviour
 {
     /// <summary>

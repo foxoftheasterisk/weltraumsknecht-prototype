@@ -6,6 +6,8 @@ using static Platformer.Core.Simulation;
 ///Crits when hanging or returning.
 ///If it hits an object before it begins hanging, it will immediately begin returning.
 ///Behavior may be strange if acceleration exceeds returnSpeed.
+//TODO: Encode this behaviour with phases instead.
+[AddComponentMenu("Weapon Projectiles/Boomerang Projectile")]
 public class BoomerangProjectile : WeaponProjectile
 {
     public float returnSpeed = 7;

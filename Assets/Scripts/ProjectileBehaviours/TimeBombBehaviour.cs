@@ -2,6 +2,7 @@ using UnityEngine;
 
 ///A simple script which destroys the object and creates an explosion (or other object) at its location
 ///after a certain amount of time.
+[AddComponentMenu("Projectile Behaviours/Time Bomb")]
 public class TimeBombBehaviour : MonoBehaviour
 {
     public float timeUntilExplode = 10;

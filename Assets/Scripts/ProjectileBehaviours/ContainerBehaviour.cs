@@ -3,6 +3,7 @@ using Platformer.Mechanics;
 
 ///Behavior for an object that only exists as a container for other objects.
 ///Destroys the attached GameObject when it has no children.
+[AddComponentMenu("Projectile Behaviours/Container")]
 public class ContainerBehaviour : MonoBehaviour
 {
 

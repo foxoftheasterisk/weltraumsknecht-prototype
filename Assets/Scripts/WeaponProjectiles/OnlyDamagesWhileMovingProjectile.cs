@@ -3,6 +3,7 @@ using Platformer.Mechanics;
 
 ///A simple projectile that only deals damage when moving faster than a given speed.
 ///Can be set to crit or not.
+[AddComponentMenu("Weapon Projectiles/Only Damage While Moving Projectile")]
 public class OnlyDamagesWhileMovingProjectile : WeaponProjectile
 {
     public bool crits;

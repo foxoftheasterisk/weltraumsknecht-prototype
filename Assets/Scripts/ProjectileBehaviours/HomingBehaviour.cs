@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[AddComponentMenu("Projectile Behaviours/Homing")]
 public class HomingBehaviour : MonoBehaviour
 {
     public float targetSpeed = 7; //The intended speed for the attached projectile

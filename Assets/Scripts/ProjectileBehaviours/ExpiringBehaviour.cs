@@ -1,6 +1,10 @@
 using UnityEngine;
 
-///A simple script that causes the attached object to expire after a given time.
+/// <summary>
+/// A simple script that causes the attached object to expire after a given time.
+/// Note: For weapon projectiles, it is preferred to use a timed phase instead.
+/// </summary>
+[AddComponentMenu("Projectile Behaviours/Expiring")]
 public class ExpiringBehaviour : MonoBehaviour
 {
     public float timeUntilExpire = 10;
