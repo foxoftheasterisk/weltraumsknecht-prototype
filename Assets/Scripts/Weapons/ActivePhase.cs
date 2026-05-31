@@ -54,6 +54,7 @@ namespace Weltraumsknecht.Weapons
             {
                 ContactListener listener = projectile.AddComponent<ContactListener>();
                 listener.function = p => CheckTransitions(WeaponTransition.TriggerType.Contact);
+                //TODO: consider adding this listener to *each* object. Probably a good thing to do in the cases it matters.
             }
         }
 
