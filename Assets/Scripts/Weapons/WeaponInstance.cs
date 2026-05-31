@@ -186,22 +186,25 @@ public class WeaponInstance
         }
 
         GameObject projectile;
+        ProjectileProperties? phaseProps = null;
+        if (phase.useProperties)
+            phaseProps = phase.initialProperties;
 
         switch (phase.locale)
         {
             case WeaponPhase.ProjectileLocale.Melee:
             case WeaponPhase.ProjectileLocale.Ranged:
-                projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee);
+                projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee, phase.initialProperties);
                 break;
             case WeaponPhase.ProjectileLocale.Remote:
                 if (lastPhaseObject == null)
                     throw new MissingReferenceException("Tried to start remote phase with no parent!");
-                projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject);
+                projectile = CreateProjectile(phase.projectilePrefab, false, phase.initialProperties, lastPhaseObject);
                 break;
             case WeaponPhase.ProjectileLocale.Replace:
                 if (lastPhaseObject == null)
                     throw new MissingReferenceException("Tried to start replace phase with no parent!");
-                projectile = CreateProjectile(phase.projectilePrefab, false, lastPhaseObject, true);
+                projectile = CreateProjectile(phase.projectilePrefab, false, phase.initialProperties, lastPhaseObject, true);
                 break;
             default:
                 throw new NotImplementedException("Undefined projectile locale: " + phase.locale);
@@ -218,7 +221,7 @@ public class WeaponInstance
     ///(Do not pass in the player, as this will make projectile flipping inaccurate.)
     ///Returns the created projectile.
     /// </summary>
-    internal GameObject CreateProjectile(GameObject prefab, bool melee = false, GameObject parent = null, bool inheritProperties = false)
+    internal GameObject CreateProjectile(GameObject prefab, bool melee = false, ProjectileProperties? properties = null, GameObject parent = null, bool inheritProperties = false)
     {
         GameObject projectile;
         bool flip = false;
@@ -228,8 +231,8 @@ public class WeaponInstance
             parent = Player.gameObject;
             flip = Player.IsFacingLeft();
         }
-        else if (parent.TryGetComponent<Rigidbody2D>(out Rigidbody2D prb))
-            flip = prb.linearVelocityX < 0;
+        else if (parent.TryGetComponent<Rigidbody2D>(out Rigidbody2D parentrb))
+            flip = parentrb.linearVelocityX < 0;
 
         if (melee)
         {
@@ -242,6 +245,19 @@ public class WeaponInstance
                 relativePosition.x *= -1;
             Vector3 position = parent.transform.position + relativePosition;
             projectile = GameObject.Instantiate(prefab, position, prefab.transform.rotation);
+        }
+
+        if (properties != null)
+        {
+            if (!projectile.TryGetComponent<Rigidbody2D>(out _))
+            {
+                Debug.Log("Tried to apply phase properties to projectile with no rigidbody. Continuing without properties.");
+            }
+            else
+            {
+                StartWithPropertiesBehaviour behaviour = projectile.AddComponent<StartWithPropertiesBehaviour>();
+                behaviour.properties = (ProjectileProperties)properties;
+            }
         }
 
         if (flip)

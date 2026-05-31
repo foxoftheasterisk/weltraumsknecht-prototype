@@ -21,6 +21,13 @@ namespace Weltraumsknecht.Weapons
         public bool blocksFacing;
 
         /// <summary>
+        /// If false, initialProperties will be ignored.
+        /// </summary>
+        public bool useProperties = false;
+        //TODO: figure out if there's a better way to do this (like having a nullable) that works in editor.
+        public ProjectileProperties initialProperties;
+
+        /// <summary>
         /// Defines a created projectile's behavior.
         /// A Melee projectile is centered on the player, and follows them as they move;
         /// a Ranged projectile is created at the player's location, but then moves independently;
