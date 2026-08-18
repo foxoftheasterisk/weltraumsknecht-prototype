@@ -101,9 +101,9 @@ namespace Platformer.Mechanics
             m_DashLeftAction.Enable();
             m_DashRightAction.Enable();
             
-            m_WestWeaponAction = InputSystem.actions.FindAction("Player/Weapon1");
-            m_NorthWeaponAction = InputSystem.actions.FindAction("Player/Weapon2");
-            m_EastWeaponAction = InputSystem.actions.FindAction("Player/Weapon3");
+            m_WestWeaponAction = InputSystem.actions.FindAction("Player/WeaponWest");
+            m_NorthWeaponAction = InputSystem.actions.FindAction("Player/WeaponNorth");
+            m_EastWeaponAction = InputSystem.actions.FindAction("Player/WeaponEast");
             m_KickAction = InputSystem.actions.FindAction("Player/Kick");
             
             m_WestWeaponAction.Enable();

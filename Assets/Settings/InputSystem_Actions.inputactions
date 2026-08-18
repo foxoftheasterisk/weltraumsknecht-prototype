@@ -70,7 +70,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Weapon3",
+                    "name": "WeaponEast",
                     "type": "Button",
                     "id": "a34e4590-5c79-41ab-9164-7f465a9a53e0",
                     "expectedControlType": "",
@@ -424,7 +424,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Weapon3",
+                    "action": "WeaponEast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -435,7 +435,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Weapon3",
+                    "action": "WeaponEast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -446,7 +446,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Weapon3",
+                    "action": "WeaponEast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
