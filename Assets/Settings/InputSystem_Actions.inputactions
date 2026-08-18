@@ -52,7 +52,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Weapon1",
+                    "name": "WeaponWest",
                     "type": "Button",
                     "id": "b7d646b5-5f5f-4842-bda7-0767c14117d1",
                     "expectedControlType": "",
@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Weapon2",
+                    "name": "WeaponNorth",
                     "type": "Button",
                     "id": "e5d5bfbb-bbf7-4595-93d9-4c68ba043cca",
                     "expectedControlType": "",
@@ -110,7 +110,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Arrow Keys",
+                    "name": "WASD",
                     "id": "00ca640b-d935-4593-8157-c05846ea39b3",
                     "path": "Dpad",
                     "interactions": "",
@@ -123,7 +123,7 @@
                 {
                     "name": "up",
                     "id": "8180e8bd-4097-4f4e-ab88-4523101a6ce9",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -134,7 +134,7 @@
                 {
                     "name": "down",
                     "id": "1c5327b5-f71c-4f60-99c7-4e737386f1d1",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -145,7 +145,7 @@
                 {
                     "name": "left",
                     "id": "2e46982e-44cc-431b-9f0b-c11910bf467a",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -156,7 +156,7 @@
                 {
                     "name": "right",
                     "id": "77bff152-3580-4b21-b6de-dcd0c7e41164",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -244,7 +244,7 @@
                 {
                     "name": "",
                     "id": "cf9e3b48-0966-448f-952a-89094d3ce624",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -264,6 +264,39 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "One Modifier",
+                    "id": "85114456-4812-4d9d-95b4-44c51049f1c4",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash Left",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "ab014a5c-42a2-4b55-8a27-cb10e34af6bb",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Dash Left",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "0345d311-d5db-4852-a9b4-44ecc19963dc",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Dash Left",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "5fbfc754-ad6c-4b3a-b094-ea0ef7fbcc76",
                     "path": "<Gamepad>/rightTrigger",
@@ -277,7 +310,7 @@
                 {
                     "name": "",
                     "id": "0cac24fb-9a7b-41ac-bc67-eb5f099fa88e",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -286,13 +319,46 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "afb14be9-4f44-462a-8c68-7ba4b5213712",
-                    "path": "<Keyboard>/z",
+                    "name": "One Modifier",
+                    "id": "199d7289-bfad-455e-bebe-087c5d9c58fb",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash Right",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "bedbc136-7e9f-416d-8bd1-161c2a3d95d9",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Weapon1",
+                    "action": "Dash Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "a97fa0ee-5c26-4ce1-b4b9-72bf59c9b1cd",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Dash Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "afb14be9-4f44-462a-8c68-7ba4b5213712",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "WeaponWest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -303,7 +369,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Weapon1",
+                    "action": "WeaponWest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cd84c3b-7a6e-41cc-bd62-6a44ebfb6932",
+                    "path": "<Keyboard>/numpad4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "WeaponWest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -314,25 +391,36 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Weapon2",
+                    "action": "WeaponNorth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "a150a4fa-ed83-453c-8067-1b43c9c5cb4c",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Weapon2",
+                    "action": "WeaponNorth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47c09e8c-08b0-402a-9059-ed96ddf1deb8",
+                    "path": "<Keyboard>/numpad8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "WeaponNorth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "02b52b49-7fc1-469b-a2a7-9fe9c4d6aff2",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -347,6 +435,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "Weapon3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4cc91f4a-0ce0-4e99-b404-b7c3f3ca12be",
+                    "path": "<Keyboard>/numpad6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Weapon3",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -375,6 +474,28 @@
                 },
                 {
                     "name": "",
+                    "id": "afbb435f-2000-490d-b87f-b5126c18fb66",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Kick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db5ad82a-ab2c-44e1-9cdd-491f0eb517b7",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Kick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "25949052-8d36-49b2-8fca-a45203d1b43a",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -388,6 +509,17 @@
                     "name": "",
                     "id": "21371047-b21b-4152-b99b-fdc62f4d0287",
                     "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f56902f-6f50-460b-b35f-c8969a9c35da",
+                    "path": "<Keyboard>/numpadEnter",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
