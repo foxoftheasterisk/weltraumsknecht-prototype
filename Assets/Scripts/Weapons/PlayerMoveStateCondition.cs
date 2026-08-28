@@ -20,8 +20,9 @@ namespace Weltraumsknecht.Weapons
         }
         public PlayerMoveState targetState;
 
-        internal override bool CheckCondition(ActivePhase phaseState, PlayerController player)
+        internal override bool CheckCondition(WeaponEvent e)
         {
+            PlayerController player = e.Player;
             switch (targetState)
             {
                 case PlayerMoveState.Air:

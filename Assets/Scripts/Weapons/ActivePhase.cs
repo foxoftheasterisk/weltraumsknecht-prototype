@@ -52,7 +52,7 @@ namespace Weltraumsknecht.Weapons
             if(potentialTransitions.Any(p => p.triggerType == WeaponTransition.TriggerType.Contact))
             {
                 ContactListener listener = projectile.AddComponent<ContactListener>();
-                listener.function = p => CheckTransitions(WeaponTransition.TriggerType.Contact);
+                listener.function = p => CheckTransitions(WeaponTransition.TriggerType.Contact, new WeaponCollisionEvent(this, parent.Player, p));
                 //TODO: consider adding this listener to *each* object. Probably a good thing to do in the cases it matters.
             }
         }
@@ -62,14 +62,14 @@ namespace Weltraumsknecht.Weapons
             TimeInPhase += deltaTime;
         }
 
-        public void CheckTransitions(WeaponTransition.TriggerType triggerType)
+        public void CheckTransitions(WeaponTransition.TriggerType triggerType, WeaponEvent e)
         {
             Debug.Log("Checking transitions " + triggerType);
 
             List<WeaponTransition> activating = new List<WeaponTransition>();
             foreach (WeaponTransition transition in potentialTransitions)
             {
-                if (transition.triggerType == triggerType && transition.ShouldAdvance(this, parent.Player))
+                if (transition.triggerType == triggerType && transition.ShouldAdvance(e))
                     activating.Add(transition);
             }
 

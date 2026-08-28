@@ -55,7 +55,7 @@ public class WeaponInstance
             else
             {
                 phase.AdvanceTime(Time.deltaTime);
-                List<WeaponTransition> activating = CheckTransitions(phase, WeaponTransition.TriggerType.Update);
+                List<WeaponTransition> activating = CheckTransitions(phase, WeaponTransition.TriggerType.Update, new WeaponEvent(phase, Player));
                 if(activating.Count > 0)
                 {
                     active.Add(new(phase, activating));
@@ -100,7 +100,7 @@ public class WeaponInstance
 
         foreach (ActivePhase phase in activePhases)
         {
-            List<WeaponTransition> transitions = CheckTransitions(phase, triggerType);
+            List<WeaponTransition> transitions = CheckTransitions(phase, triggerType, new WeaponEvent(phase, Player));
             if(transitions.Count > 0)
             {
                 activatingTransitions.Add(new(phase, transitions));
@@ -125,12 +125,12 @@ public class WeaponInstance
         }
     }
 
-    private List<WeaponTransition> CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType)
+    private List<WeaponTransition> CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType, WeaponEvent e)
     {
         List<WeaponTransition> activating = new List<WeaponTransition>();
         foreach (WeaponTransition transition in phase.potentialTransitions)
         {
-            if (transition.triggerType == triggerType && transition.ShouldAdvance(phase, Player))
+            if (transition.triggerType == triggerType && transition.ShouldAdvance(e))
                 activating.Add(transition);
         }
 

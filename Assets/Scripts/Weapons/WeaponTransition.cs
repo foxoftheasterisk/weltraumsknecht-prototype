@@ -34,7 +34,7 @@ namespace Weltraumsknecht.Weapons
             Update,
             ButtonPress,
             ButtonRelease,
-            Contact   //TODO: figure out passing the collision details without it being a total kludge
+            Contact
         }
         public TriggerType triggerType;
 
@@ -45,11 +45,11 @@ namespace Weltraumsknecht.Weapons
         /// </summary>
         public TransitionCondition[] conditions;
 
-        internal bool ShouldAdvance(ActivePhase phaseState, PlayerController player)
+        internal bool ShouldAdvance(WeaponEvent e)
         {
             foreach (TransitionCondition condition in conditions)
             {
-                if (!condition.CheckCondition(phaseState, player))
+                if (!condition.CheckCondition(e))
                     return false;
             }
             return true;

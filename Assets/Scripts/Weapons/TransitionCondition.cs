@@ -10,6 +10,6 @@ namespace Weltraumsknecht.Weapons
     /// </summary>
     public abstract class TransitionCondition : ScriptableObject
     {
-        abstract internal bool CheckCondition(ActivePhase phaseState, PlayerController player);
+        abstract internal bool CheckCondition(WeaponEvent e);
     }
 }

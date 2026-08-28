@@ -16,8 +16,9 @@ namespace Weltraumsknecht.Weapons
         //The maximum amount of time elapsed.
         public float maximumTime = float.PositiveInfinity;
 
-        internal override bool CheckCondition(ActivePhase phaseState, PlayerController player)
+        internal override bool CheckCondition(WeaponEvent e)
         {
+            ActivePhase phaseState = e.CurrentPhase;
             return (phaseState.TimeInPhase >= minimumTime && phaseState.TimeInPhase <= maximumTime);
         }
     }

@@ -27,8 +27,10 @@ namespace Weltraumsknecht.Weapons
         public Vector2 direction = Vector2.zero;
         public float maxAngle = 360;
 
-        internal override bool CheckCondition(ActivePhase phaseState, PlayerController player)
+        internal override bool CheckCondition(WeaponEvent e)
         {
+            ActivePhase phaseState = e.CurrentPhase;
+
             if(phaseState.linkedProjectile == null)
             {
                 Debug.Log("Attempted to check movement of phase with no projectile!");
