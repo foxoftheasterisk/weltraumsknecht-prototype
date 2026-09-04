@@ -143,12 +143,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.25304478, y: -0.22414191}
-      - {x: 0.06771843, y: -0.3987954}
+    - - {x: -0.2567109, y: -0.3018682}
+      - {x: 0.07054662, y: -0.3849748}
       - {x: 0.38775957, y: 0.15747851}
-      - {x: 0.08719779, y: 0.33119237}
-      - {x: -0.072131045, y: 0.20046718}
-      - {x: -0.21530972, y: -0.038862918}
+      - {x: 0.14718159, y: 0.38155484}
+      - {x: -0.059863217, y: 0.22171567}
+      - {x: -0.22453061, y: -0.05929499}
+      - {x: -0.22453061, y: -0.05929499}
   m_UseDelaunayMesh: 1
 --- !u!50 &1121344801179033097
 Rigidbody2D:
@@ -202,8 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NeverCritsProjectile
-  initialVelocity: {x: 0, y: 0}
-  rotateVelocity: 0
+  crits: 0
 --- !u!114 &828423162513212012
 MonoBehaviour:
   m_ObjectHideFlags: 0
