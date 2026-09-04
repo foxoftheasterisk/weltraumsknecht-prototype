@@ -194,17 +194,17 @@ public class WeaponInstance
         {
             case WeaponPhase.ProjectileLocale.Melee:
             case WeaponPhase.ProjectileLocale.Ranged:
-                projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee, phase.initialProperties);
+                projectile = CreateProjectile(phase.projectilePrefab, phase.locale == WeaponPhase.ProjectileLocale.Melee, phaseProps);
                 break;
             case WeaponPhase.ProjectileLocale.Remote:
                 if (lastPhaseObject == null)
                     throw new MissingReferenceException("Tried to start remote phase with no parent!");
-                projectile = CreateProjectile(phase.projectilePrefab, false, phase.initialProperties, lastPhaseObject);
+                projectile = CreateProjectile(phase.projectilePrefab, false, phaseProps, lastPhaseObject);
                 break;
             case WeaponPhase.ProjectileLocale.Replace:
                 if (lastPhaseObject == null)
                     throw new MissingReferenceException("Tried to start replace phase with no parent!");
-                projectile = CreateProjectile(phase.projectilePrefab, false, phase.initialProperties, lastPhaseObject, true);
+                projectile = CreateProjectile(phase.projectilePrefab, false, phaseProps, lastPhaseObject, true);
                 break;
             default:
                 throw new NotImplementedException("Undefined projectile locale: " + phase.locale);
