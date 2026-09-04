@@ -10,21 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
-  m_Name: FirstExplosion_Missile
+  m_Name: CritExplosion_Missile
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
   blocksMovement: 0
   moveSpeedPenalty: 0
   blocksWeapons: 0
   blocksFacing: 0
-  useProperties: 0
-  initialProperties:
-    displace: {x: 0, y: 0}
-    rotateMod: 0
-    initialVelocity: {x: 0, y: 0}
-    initialRotateVelocity: 0
   locale: 2
-  projectilePrefab: {fileID: 8796584598676356888, guid: e538d16b4438c8e4e88c1f1684a4ad62,
+  projectilePrefab: {fileID: 7931314084751617676, guid: fb692d8b958fb97439540faf69b43473,
     type: 3}
   linkedToProjectile: 1
   activeLink: 1

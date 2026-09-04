@@ -10,21 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
-  m_Name: SecondExplosion_Missile
+  m_Name: LowSegment_Missile
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
   blocksMovement: 0
   moveSpeedPenalty: 0
   blocksWeapons: 0
   blocksFacing: 0
+  useProperties: 1
+  initialProperties:
+    displace: {x: -0.4, y: 0.05}
+    rotateMod: 0
+    initialVelocity: {x: -4, y: 0}
+    initialRotateVelocity: -1600
   locale: 2
-  projectilePrefab: {fileID: 7931314084751617676, guid: fb692d8b958fb97439540faf69b43473,
+  projectilePrefab: {fileID: 5738007879017249199, guid: 995929d5c73ab0946a539ddb16f62166,
     type: 3}
   linkedToProjectile: 1
   activeLink: 1
   transitions:
   - destroyLastPhase: 1
-    nextPhase: {fileID: 0}
-    triggerType: 0
-    conditions:
-    - {fileID: 11400000, guid: cb0763a264e19094d95fcbc83ba967f9, type: 2}
+    nextPhase: {fileID: 11400000, guid: 0fb70ad5d58706244afffbc156b37d35, type: 2}
+    triggerType: 3
+    conditions: []
