@@ -16,7 +16,13 @@ MonoBehaviour:
   blocksMovement: 0
   moveSpeedPenalty: 0
   blocksWeapons: 1
-  blocksFacing: 0
+  blocksFacing: 1
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialVelocity: {x: 0, y: 0}
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 1955616226405833871, guid: 94743875a1c31f64d9bb4c6fbb144004,
     type: 3}
