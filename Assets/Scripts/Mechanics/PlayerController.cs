@@ -15,6 +15,9 @@ namespace Platformer.Mechanics
     /// </summary>
     public class PlayerController : KinematicObject
     {
+        public static PlayerController player;
+        //This seems Wrong, but I'm not sure how else to get enemy ranges.
+
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
@@ -74,6 +77,8 @@ namespace Platformer.Mechanics
 
         void Awake()
         {
+            player = this;
+
             health = GetComponent<Health>();
             audioSource = GetComponent<AudioSource>();
             collider2d = GetComponent<Collider2D>();
