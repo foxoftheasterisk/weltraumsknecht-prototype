@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Platformer.Gameplay;
 using Platformer.Mechanics;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Scripting.APIUpdating;
 using static Platformer.Core.Simulation;
 
@@ -12,8 +13,9 @@ namespace Weltraumsknecht.Enemies
     /// <summary>
     /// A base class implementing common behavior for enemies
     /// </summary>
-    [RequireComponent(typeof(AnimationController), typeof(Collider2D), typeof(Rigidbody2D))]
-    public abstract class Enemy : MonoBehaviour
+    [RequireComponent(typeof(AnimationController), typeof(Rigidbody2D), typeof(MovementAI))]
+    [RequireComponent(typeof(AttackAI))]
+    public class Enemy : MonoBehaviour
     {
         public AudioClip ouch;
         
@@ -22,25 +24,26 @@ namespace Weltraumsknecht.Enemies
         private bool inKnockback = false;
         public float knockbackScale = 1;
 
-        public float cooldownBetweenAttacks = 5;
-        protected bool isAttacking = false;
+        public float cooldownBetweenAttacks = 5; //This maybe should be per-attack?
+        private AttackAI currentAttack = null;
         protected bool inCooldown = false;
 
         internal AnimationController control;
-        internal Collider2D _collider;
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
         internal Rigidbody2D body;
 
-        public Bounds Bounds => _collider.bounds;
+        internal MovementAI movementAI;
+        internal AttackAI[] attacks;
 
         void Awake()
         {
             control = GetComponent<AnimationController>();
-            _collider = GetComponent<Collider2D>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             body = GetComponent<Rigidbody2D>();
+            movementAI = GetComponent<MovementAI>();
+            attacks = GetComponents<AttackAI>();
         }
 
         void OnCollisionEnter2D(Collision2D collision)
@@ -58,38 +61,58 @@ namespace Weltraumsknecht.Enemies
         {
             if (!inKnockback)
             {
-                if (isAttacking)
-                    ContinueAttack();
+                if (currentAttack != null)
+                {
+                    currentAttack.ContinueAttack();
+                    if(!currentAttack.IsAttacking)
+                    {
+                        currentAttack = null;
+                        inCooldown = true;
+                        Invoke("EndCooldown", cooldownBetweenAttacks);
+                    }
+                }
                 else
                     Act();
             }
         }
-        
-        /// <summary>
-        /// ContinueAttack is called every frame when isAttacking is set to true.
-        /// It should advance the attack animation.
-        /// Note: Warmup is included.
-        /// </summary>
-        protected abstract void ContinueAttack();
 
         /// <summary>
         /// Act is called every frame that the enemy is capable of normal movement (i.e., when not suffering knockback or in the middle of an attack).
         /// </summary>
         protected void Act()
         {
-            Move();
+            movementAI.Move();
 
-            if (!inCooldown && IsInRange(PlayerController.player.transform.position))
+            if (!inCooldown)
             {
-                StartAttack();
+                CheckAttacks();
             }
         }
 
-        protected abstract Boolean IsInRange(Vector2 playerPosition);
+        protected void CheckAttacks()
+        {
+            Vector2 playerPos = PlayerController.player.transform.position;
 
-        protected abstract void Move();
-        protected abstract void StartAttack();
-        
+            List<AttackAI> possibleAttacks = new List<AttackAI>();
+            int priority = 0;
+            foreach (AttackAI attack in attacks)
+            {
+                if (attack.priority <= priority && attack.IsInRange(playerPos))
+                {
+                    if (attack.priority > priority)
+                    {
+                        possibleAttacks = new List<AttackAI>();
+                    }
+                    possibleAttacks.Add(attack);
+                }
+            }
+
+            if (possibleAttacks.Count > 0)
+            {
+                currentAttack = possibleAttacks[UnityEngine.Random.Range(0, possibleAttacks.Count)];
+                currentAttack.StartAttack();
+            }
+        }
         
         public void TookDamageFrom(WeaponProjectile projectile)
         {
@@ -112,9 +135,10 @@ namespace Weltraumsknecht.Enemies
             inKnockback = true;
             Invoke("EndKnockback", iTimeAfterHit);
 
-            if (isAttacking)
+            if (currentAttack != null)
             {
-                isAttacking = false;
+                currentAttack.CancelAttack();
+
                 inCooldown = true;
 
             }
@@ -138,6 +162,11 @@ namespace Weltraumsknecht.Enemies
         public bool IsInIFrames()
         {
             return inIFrames;
+        }
+
+        public bool IsAttacking()
+        {
+            return currentAttack != null;
         }
 
     }
