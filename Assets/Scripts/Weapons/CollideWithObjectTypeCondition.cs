@@ -2,6 +2,8 @@ using Platformer.Mechanics;
 using System;
 using UnityEngine;
 
+using Weltraumsknecht.Enemies;
+
 namespace Weltraumsknecht.Weapons
 {
 
@@ -32,7 +34,7 @@ namespace Weltraumsknecht.Weapons
             switch (type)
             {
                 case ObjectType.Enemy:
-                    return collisionEvent.CollidingObject.TryGetComponent(out EnemyController _);
+                    return collisionEvent.CollidingObject.TryGetComponent(out Enemy _);
                 case ObjectType.Background:
                     return collisionEvent.CollidingObject.gameObject.layer == LayerMask.NameToLayer("Environment");
                 default:

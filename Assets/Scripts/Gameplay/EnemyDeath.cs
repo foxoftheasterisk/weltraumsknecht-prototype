@@ -1,5 +1,6 @@
 using Platformer.Core;
 using Platformer.Mechanics;
+using Weltraumsknecht.Enemies;
 
 namespace Platformer.Gameplay
 {
@@ -9,7 +10,7 @@ namespace Platformer.Gameplay
     /// <typeparam name="EnemyDeath"></typeparam>
     public class EnemyDeath : Simulation.Event<EnemyDeath>
     {
-        public EnemyController enemy;
+        public Enemy enemy;
 
         public override void Execute()
         {

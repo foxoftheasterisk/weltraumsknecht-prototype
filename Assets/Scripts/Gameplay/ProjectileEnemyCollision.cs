@@ -4,6 +4,8 @@ using Platformer.Model;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 
+using Weltraumsknecht.Enemies;
+
 namespace Platformer.Gameplay
 {
 
@@ -13,7 +15,7 @@ namespace Platformer.Gameplay
     /// <typeparam name="EnemyCollision"></typeparam>
     public class ProjectileEnemyCollision : Simulation.Event<ProjectileEnemyCollision>
     {
-        public EnemyController enemy;
+        public Enemy enemy;
         public WeaponProjectile projectile;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();

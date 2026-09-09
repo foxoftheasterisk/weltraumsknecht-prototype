@@ -30,7 +30,7 @@ namespace Platformer.Mechanics
             if (Instance == this) Instance = null;
         }
 
-        void Update()
+        void LateUpdate()
         {
             if (Instance == this) Simulation.Tick();
         }

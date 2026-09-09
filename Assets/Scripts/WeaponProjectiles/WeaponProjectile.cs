@@ -5,6 +5,7 @@ using static Platformer.Core.Simulation;
 using System;
 
 using Weltraumsknecht.Weapons;
+using Weltraumsknecht.Enemies;
 
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public abstract class WeaponProjectile : MonoBehaviour
@@ -74,8 +75,8 @@ public abstract class WeaponProjectile : MonoBehaviour
     
     protected void InteractWith(Collider2D other)
     {
-        EnemyController enemy;
-        if (other.TryGetComponent<EnemyController>(out enemy))
+        Enemy enemy;
+        if (other.TryGetComponent<Enemy>(out enemy))
         {
             ProjectileEnemyCollision ev = Schedule<ProjectileEnemyCollision>();
             ev.projectile = this;
@@ -114,7 +115,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         
     }
     
-    public virtual void CollidedWithEnemy(EnemyController enemy, bool killed) 
+    public virtual void CollidedWithEnemy(Enemy enemy, bool killed) 
     {
         CollidedWithAny(enemy.gameObject);
     }
