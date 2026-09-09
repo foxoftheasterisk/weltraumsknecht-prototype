@@ -16,7 +16,7 @@ namespace Platformer.Mechanics
     public class PlayerController : KinematicObject
     {
         public static PlayerController player;
-        //This seems Wrong, but I'm not sure how else to get enemy ranges.
+        //This seems Wrong, but I'm not sure how else to get the player's location for determining if in enemy ranges.
 
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
