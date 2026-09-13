@@ -13,8 +13,8 @@ namespace Weltraumsknecht.Enemies
     /// <summary>
     /// A base class implementing common behavior for enemies
     /// </summary>
-    [RequireComponent(typeof(AnimationController), typeof(Rigidbody2D), typeof(MovementAI))]
-    [RequireComponent(typeof(AttackAI))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(MovementAI), typeof(Animator))]
+    //[RequireComponent(typeof(AttackAI))]
     public class Enemy : MonoBehaviour
     {
         public AudioClip ouch;
@@ -28,7 +28,7 @@ namespace Weltraumsknecht.Enemies
         private AttackAI currentAttack = null;
         protected bool inCooldown = false;
 
-        internal AnimationController control;
+        internal Animator animator;
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
         internal Rigidbody2D body;
@@ -38,7 +38,7 @@ namespace Weltraumsknecht.Enemies
 
         void Awake()
         {
-            control = GetComponent<AnimationController>();
+            animator = GetComponent<Animator>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             body = GetComponent<Rigidbody2D>();
@@ -63,8 +63,8 @@ namespace Weltraumsknecht.Enemies
             {
                 if (currentAttack != null)
                 {
-                    currentAttack.ContinueAttack();
-                    if(!currentAttack.IsAttacking)
+                    currentAttack.Continue();
+                    if(!currentAttack.IsActive)
                     {
                         currentAttack = null;
                         inCooldown = true;
@@ -110,7 +110,7 @@ namespace Weltraumsknecht.Enemies
             if (possibleAttacks.Count > 0)
             {
                 currentAttack = possibleAttacks[UnityEngine.Random.Range(0, possibleAttacks.Count)];
-                currentAttack.StartAttack();
+                currentAttack.StartWarmup();
             }
         }
         
@@ -132,7 +132,9 @@ namespace Weltraumsknecht.Enemies
         protected virtual void SufferKnockback(Vector2 knockback)
         {
             body.linearVelocity = knockback * knockbackScale;
+
             inKnockback = true;
+            animator.SetBool("inFlinch", true);
             Invoke("EndKnockback", iTimeAfterHit);
 
             if (currentAttack != null)
@@ -152,6 +154,7 @@ namespace Weltraumsknecht.Enemies
         public void EndKnockback()
         {
             inKnockback = false;
+            animator.SetBool("inFlinch", false);
         }
         
         public void EndCooldown()
