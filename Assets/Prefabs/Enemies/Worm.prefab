@@ -351,4 +351,4 @@ MonoBehaviour:
     maxDistance: 4
   priority: 0
   animationTriggerName: ball
-  warmupTime: 1.2
+  warmupTime: 1.5
