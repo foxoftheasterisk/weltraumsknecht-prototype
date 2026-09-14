@@ -4,18 +4,22 @@ using UnityEngine;
 namespace Weltraumsknecht.Enemies
 {
 
+    /// <summary>
+    /// A base class that defines and interface and implements common code for Attacks.
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public abstract class AttackAI : MonoBehaviour
     {
         public bool IsActive
         { get; protected set; } = false;
 
+        public Range range;
         public int priority = 0;
         public string animationTriggerName;
 
         private const string animationWarmupName = "warmupCompletion";
 
-        public float warmupTime = .3f;
+        public float warmupTime = .6f;
         private float elapsedTime;
 
         private bool inAttack;
@@ -27,7 +31,10 @@ namespace Weltraumsknecht.Enemies
             animator = GetComponent<Animator>();
         }
 
-        public abstract bool IsInRange(Vector2 playerPosition);
+        public bool IsInRange(Vector2 playerPosition)
+        {
+            return range.Test(playerPosition);
+        }
 
         public virtual void StartWarmup()
         {
@@ -68,6 +75,47 @@ namespace Weltraumsknecht.Enemies
         {
             IsActive = false;
             inAttack = false;
+        }
+    }
+
+    [Serializable]
+    public struct Range
+    {
+        /// <summary>
+        /// The direction to test against, expressed as a Vector2.
+        /// Horizontal directions will use their absolute value to test.
+        /// If the vector is 0, 0 direction will be ignored.
+        /// </summary>
+        public Vector2 direction;
+
+        /// <summary>
+        /// How much the actual angle can vary from the direction given.
+        /// </summary>
+        public int tolerance;
+
+        /// <summary>
+        /// The shortest distance away a point can be and remain in range.
+        /// </summary>
+        public float minDistance;
+
+        /// <summary>
+        /// The farthest distance away a point can be and still be in range.
+        /// </summary>
+        public float maxDistance;
+
+        internal readonly bool Test(Vector2 relativePosition)
+        {
+            if(direction != Vector2.zero)
+            {
+                Vector2 absPos = new Vector2(Math.Abs(relativePosition.x), relativePosition.y);
+                Vector2 absDir = new Vector2(Math.Abs(direction.x), direction.y);
+
+                if (Vector2.Angle(absDir, absPos) > tolerance)
+                    return false;
+            }
+
+            float dist = relativePosition.magnitude;
+            return dist <= maxDistance && dist >= minDistance;
         }
     }
 }

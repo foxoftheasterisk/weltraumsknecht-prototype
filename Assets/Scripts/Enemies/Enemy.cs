@@ -91,7 +91,7 @@ namespace Weltraumsknecht.Enemies
 
         protected void CheckAttacks()
         {
-            Vector2 playerPos = PlayerController.player.transform.position;
+            Vector2 playerPos = PlayerController.player.transform.position - transform.position;
 
             List<AttackAI> possibleAttacks = new List<AttackAI>();
             int priority = 0;
