@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7956006698681642166}
   - component: {fileID: 8985170431149985150}
   - component: {fileID: 2033699133404050003}
+  - component: {fileID: -2874452024716593447}
   m_Layer: 8
   m_Name: worm-ball
   m_TagString: Untagged
@@ -174,3 +175,16 @@ MonoBehaviour:
     rotateMod: 0
     initialVelocity: {x: 4, y: 0}
     initialRotateVelocity: 0
+--- !u!114 &-2874452024716593447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716316148992710439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f6d100ba473a445af7aef1cdbef818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  damage: 1
