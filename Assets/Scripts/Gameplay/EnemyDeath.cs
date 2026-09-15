@@ -15,13 +15,7 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
-            
-            if (enemy.TryGetComponent<Collider2D>(out Collider2D collider))
-            {
-                collider.enabled = false;
-            }
-            if (enemy._audio && enemy.ouch)
-                enemy._audio.PlayOneShot(enemy.ouch);
+            enemy.Die();
         }
     }
 }

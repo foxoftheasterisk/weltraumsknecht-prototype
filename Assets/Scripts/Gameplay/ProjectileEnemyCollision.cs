@@ -25,7 +25,7 @@ namespace Platformer.Gameplay
 
         public override bool Precondition()
         {
-            return !enemy.IsInIFrames();
+            return !enemy.InIFrames;
         }
 
         public override void Execute()

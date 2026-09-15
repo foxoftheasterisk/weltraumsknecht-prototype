@@ -18,10 +18,18 @@ namespace Weltraumsknecht.Enemies
     public class Enemy : MonoBehaviour
     {
         public AudioClip ouch;
-        
+
         public float iTimeAfterHit = .2f;
-        private bool inIFrames = false;
-        private bool inKnockback = false;
+        public bool InIFrames
+        {
+            get;
+            private set;
+        } = false;
+        public bool InKnockback
+        {
+            get;
+            private set;
+        } = false;
         public float knockbackScale = 1;
 
         public float cooldownBetweenAttacks = 5; //This maybe should be per-attack?
@@ -37,6 +45,12 @@ namespace Weltraumsknecht.Enemies
         internal AttackAI[] attacks;
 
         public bool IsFacingLeft
+        {
+            get;
+            private set;
+        } = false;
+
+        public bool IsDying
         {
             get;
             private set;
@@ -65,16 +79,16 @@ namespace Weltraumsknecht.Enemies
 
         void Update()
         {
-            if (!inKnockback)
+            if (!InKnockback && !IsDying)
             {
                 if (currentAttack != null)
                 {
                     currentAttack.Continue();
-                    if(!currentAttack.IsActive)
+                    if (!currentAttack.IsActive)
                     {
                         currentAttack = null;
                         inCooldown = true;
-                        Invoke("EndCooldown", cooldownBetweenAttacks);
+                        Invoke(nameof(EndCooldown), cooldownBetweenAttacks);
                     }
                 }
                 else
@@ -83,7 +97,7 @@ namespace Weltraumsknecht.Enemies
         }
 
         /// <summary>
-        /// Act is called every frame that the enemy is capable of normal movement (i.e., when not suffering knockback or in the middle of an attack).
+        /// Act is called every frame that the enemy is capable of normal movement (i.e., when not suffering knockback, dying, or in the middle of an attack).
         /// </summary>
         protected void Act()
         {
@@ -146,11 +160,11 @@ namespace Weltraumsknecht.Enemies
             currentAttack = attack;
             attack.StartWarmup();
         }
-        
+
         public void TookDamageFrom(WeaponProjectile projectile)
         {
             Debug.Log("Enemy took damage");
-            inIFrames = true;
+            InIFrames = true;
             Invoke("EndIFrames", iTimeAfterHit);
 
             SufferKnockback(projectile.GetKnockback(body.position));
@@ -166,7 +180,7 @@ namespace Weltraumsknecht.Enemies
         {
             body.linearVelocity = knockback * knockbackScale;
 
-            inKnockback = true;
+            InKnockback = true;
             animator.SetBool("inFlinch", true);
             Invoke("EndKnockback", iTimeAfterHit);
 
@@ -181,23 +195,18 @@ namespace Weltraumsknecht.Enemies
 
         public void EndIFrames()
         {
-            inIFrames = false;
+            InIFrames = false;
         }
 
         public void EndKnockback()
         {
-            inKnockback = false;
+            InKnockback = false;
             animator.SetBool("inFlinch", false);
         }
-        
+
         public void EndCooldown()
         {
             inCooldown = false;
-        }
-
-        public bool IsInIFrames()
-        {
-            return inIFrames;
         }
 
         public bool IsAttacking()
@@ -205,5 +214,27 @@ namespace Weltraumsknecht.Enemies
             return currentAttack != null;
         }
 
+        /// <summary>
+        /// Disables all offense of this enemy and starts the dying animation.
+        /// </summary>
+        public void Die()
+        {
+            IsDying = true;
+            if (TryGetComponent<Collider2D>(out Collider2D collider))
+            {
+                collider.enabled = false;
+            }
+            if (currentAttack != null)
+                currentAttack.CancelAttack();
+
+
+            _audio.PlayOneShot(ouch);
+            animator.SetTrigger("die");
+        }
+
+        public void FinishDying()
+        {
+            Destroy(gameObject);
+        }
     }
 }

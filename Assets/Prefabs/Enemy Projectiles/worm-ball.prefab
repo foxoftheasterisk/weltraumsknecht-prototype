@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8985170431149985150}
   - component: {fileID: 2033699133404050003}
   - component: {fileID: -2874452024716593447}
+  - component: {fileID: -7105935494610448626}
   m_Layer: 8
   m_Name: worm-ball
   m_TagString: Untagged
@@ -188,3 +189,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
   damage: 1
+--- !u!114 &-7105935494610448626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716316148992710439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa270e906a399349b820c6b02ce3355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExpiringBehaviour
+  timeUntilExpire: 4

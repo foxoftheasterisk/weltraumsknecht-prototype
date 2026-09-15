@@ -21,7 +21,7 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
-            if(enemy.IsInIFrames())
+            if(enemy.InIFrames)
             {
                 //discard collision
                 return;
