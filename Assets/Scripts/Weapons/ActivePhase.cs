@@ -26,6 +26,12 @@ namespace Weltraumsknecht.Weapons
             private set;
         } = 0;
 
+        public bool Flipped
+        {
+            get;
+            private set;
+        }
+
         public List<WeaponTransition> potentialTransitions;
 
         public bool IsActive()
@@ -39,13 +45,14 @@ namespace Weltraumsknecht.Weapons
             return true;
         }
 
-        private WeaponInstance parent;
+        private readonly WeaponInstance parent;
 
-        public ActivePhase(WeaponPhase definition, GameObject projectile, WeaponInstance _parent)
+        public ActivePhase(WeaponPhase definition, GameObject projectile, WeaponInstance _parent, bool flipped)
         {
             Definition = definition;
             linkedProjectile = projectile;
             parent = _parent;
+            Flipped = flipped;
 
             potentialTransitions = new List<WeaponTransition>(Definition.transitions);
 
