@@ -352,3 +352,5 @@ MonoBehaviour:
   priority: 0
   animationTriggerName: ball
   warmupTime: 1.5
+  projectile: {fileID: 6716316148992710439, guid: 88338b4d25a349c4e83a1863e7b4e3ce,
+    type: 3}

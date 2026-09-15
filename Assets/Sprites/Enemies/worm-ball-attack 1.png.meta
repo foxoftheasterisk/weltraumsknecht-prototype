@@ -113,12 +113,12 @@ TextureImporter:
       name: worm-ball-attack 1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 0
         width: 23
-        height: 25
+        height: 26
       alignment: 9
-      pivot: {x: 0.5652174, y: 0}
+      pivot: {x: 0.65217394, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -135,12 +135,12 @@ TextureImporter:
       name: worm-ball-attack 1_1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 32
         y: 0
-        width: 23
+        width: 24
         height: 25
       alignment: 9
-      pivot: {x: 0.5652174, y: 0}
+      pivot: {x: 0.625, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -157,12 +157,12 @@ TextureImporter:
       name: worm-ball-attack 1_2
       rect:
         serializedVersion: 2
-        x: 56
+        x: 61
         y: 0
-        width: 24
+        width: 23
         height: 25
       alignment: 9
-      pivot: {x: 0.5416667, y: 0}
+      pivot: {x: 0.65217394, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -179,12 +179,12 @@ TextureImporter:
       name: worm-ball-attack 1_3
       rect:
         serializedVersion: 2
-        x: 84
+        x: 89
         y: 0
         width: 23
-        height: 26
+        height: 25
       alignment: 9
-      pivot: {x: 0.5652174, y: 0}
+      pivot: {x: 0.65217394, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,7 +211,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.203125,"y":0.0},"pivotPixels":{"x":13.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.234375,"y":0.0},"pivotPixels":{"x":15.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       worm-ball-attack 1_0: -1871974224
       worm-ball-attack 1_1: 1306265622
