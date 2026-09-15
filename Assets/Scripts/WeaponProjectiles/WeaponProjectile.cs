@@ -16,24 +16,7 @@ public abstract class WeaponProjectile : MonoBehaviour
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     virtual public void Start()
-    { 
-        /*
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb.bodyType != RigidbodyType2D.Static)
-        {
-            if (player.IsFacingLeft())
-            {
-                rb.linearVelocity = new Vector2(initialVelocity.x * -1, initialVelocity.y);
-                rb.angularVelocity = rotateVelocity * -1;
-            }
-            else
-            {
-                rb.linearVelocity = initialVelocity;
-                rb.angularVelocity = rotateVelocity;
-            }
-        }
-        //*/
-    }
+    { }
     
     //Create is called by the Weapon that created this projectile, in order to pass along parameters
     public void Create(WeaponInstance weapon, bool melee)
@@ -75,8 +58,7 @@ public abstract class WeaponProjectile : MonoBehaviour
     
     protected void InteractWith(Collider2D other)
     {
-        Enemy enemy;
-        if (other.TryGetComponent<Enemy>(out enemy))
+        if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
             ProjectileEnemyCollision ev = Schedule<ProjectileEnemyCollision>();
             ev.projectile = this;
