@@ -7,7 +7,7 @@ namespace Weltraumsknecht.Enemies
     /// <summary>
     /// A base class that defines and interface and implements common code for Attacks.
     /// </summary>
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Animator), typeof(Enemy))]
     public abstract class AttackAI : MonoBehaviour
     {
         public bool IsActive
@@ -25,10 +25,12 @@ namespace Weltraumsknecht.Enemies
         private bool inAttack;
 
         protected Animator animator;
+        protected Enemy enemy;
 
         void Awake()
         {
             animator = GetComponent<Animator>();
+            enemy = GetComponent<Enemy>();
         }
 
         public bool IsInRange(Vector2 playerPosition)
@@ -38,6 +40,7 @@ namespace Weltraumsknecht.Enemies
 
         public virtual void StartWarmup()
         {
+            enemy.FaceTowardsPlayer();
             IsActive = true;
             inAttack = false;
             elapsedTime = 0;

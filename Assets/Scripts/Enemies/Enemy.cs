@@ -36,6 +36,12 @@ namespace Weltraumsknecht.Enemies
         internal MovementAI movementAI;
         internal AttackAI[] attacks;
 
+        public bool IsFacingLeft
+        {
+            get;
+            private set;
+        } = false;
+
         void Awake()
         {
             animator = GetComponent<Animator>();
@@ -89,6 +95,28 @@ namespace Weltraumsknecht.Enemies
             }
         }
 
+        public void FaceTowardsPlayer()
+        {
+            Vector2 playerPos = PlayerController.player.transform.position;
+            if (playerPos.x < transform.position.x && !IsFacingLeft)
+            {
+                Flip();
+            }
+            else if (playerPos.x > transform.position.x && IsFacingLeft)
+            {
+                Flip();
+            }
+        }
+
+        public void Flip()
+        {
+            //Probably not the best way to do this, but it works for now.
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+            IsFacingLeft = !IsFacingLeft;
+        }
+
         protected void CheckAttacks()
         {
             Vector2 playerPos = PlayerController.player.transform.position - transform.position;
@@ -109,9 +137,14 @@ namespace Weltraumsknecht.Enemies
 
             if (possibleAttacks.Count > 0)
             {
-                currentAttack = possibleAttacks[UnityEngine.Random.Range(0, possibleAttacks.Count)];
-                currentAttack.StartWarmup();
+                StartAttack(possibleAttacks[UnityEngine.Random.Range(0, possibleAttacks.Count)]);
             }
+        }
+
+        protected void StartAttack(AttackAI attack)
+        {
+            currentAttack = attack;
+            attack.StartWarmup();
         }
         
         public void TookDamageFrom(WeaponProjectile projectile)
