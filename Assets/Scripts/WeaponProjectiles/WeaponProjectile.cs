@@ -5,6 +5,7 @@ using static Platformer.Core.Simulation;
 using System;
 
 using Weltraumsknecht.Weapons;
+using Weltraumsknecht.Enemies;
 
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public abstract class WeaponProjectile : MonoBehaviour
@@ -15,24 +16,7 @@ public abstract class WeaponProjectile : MonoBehaviour
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     virtual public void Start()
-    { 
-        /*
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb.bodyType != RigidbodyType2D.Static)
-        {
-            if (player.IsFacingLeft())
-            {
-                rb.linearVelocity = new Vector2(initialVelocity.x * -1, initialVelocity.y);
-                rb.angularVelocity = rotateVelocity * -1;
-            }
-            else
-            {
-                rb.linearVelocity = initialVelocity;
-                rb.angularVelocity = rotateVelocity;
-            }
-        }
-        //*/
-    }
+    { }
     
     //Create is called by the Weapon that created this projectile, in order to pass along parameters
     public void Create(WeaponInstance weapon, bool melee)
@@ -74,8 +58,7 @@ public abstract class WeaponProjectile : MonoBehaviour
     
     protected void InteractWith(Collider2D other)
     {
-        EnemyController enemy;
-        if (other.TryGetComponent<EnemyController>(out enemy))
+        if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
             ProjectileEnemyCollision ev = Schedule<ProjectileEnemyCollision>();
             ev.projectile = this;
@@ -114,7 +97,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         
     }
     
-    public virtual void CollidedWithEnemy(EnemyController enemy, bool killed) 
+    public virtual void CollidedWithEnemy(Enemy enemy, bool killed) 
     {
         CollidedWithAny(enemy.gameObject);
     }

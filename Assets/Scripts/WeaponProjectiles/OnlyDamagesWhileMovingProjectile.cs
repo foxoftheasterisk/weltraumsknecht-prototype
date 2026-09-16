@@ -1,5 +1,6 @@
 using UnityEngine;
 using Platformer.Mechanics;
+using Weltraumsknecht.Enemies;
 
 ///A simple projectile that only deals damage when moving faster than a given speed.
 ///Can be set to crit or not.
@@ -23,5 +24,5 @@ public class OnlyDamagesWhileMovingProjectile : WeaponProjectile
             return 0;
     }
     
-    override public void CollidedWithEnemy(EnemyController enemy, bool killed) { }
+    override public void CollidedWithEnemy(Enemy enemy, bool killed) { }
 }

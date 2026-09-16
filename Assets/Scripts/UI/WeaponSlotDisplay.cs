@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+using Weltraumsknecht.Weapons;
+
 public class WeaponSlotDisplay : MonoBehaviour
 {
     public WeaponSlot slot;
