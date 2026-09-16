@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -5944640638997027933}
   - component: {fileID: 5012088262560876565}
   - component: {fileID: -4196761607936584961}
-  - component: {fileID: -7478967787770453889}
   - component: {fileID: -4963057778704072052}
   m_Layer: 3
   m_Name: blaster-shot-charged
@@ -172,22 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicProjectile
-  initialVelocity: {x: 0, y: 0}
-  rotateVelocity: 0
   crits: 1
---- !u!114 &-7478967787770453889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2266270219253974454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ca33379d12ab84684280ed369723a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BreakOnContactBehavior
-  nonDestroyingCollisions: 0
 --- !u!114 &-4963057778704072052
 MonoBehaviour:
   m_ObjectHideFlags: 0
