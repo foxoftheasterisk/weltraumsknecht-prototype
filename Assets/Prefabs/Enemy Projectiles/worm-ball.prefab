@@ -183,4 +183,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa270e906a399349b820c6b02ce3355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExpiringBehaviour
-  timeUntilExpire: 4
+  timeUntilExpire: 3
