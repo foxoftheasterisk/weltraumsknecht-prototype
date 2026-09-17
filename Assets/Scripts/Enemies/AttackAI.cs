@@ -22,8 +22,8 @@ namespace Weltraumsknecht.Enemies
         public float warmupTime = 1.5f;
         private float elapsedTime;
 
-        protected bool InAttack
-        { get; private set; }
+        public bool InAttack
+        { get; protected set; }
 
         protected Animator animator;
         protected Enemy enemy;

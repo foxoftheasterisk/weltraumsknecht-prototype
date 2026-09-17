@@ -32,6 +32,8 @@ namespace Weltraumsknecht.Enemies
         } = false;
         public float knockbackScale = 1;
 
+        public float cooldownAfterHit = 1;
+
         public float cooldownBetweenAttacks = 5; //This maybe should be per-attack?
         private AttackAI currentAttack = null;
         protected bool inCooldown = false;
@@ -161,11 +163,23 @@ namespace Weltraumsknecht.Enemies
             attack.StartWarmup();
         }
 
+        private void CancelAttack()
+        {
+            inCooldown = true;
+            if (currentAttack.InAttack)
+                Invoke(nameof(EndCooldown), cooldownBetweenAttacks);
+            else
+                Invoke(nameof(EndCooldown), cooldownAfterHit);
+
+            currentAttack.CancelAttack();
+            currentAttack = null;
+        }
+
         public void TookDamageFrom(WeaponProjectile projectile)
         {
             Debug.Log("Enemy took damage");
             InIFrames = true;
-            Invoke("EndIFrames", iTimeAfterHit);
+            Invoke(nameof(EndIFrames), iTimeAfterHit);
 
             SufferKnockback(projectile.GetKnockback(body.position));
         }
@@ -182,14 +196,11 @@ namespace Weltraumsknecht.Enemies
 
             InKnockback = true;
             animator.SetBool("inFlinch", true);
-            Invoke("EndKnockback", iTimeAfterHit);
+            Invoke(nameof(EndKnockback), iTimeAfterHit);
 
             if (currentAttack != null)
             {
-                currentAttack.CancelAttack();
-
-                inCooldown = true;
-
+                CancelAttack();
             }
         }
 
