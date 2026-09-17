@@ -19,10 +19,11 @@ namespace Weltraumsknecht.Enemies
 
         private const string animationWarmupName = "warmupCompletion";
 
-        public float warmupTime = .6f;
+        public float warmupTime = 1.5f;
         private float elapsedTime;
 
-        private bool inAttack;
+        protected bool InAttack
+        { get; private set; }
 
         protected Animator animator;
         protected Enemy enemy;
@@ -42,7 +43,7 @@ namespace Weltraumsknecht.Enemies
         {
             enemy.FaceTowardsPlayer();
             IsActive = true;
-            inAttack = false;
+            InAttack = false;
             elapsedTime = 0;
             animator.SetTrigger(animationTriggerName);
             animator.SetFloat(animationWarmupName, 0);
@@ -50,17 +51,17 @@ namespace Weltraumsknecht.Enemies
 
         public void Continue()
         {
-            if (inAttack)
+            if (InAttack)
             {
                 ContinueAttack();
             }
-            else
+            else if(IsActive)
             {
                 elapsedTime += Time.deltaTime;
                 animator.SetFloat(animationWarmupName, elapsedTime / warmupTime);
                 if(elapsedTime >= warmupTime)
                 {
-                    inAttack = true;
+                    InAttack = true;
                     StartAttack();
                 }
             }
@@ -77,7 +78,7 @@ namespace Weltraumsknecht.Enemies
         protected void EndAttack()
         {
             IsActive = false;
-            inAttack = false;
+            InAttack = false;
         }
     }
 

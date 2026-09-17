@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4555209246054302199}
   - component: {fileID: 7602458376530566439}
   - component: {fileID: 1666938576148814834}
+  - component: {fileID: 4428574853133599227}
   m_Layer: 7
   m_Name: Worm
   m_TagString: Player
@@ -354,3 +355,59 @@ MonoBehaviour:
   warmupTime: 1.5
   projectile: {fileID: 6716316148992710439, guid: 88338b4d25a349c4e83a1863e7b4e3ce,
     type: 3}
+  projectileProperties:
+  - displace: {x: 0.4, y: 0.4}
+    rotateMod: 0
+    initialVelocity: {x: 4, y: 0}
+    initialRotateVelocity: 0
+  melee: 0
+  AnimationControlled: 1
+--- !u!114 &4428574853133599227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661912868639658944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91da6db56b35b8149a218b5f8d06c3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Enemies.ProjectileAttackAI
+  range:
+    direction: {x: 0, y: 1}
+    tolerance: 120
+    minDistance: 0
+    maxDistance: 3.5
+  priority: 0
+  animationTriggerName: spray
+  warmupTime: 0.7
+  projectile: {fileID: 3948513314074777505, guid: b6fa7025431fe5f439a8351e6ba443e6,
+    type: 3}
+  projectileProperties:
+  - displace: {x: 0.2, y: 0.4}
+    rotateMod: 0
+    initialVelocity: {x: 1.25, y: 5}
+    initialRotateVelocity: 0
+  - displace: {x: 0.15, y: 0.45}
+    rotateMod: 10
+    initialVelocity: {x: 0.75, y: 5.5}
+    initialRotateVelocity: 0
+  - displace: {x: 0.1, y: 0.5}
+    rotateMod: 20
+    initialVelocity: {x: 0.25, y: 6}
+    initialRotateVelocity: 0
+  - displace: {x: -0.1, y: 0.5}
+    rotateMod: 30
+    initialVelocity: {x: -0.25, y: 6}
+    initialRotateVelocity: 0
+  - displace: {x: -0.15, y: 0.45}
+    rotateMod: 40
+    initialVelocity: {x: -0.75, y: 5.5}
+    initialRotateVelocity: 0
+  - displace: {x: -0.2, y: 0.4}
+    rotateMod: 50
+    initialVelocity: {x: -1.25, y: 5}
+    initialRotateVelocity: 0
+  melee: 0
+  AnimationControlled: 1
