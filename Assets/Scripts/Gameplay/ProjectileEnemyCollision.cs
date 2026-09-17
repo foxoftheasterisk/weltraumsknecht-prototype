@@ -12,7 +12,6 @@ namespace Platformer.Gameplay
     /// <summary>
     /// Fired when a weapon projectile collides with an Enemy.
     /// </summary>
-    /// <typeparam name="EnemyCollision"></typeparam>
     public class ProjectileEnemyCollision : Simulation.Event<ProjectileEnemyCollision>
     {
         public Enemy enemy;
@@ -42,8 +41,8 @@ namespace Platformer.Gameplay
                 }
                 else
                 {
-                    projectile.CollidedWithEnemy(enemy, false);
                     enemy.TookDamageFrom(projectile);
+                    projectile.CollidedWithEnemy(enemy, false);
                 }
             }
             else
