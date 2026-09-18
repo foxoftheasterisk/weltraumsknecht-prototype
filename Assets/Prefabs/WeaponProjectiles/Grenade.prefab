@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8853066068002506924}
   - component: {fileID: 8519523449762339809}
   - component: {fileID: 8630771671250730911}
+  - component: {fileID: -5433847844164696478}
   m_Layer: 3
   m_Name: Grenade
   m_TagString: Untagged
@@ -175,3 +176,15 @@ MonoBehaviour:
     rotateMod: 0
     initialVelocity: {x: 3, y: 3.5}
     initialRotateVelocity: 50
+--- !u!114 &-5433847844164696478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733897078109884503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679bb0bef0beb8a4cadba3bd778d635b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Projectiles.Projectile
