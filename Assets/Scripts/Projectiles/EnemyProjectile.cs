@@ -9,6 +9,7 @@ using static Platformer.Core.Simulation;
 namespace Weltraumsknecht.Projectiles
 {
 
+    [AddComponentMenu("Projectiles/Enemy Projectile")]
     public class EnemyProjectile : Projectile
     {
         public int damage = 1;

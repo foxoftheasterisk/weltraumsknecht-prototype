@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Scripting.APIUpdating;
 using static Platformer.Core.Simulation;
+using Weltraumsknecht.Projectiles;
 
 namespace Weltraumsknecht.Enemies
 {

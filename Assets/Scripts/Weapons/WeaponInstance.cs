@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Weltraumsknecht.Weapons.WeaponDefinition;
 
+using Weltraumsknecht.Projectiles;
 
 namespace Weltraumsknecht.Weapons
 {

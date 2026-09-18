@@ -13,6 +13,7 @@ namespace Weltraumsknecht.Projectiles
     /// </summary>
     
     [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
+    [AddComponentMenu("Projectiles/Base Projectile")]
     public class Projectile : MonoBehaviour
     {
         private List<Action<GameObject>> listeners = new();

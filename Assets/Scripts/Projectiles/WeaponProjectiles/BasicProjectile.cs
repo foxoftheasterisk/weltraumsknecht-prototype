@@ -1,17 +1,21 @@
 using UnityEngine;
 using Platformer.Mechanics;
 
-/// <summary>
-/// A basic projectile that either always or never crits.
-/// </summary>
-[AddComponentMenu("Weapon Projectiles/Basic Projectile")]
-public class BasicProjectile : WeaponProjectile
+namespace Weltraumsknecht.Projectiles
 {
-    public bool crits;
 
-    override public int GetDamage()
+    /// <summary>
+    /// A basic projectile that either always or never crits.
+    /// </summary>
+    [AddComponentMenu("Projectiles/Weapon Projectiles/Basic Projectile")]
+    public class BasicProjectile : WeaponProjectile
     {
-        return weapon.GetDamage(crits);
-    }
+        public bool crits;
 
+        override public int GetDamage()
+        {
+            return weapon.GetDamage(crits);
+        }
+
+    }
 }

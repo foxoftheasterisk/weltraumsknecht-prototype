@@ -2,27 +2,31 @@ using UnityEngine;
 using Platformer.Mechanics;
 using Weltraumsknecht.Enemies;
 
-///A simple projectile that only deals damage when moving faster than a given speed.
-///Can be set to crit or not.
-[AddComponentMenu("Weapon Projectiles/Only Damage While Moving Projectile")]
-public class OnlyDamagesWhileMovingProjectile : WeaponProjectile
+
+namespace Weltraumsknecht.Projectiles
 {
-    public bool crits;
-    public float speedRequired = 0.5f;
-    
-    override public int GetDamage()
+    ///A simple projectile that only deals damage when moving faster than a given speed.
+    ///Can be set to crit or not.
+    [AddComponentMenu("Projectiles/Weapon Projectiles/Only Damage While Moving Projectile")]
+    public class OnlyDamagesWhileMovingProjectile : WeaponProjectile
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb.linearVelocity.magnitude >= speedRequired)
+        public bool crits;
+        public float speedRequired = 0.5f;
+
+        override public int GetDamage()
         {
-            if (crits)
-                return weapon.GetDamage(true);
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb.linearVelocity.magnitude >= speedRequired)
+            {
+                if (crits)
+                    return weapon.GetDamage(true);
+                else
+                    return weapon.GetDamage(false);
+            }
             else
-                return weapon.GetDamage(false);
+                return 0;
         }
-        else
-            return 0;
+
+        override public void CollidedWithEnemy(Enemy enemy, bool killed) { }
     }
-    
-    override public void CollidedWithEnemy(Enemy enemy, bool killed) { }
 }
