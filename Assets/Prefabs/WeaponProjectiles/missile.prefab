@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1918410875066287256}
   - component: {fileID: 8279473938681842258}
   - component: {fileID: 2331433285826395185}
+  - component: {fileID: -2989334891581776564}
   m_Layer: 3
   m_Name: missile
   m_TagString: Untagged
@@ -180,3 +181,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AcceleratingBehavior
   acceleration: {x: 5, y: 0}
+--- !u!114 &-2989334891581776564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220620187284567415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679bb0bef0beb8a4cadba3bd778d635b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Projectiles.Projectile
