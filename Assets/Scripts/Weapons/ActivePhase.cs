@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Weltraumsknecht.Projectiles;
 using static UnityEngine.UI.Selectable;
 
 namespace Weltraumsknecht.Weapons
@@ -58,8 +59,14 @@ namespace Weltraumsknecht.Weapons
 
             if(potentialTransitions.Any(p => p.triggerType == WeaponTransition.TriggerType.Contact))
             {
-                ContactListener listener = projectile.AddComponent<ContactListener>();
-                listener.function = p => CheckTransitions(WeaponTransition.TriggerType.Contact, new WeaponCollisionEvent(this, parent.Player, p));
+                if (projectile.TryGetComponent<Projectile>(out Projectile proj))
+                {
+                    proj.AddListener(p => CheckTransitions(WeaponTransition.TriggerType.Contact, new WeaponCollisionEvent(this, parent.Player, p)));
+                }
+                else
+                {
+                    Debug.Log("Could not find Projectile on object to add Contact phase trigger!");
+                }
                 //TODO: consider adding this listener to *each* object. Probably a good thing to do in the cases it matters.
             }
         }

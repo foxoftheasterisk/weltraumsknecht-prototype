@@ -53,5 +53,10 @@ namespace Platformer.Gameplay
             }
             
         }
+
+        internal override void Cleanup()
+        {
+            projectile.CollidedWith(enemy.gameObject);
+        }
     }
 }

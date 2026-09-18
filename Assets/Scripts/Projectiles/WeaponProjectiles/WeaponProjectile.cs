@@ -6,17 +6,12 @@ using System;
 
 using Weltraumsknecht.Weapons;
 using Weltraumsknecht.Enemies;
+using Weltraumsknecht.Projectiles;
 
-[RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
-public abstract class WeaponProjectile : MonoBehaviour
+public abstract class WeaponProjectile : Projectile
 {
     protected WeaponInstance weapon;
-    
     private bool melee;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    virtual public void Start()
-    { }
     
     //Create is called by the Weapon that created this projectile, in order to pass along parameters
     public void Create(WeaponInstance weapon, bool melee)
@@ -30,6 +25,7 @@ public abstract class WeaponProjectile : MonoBehaviour
     {
         //...will this slow it down too much
         //doesn't seem to so far. Probably fine as long as we don't do projectile spam.
+        /*
         if (!melee)
         {
             PlayerController player = weapon.Player;
@@ -39,16 +35,7 @@ public abstract class WeaponProjectile : MonoBehaviour
                 Destroy(gameObject);
         }
         //*/
-    }
-    
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        InteractWith(collision.collider);
-    }
-    
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        InteractWith(other);
+        //This should no longer be necessary...
     }
     
     public WeaponInstance GetWeapon()
@@ -56,7 +43,7 @@ public abstract class WeaponProjectile : MonoBehaviour
         return weapon;
     }
     
-    protected void InteractWith(Collider2D other)
+    protected override void InteractWith(Collider2D other)
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
@@ -99,13 +86,11 @@ public abstract class WeaponProjectile : MonoBehaviour
     
     public virtual void CollidedWithEnemy(Enemy enemy, bool killed) 
     {
-        CollidedWithAny(enemy.gameObject);
+        //CollidedWith(enemy.gameObject);
     }
 
     public virtual void CollidedWithOther(GameObject other) 
     {
-        CollidedWithAny(other);
+        CollidedWith(other);
     }
-
-    public virtual void CollidedWithAny(GameObject other) { }
 }

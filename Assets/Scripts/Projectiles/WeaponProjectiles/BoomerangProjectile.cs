@@ -27,9 +27,8 @@ public class BoomerangProjectile : WeaponProjectile
     private Rigidbody2D rb;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    override public void Start()
+    public void Start()
     {
-        base.Start();
         state = TravelState.Throw;
         Invoke("StartHang", throwTime);
         
@@ -62,7 +61,7 @@ public class BoomerangProjectile : WeaponProjectile
         } 
     }
     
-    override public void CollidedWithAny(GameObject other)
+    override public void CollidedWith(GameObject other)
     {
         if (state == TravelState.Return && Object.ReferenceEquals(other, player.gameObject))
         {
@@ -73,6 +72,7 @@ public class BoomerangProjectile : WeaponProjectile
             if (state == TravelState.Throw)
                 StartReturn();
         }
+        base.CollidedWith(other);
     }
     
     override public int GetDamage()

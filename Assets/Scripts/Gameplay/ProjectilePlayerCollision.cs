@@ -5,6 +5,7 @@ using UnityEngine;
 using static Platformer.Core.Simulation;
 
 using Weltraumsknecht.Enemies;
+using Weltraumsknecht.Projectiles;
 
 namespace Platformer.Gameplay
 {
@@ -46,6 +47,8 @@ namespace Platformer.Gameplay
                 
             }
             */
+
+            projectile.CollidedWith(player.gameObject);
         }
     }
 }
