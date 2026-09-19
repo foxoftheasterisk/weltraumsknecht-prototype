@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
-  m_Name: Hold_Lance
+  m_Name: Wavering_Lance
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
   blocksMovement: 0
   moveSpeedPenalty: 0
   blocksWeapons: 1
   blocksFacing: 1
-  useProperties: 0
+  useProperties: 1
   initialProperties:
-    displace: {x: 0, y: 0}
-    rotateMod: 0
+    displace: {x: 0.5, y: -0.1}
+    rotateMod: -30
     initialVelocity: {x: 0, y: 0}
     initialRotateVelocity: 0
   locale: 0
-  projectilePrefab: {fileID: 7461316765189010005, guid: 9e5fc9dade34729438f4d5070d1f6a74,
+  projectilePrefab: {fileID: 7461316765189010005, guid: c851a8a96c1b5c44699ec1e562960acd,
     type: 3}
   linkedToProjectile: 1
   activeLink: 1
   transitions:
   - destroyLastPhase: 1
+    nextPhase: {fileID: 0}
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: 8adffd571b195f7449ec40421fc07602, type: 2}
+  - destroyLastPhase: 1
     nextPhase: {fileID: 11400000, guid: 33c2cd7e7c0ac584e8472a3ee549c4ad, type: 2}
     triggerType: 0
     conditions:
     - {fileID: 11400000, guid: 9c7f6fddfd7787b40acbc6df80c7db9f, type: 2}
-  - destroyLastPhase: 1
-    nextPhase: {fileID: 11400000, guid: 4b2e7141a4e04aa42b2e4aa3b2449a42, type: 2}
-    triggerType: 0
-    conditions:
-    - {fileID: 11400000, guid: 00f9b07f685a60f47aea7428454b325a, type: 2}
