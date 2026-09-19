@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6886973928833272896}
   - component: {fileID: 446112449330646511}
   - component: {fileID: 9046866979616131778}
-  - component: {fileID: 3358842991312683164}
+  - component: {fileID: 1122327531721088438}
   m_Layer: 3
   m_Name: glaive-stab_0
   m_TagString: Untagged
@@ -173,7 +173,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3358842991312683164
+--- !u!114 &1122327531721088438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,11 +182,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2394135762420314009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522d6e0ca8636544498c47781fb8f2a2, type: 3}
+  m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlwaysCritsProjectile
-  initialVelocity: {x: 0, y: 0}
-  rotateVelocity: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Projectiles.BasicProjectile
+  crits: 1
 --- !u!1 &3114498546124109308
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +196,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6025432518985364189}
   - component: {fileID: 6682850047200166795}
-  - component: {fileID: 3689772679869816041}
   - component: {fileID: 1731625103980036033}
   m_Layer: 3
   m_Name: glaive-stab
@@ -282,18 +280,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3689772679869816041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3114498546124109308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9360023cd488cab40801be3a6e0b223c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ContainerBehaviour
 --- !u!114 &1731625103980036033
 MonoBehaviour:
   m_ObjectHideFlags: 0
