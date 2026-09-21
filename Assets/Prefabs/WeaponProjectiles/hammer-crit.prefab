@@ -169,6 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicProjectile
-  initialVelocity: {x: 0, y: 0}
-  rotateVelocity: 0
   crits: 1
