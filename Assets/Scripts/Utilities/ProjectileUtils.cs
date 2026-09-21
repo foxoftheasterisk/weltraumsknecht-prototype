@@ -1,7 +1,9 @@
 using Platformer.Mechanics;
+using System;
 using UnityEngine;
+using Weltraumsknecht.Enemies;
 
-public class ProjectileUtils
+public static class ProjectileUtils
 {
     /// <summary>
     ///Creates a given projectile (or multiple projectiles in one prefab)
@@ -74,5 +76,21 @@ public class ProjectileUtils
         }
 
         return projectile;
+    }
+
+    public enum TargetType
+    {
+        Player, Enemy, EnemyOrBreakable, Environment
+    }
+
+    public static bool Matches(this TargetType type, GameObject gameObject)
+    {
+        return type switch
+        {
+            TargetType.Enemy => gameObject.TryGetComponent(out Enemy _),
+            TargetType.Environment => gameObject.layer == LayerMask.NameToLayer("Environment"),
+            TargetType.Player => gameObject.TryGetComponent(out PlayerController _),
+            _ => throw new NotImplementedException("Object type " + type.ToString() + " is not implemented in TargetType.Matches()"),
+        };
     }
 }

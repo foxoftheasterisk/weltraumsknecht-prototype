@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1433583714719052883}
   - component: {fileID: 6940354720738777541}
   - component: {fileID: 271413275817768652}
-  - component: {fileID: 189381488083701640}
-  - component: {fileID: -3290855682818958050}
+  - component: {fileID: 6326325114061656403}
+  - component: {fileID: 4657868918947706511}
   m_Layer: 3
-  m_Name: Boomerang
+  m_Name: Boomerang_Return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7931930256311781865}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5718304784226621280, guid: 2571bb39e08e75b4bb4c15e42fa455a4,
+  m_Sprite: {fileID: -2655224720299031384, guid: 6af5c7fbf0ef0194786dc28499bc6d95,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,7 +141,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7931930256311781865}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &189381488083701640
+--- !u!114 &6326325114061656403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,29 +169,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7931930256311781865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e40f019099836f44b00522cce57bff0, type: 3}
+  m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BoomerangProjectile
-  initialVelocity: {x: 0, y: 0}
-  rotateVelocity: 0
-  returnSpeed: 6
-  throwTime: 0.3
-  hangTime: 0.4
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Projectiles.BasicProjectile
+  crits: 1
+--- !u!114 &4657868918947706511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7931930256311781865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76be4dd8906e8e44dbeed38d64f76e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HomingBehaviour
+  targetSpeed: 6
   acceleration: 18
---- !u!114 &-3290855682818958050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7931930256311781865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63b3594198bcdfd4eb8b825d5180036c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StartWithPropertiesBehaviour
-  properties:
-    displace: {x: 0, y: 0}
-    rotateMod: 0
-    initialVelocity: {x: 6, y: 0}
-    initialRotateVelocity: -200
+  rotateMax: 270
+  targetType: 0
+  targetSwitchMode: 1
+  targetFindArea: {fileID: 0}
+  targetKeepRange: Infinity

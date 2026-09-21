@@ -102,7 +102,7 @@ namespace Weltraumsknecht.Projectiles
 
             hb.targetSpeed = returnSpeed;
             hb.acceleration = acceleration;
-            hb.target = player;
+            hb.targetType = ProjectileUtils.TargetType.Player;
             //Rotate max will need to be passed through as well
         }
     }

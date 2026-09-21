@@ -2,6 +2,8 @@ using Platformer.Mechanics;
 using System;
 using UnityEngine;
 
+using static ProjectileUtils;
+
 using Weltraumsknecht.Enemies;
 
 namespace Weltraumsknecht.Weapons
@@ -14,33 +16,17 @@ namespace Weltraumsknecht.Weapons
     public class CollideWithObjectTypeCondition : TransitionCondition
     {
 
-        public enum ObjectType
-        {
-            Enemy,
-            Background
-        }
-
-        public ObjectType type;
+        public TargetType type;
 
         internal override bool CheckCondition(WeaponEvent e)
         {
-            if (!(e is WeaponCollisionEvent))
+            if (e is not WeaponCollisionEvent)
             {
-                
                 throw new System.Exception("CollideWithObjectTypeCondition used in a non-collision context!");
             }
             WeaponCollisionEvent collisionEvent = (WeaponCollisionEvent) e;
 
-            switch (type)
-            {
-                case ObjectType.Enemy:
-                    return collisionEvent.CollidingObject.TryGetComponent(out Enemy _);
-                case ObjectType.Background:
-                    return collisionEvent.CollidingObject.gameObject.layer == LayerMask.NameToLayer("Environment");
-                default:
-                    throw new NotImplementedException("Object type " + type.ToString() + " is not implemented in CollideWithObjectTypeCondition.");
-                    //Should only occur if new values are added to the enum without handling.
-            }
+            return type.Matches(collisionEvent.CollidingObject);
         }
     }
 }
