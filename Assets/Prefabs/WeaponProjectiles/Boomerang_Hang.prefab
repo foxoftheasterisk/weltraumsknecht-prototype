@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2655224720299031384, guid: 6af5c7fbf0ef0194786dc28499bc6d95,
+  m_Sprite: {fileID: 5718304784226621280, guid: 2571bb39e08e75b4bb4c15e42fa455a4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,7 +141,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7931930256311781865}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31efee7ac6a293d4ca1e178b6e5bcd47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeceleratingBehaviour
-  deceleration: 18
+  deceleration: 25
 --- !u!114 &6326325114061656403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,4 +185,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f2bee50852bfb48973d50faa8500cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Projectiles.BasicProjectile
-  crits: 1
+  crits: 0

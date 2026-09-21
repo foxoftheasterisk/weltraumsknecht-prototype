@@ -34,3 +34,7 @@ MonoBehaviour:
     triggerType: 0
     conditions:
     - {fileID: 11400000, guid: abfc01225d6704146b93b853e371465e, type: 2}
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 11400000, guid: bf80e951ffb3c2f40b4a36c78561e3c3, type: 2}
+    triggerType: 3
+    conditions: []

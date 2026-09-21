@@ -185,9 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76be4dd8906e8e44dbeed38d64f76e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomingBehaviour
-  targetSpeed: 6
-  acceleration: 18
-  rotateMax: 270
+  targetSpeed: 8
+  acceleration: 20
+  rotateMax: 360
   targetType: 0
   targetSwitchMode: 1
   targetFindArea: {fileID: 0}

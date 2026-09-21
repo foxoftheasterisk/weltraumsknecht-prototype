@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
-  m_Name: Return_Boomerang
+  m_Name: Rebound_Boomerang
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
   blocksMovement: 0
@@ -21,16 +21,16 @@ MonoBehaviour:
   initialProperties:
     displace: {x: 0, y: 0}
     rotateMod: 0
-    initialVelocity: {x: 0, y: -0.5}
-    initialRotateVelocity: 0
+    initialVelocity: {x: 0, y: 0}
+    initialRotateVelocity: -1000
   locale: 3
-  projectilePrefab: {fileID: 7931930256311781865, guid: 738cf1dca043d054590b0dfb0b593ea3,
+  projectilePrefab: {fileID: 7931930256311781865, guid: 2c427d66bcbfb2a4fa25d6544453ab9d,
     type: 3}
   linkedToProjectile: 1
   activeLink: 1
   transitions:
   - destroyLastPhase: 1
-    nextPhase: {fileID: 0}
-    triggerType: 3
+    nextPhase: {fileID: 11400000, guid: 3df392827166b0f4e92210dfbf390236, type: 2}
+    triggerType: 0
     conditions:
-    - {fileID: 11400000, guid: 0578b938d571fc7448bfb9c3b7cab440, type: 2}
+    - {fileID: 11400000, guid: abfc01225d6704146b93b853e371465e, type: 2}
