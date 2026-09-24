@@ -15,6 +15,9 @@ public abstract class Interactable : MonoBehaviour
     /// <param name="player"></param>
     public abstract void Interact(PlayerController player);
 
+    public abstract void OnPlayerEnteredRange();
+    public abstract void OnPlayerLeftRange();
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

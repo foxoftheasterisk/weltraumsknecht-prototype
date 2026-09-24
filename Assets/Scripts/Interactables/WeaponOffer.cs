@@ -1,4 +1,5 @@
 using Platformer.Mechanics;
+using TMPro;
 using UnityEngine;
 using Weltraumsknecht.Weapons;
 
@@ -7,6 +8,9 @@ public class WeaponOffer : Interactable
     //TODO: find group from static? Not sure if that's a good idea actually.
     public WeaponGroup group;
     public SpriteRenderer preview;
+    public Canvas descriptionPanel;
+    public TextMeshProUGUI nameDisplay;
+    public TextMeshProUGUI descriptionDisplay;
 
     private WeaponDefinition weapon;
 
@@ -23,6 +27,9 @@ public class WeaponOffer : Interactable
             weapon = group.GetRandomWeapon();
             if (weapon.icon != null)
                 preview.sprite = weapon.icon;
+            descriptionPanel.enabled = false;
+            nameDisplay.text = weapon.weaponName.GetLocalizedString();
+            descriptionDisplay.text = weapon.description.GetLocalizedString();
         }
     }
 
@@ -44,8 +51,19 @@ public class WeaponOffer : Interactable
         }
 
         Destroy(preview.gameObject);
+        Destroy(descriptionPanel.gameObject);
         Destroy(this);
         //Likely at some point we'll want not a clean destroy, but an inactive state - but we'll worry about that later.
+    }
+
+    public override void OnPlayerEnteredRange()
+    {
+        descriptionPanel.enabled = true;
+    }
+
+    public override void OnPlayerLeftRange()
+    {
+        descriptionPanel.enabled = false;
     }
 
     private void GiveWeapon(WeaponSlot slot, PlayerController player)

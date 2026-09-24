@@ -1,7 +1,9 @@
 using NUnit.Framework;
 using Platformer.Mechanics;
 using System.Collections.Generic;
+using Unity.Tutorials.Core.Editor;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace Weltraumsknecht.Weapons
 {
@@ -24,5 +26,7 @@ namespace Weltraumsknecht.Weapons
         public float cooldown;
     
         public Sprite icon;
+        public LocalizedString weaponName;
+        public LocalizedString description;
     }
 }

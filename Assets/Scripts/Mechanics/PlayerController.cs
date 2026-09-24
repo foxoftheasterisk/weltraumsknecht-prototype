@@ -396,14 +396,20 @@ namespace Platformer.Mechanics
         {
             Interactable i = other.GetComponent<Interactable>();
             if (i != null)
+            {
                 nearbyInteractable = i;
+                nearbyInteractable.OnPlayerEnteredRange();
+            }
         }
 
         public void OnTriggerExit2D(Collider2D other)
         {
             Interactable i = other.GetComponent<Interactable>();
             if (i == nearbyInteractable)
+            {
+                nearbyInteractable.OnPlayerLeftRange();
                 nearbyInteractable = null;
+            }
         }
     }
 }
