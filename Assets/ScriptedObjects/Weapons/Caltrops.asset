@@ -19,3 +19,24 @@ MonoBehaviour:
   cooldownType: 0
   cooldown: 2
   icon: {fileID: 21300000, guid: 2aabfd975884d8d4c8f1af3a089f1a26, type: 3}
+  weaponName:
+    m_TableReference:
+      m_TableCollectionName: GUID:cb25aec90c44839419fb18446edc0823
+    m_TableEntryReference:
+      m_KeyId: 693788629696512
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:cb25aec90c44839419fb18446edc0823
+    m_TableEntryReference:
+      m_KeyId: 693859286941696
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

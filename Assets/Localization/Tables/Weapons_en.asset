@@ -34,6 +34,100 @@ MonoBehaviour:
     m_Localized: Shoots directly forward; hold to charge and crit.
     m_Metadata:
       m_Items: []
+  - m_Id: 693175850270720
+    m_Localized: Boomerang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693363667009536
+    m_Localized: Tosses forward then returns, critting on the way back.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693788629696512
+    m_Localized: Caltrops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693859286941696
+    m_Localized: Spread several caltrops in front of you. They crit when they stop
+      moving.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694069052473344
+    m_Localized: Daggers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694115936403456
+    m_Localized: Slice forward and back with a pair of daggers. The one in back crits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694237437001728
+    m_Localized: Glaive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694287273721856
+    m_Localized: Slice in front of you, then push the button again to stab and crit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694422422585344
+    m_Localized: Grenade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694468736090112
+    m_Localized: Throw a grenade, then wait or push the button again to explode it.
+      The inner part of the explosion crits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694737934909440
+    m_Localized: Hammer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694767018213376
+    m_Localized: Throw a hammer upward. It crits until it starts to fall.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694877328408576
+    m_Localized: Kick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694915660152832
+    m_Localized: Kick below and around you, propelling yourself upward if it hits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695076809506816
+    m_Localized: Throwing Knives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695139447242752
+    m_Localized: Hold to charge up several knives, then throw them in a set pattern.
+      The last two charged will crit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695336319483904
+    m_Localized: Lance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695367197949952
+    m_Localized: Hold a lance in front of you, which crits when you dash. Stays held
+      up until you stop dashing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695616901644288
+    m_Localized: Missile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695651991191552
+    m_Localized: Shoot a missile which starts slow but accelerates. When it hits
+      it explodes, tossing back crit-exploding segments.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695909043306496
+    m_Localized: Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695949358956544
+    m_Localized: Slash in front of you. In the air, hit an enemy slightly below to
+      crit and bounce yourself.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

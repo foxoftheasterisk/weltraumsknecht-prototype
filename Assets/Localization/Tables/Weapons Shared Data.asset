@@ -31,6 +31,94 @@ MonoBehaviour:
     m_Key: blaster_description
     m_Metadata:
       m_Items: []
+  - m_Id: 693175850270720
+    m_Key: boomerang_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693363667009536
+    m_Key: boomerang_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693788629696512
+    m_Key: caltrops_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693859286941696
+    m_Key: caltrops_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694069052473344
+    m_Key: daggers_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694115936403456
+    m_Key: daggers_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694237437001728
+    m_Key: glaive_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694287273721856
+    m_Key: glaive_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694422422585344
+    m_Key: grenade_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694468736090112
+    m_Key: grenade_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694737934909440
+    m_Key: hammer_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694767018213376
+    m_Key: hammer_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694877328408576
+    m_Key: kick_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694915660152832
+    m_Key: kick_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695076809506816
+    m_Key: knives_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695139447242752
+    m_Key: knives_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695336319483904
+    m_Key: lance_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695367197949952
+    m_Key: lance_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695616901644288
+    m_Key: missile_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695651991191552
+    m_Key: missile_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695909043306496
+    m_Key: sword_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695949358956544
+    m_Key: sword_descripion
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
