@@ -5,26 +5,35 @@ using UnityEngine;
 public class StartWithPropertiesBehaviour : FlippableBehaviour
 {
     public ProjectileProperties properties;
+    private bool flip = false;
 
     public override void Flip()
     {
-        properties.Flip();
+        flip = !flip;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        transform.position += (Vector3)properties.displace;
+        Vector3 displace = (Vector3)properties.displace;
+        if (flip)
+            displace.x *= -1;
+        transform.position += displace;
 
         Vector3 rotation = transform.localEulerAngles;
-        rotation.z += properties.rotateMod;
+        rotation.z += flip ? properties.rotateMod * -1 : properties.rotateMod;
         transform.localEulerAngles = rotation;
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity += properties.initialVelocity;
-        rb.angularVelocity += properties.initialRotateVelocity;
-    }
+        float radians = Mathf.Deg2Rad * properties.initialAngle;
+        Vector2 initialVelocity = new Vector2((float)Mathf.Cos(radians), (float)Mathf.Sin(radians));
+        if(flip)
+            initialVelocity.x *= -1;
+        initialVelocity *= properties.initialSpeed;
 
-    // Update is called once per frame
-    void Update() { }
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity += initialVelocity;
+        rb.angularVelocity += flip ? properties.initialRotateVelocity * -1 : properties.initialRotateVelocity;
+
+        Destroy(this);
+    }
 }
