@@ -21,7 +21,8 @@ MonoBehaviour:
   initialProperties:
     displace: {x: 0.1, y: 0.3}
     rotateMod: 45
-    initialVelocity: {x: 2.5, y: 6}
+    initialSpeed: 6.5
+    initialAngle: 65
     initialRotateVelocity: -2000
   locale: 1
   projectilePrefab: {fileID: 4566840149642243050, guid: c1d9461b73eba924cbd4aebd9f16a7f9,

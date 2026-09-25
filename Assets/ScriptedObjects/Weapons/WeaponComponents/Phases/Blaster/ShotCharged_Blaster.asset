@@ -17,11 +17,12 @@ MonoBehaviour:
   moveSpeedPenalty: 0
   blocksWeapons: 0
   blocksFacing: 0
-  useProperties: 0
+  useProperties: 1
   initialProperties:
-    displace: {x: 0, y: 0}
+    displace: {x: 0.25, y: 0}
     rotateMod: 0
-    initialVelocity: {x: 0, y: 0}
+    initialSpeed: 12
+    initialAngle: 0
     initialRotateVelocity: 0
   locale: 1
   projectilePrefab: {fileID: 2266270219253974454, guid: ff1bef03708519642a6158f054af2041,
