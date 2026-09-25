@@ -21,7 +21,7 @@ MonoBehaviour:
   initialProperties:
     displace: {x: 0.15, y: 0.15}
     rotateMod: -45
-    initialSpeed: 4.25
+    initialSpeed: 4.4
     initialAngle: 45
     initialRotateVelocity: -150
   locale: 1
