@@ -311,9 +311,9 @@ MonoBehaviour:
     type: 3}
   projectileProperties:
   - displace: {x: 0, y: 0}
-    rotateMod: -30
+    rotateMod: -20
     initialSpeed: 4
-    initialAngle: -30
+    initialAngle: -20
     initialRotateVelocity: 0
   - displace: {x: 0, y: 0}
     rotateMod: 0
@@ -321,9 +321,9 @@ MonoBehaviour:
     initialAngle: 0
     initialRotateVelocity: 0
   - displace: {x: 0, y: 0}
-    rotateMod: 30
+    rotateMod: 20
     initialSpeed: 4
-    initialAngle: 30
+    initialAngle: 20
     initialRotateVelocity: 0
   melee: 0
   AnimationControlled: 1

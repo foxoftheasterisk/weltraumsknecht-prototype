@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -1815195400988281533}
   - component: {fileID: -3350385894910112573}
   - component: {fileID: -2448490271829974650}
+  - component: {fileID: 4774028913407779566}
   m_Layer: 8
   m_Name: buzzy-spit
   m_TagString: Untagged
@@ -29,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928738085496373361}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.24365489, w: 0.969862}
+  m_LocalRotation: {x: -0, y: -0, z: -0.2754351, w: 0.9613197}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.205}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -31.976}
 --- !u!212 &2276529018806624351
 SpriteRenderer:
   serializedVersion: 2
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: 274ca81d61a5cd54ca78bbde5c8d5282, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
@@ -141,9 +142,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.07594663, y: -0.04340647}
-      - {x: 0.02334921, y: 0.05245322}
-      - {x: -0.03901325, y: -0.023986243}
+    - - {x: 0.02697678, y: -0.05399396}
+      - {x: 0.074724376, y: 0.045183185}
+      - {x: -0.039943382, y: 0.023518674}
   m_UseDelaunayMesh: 1
 --- !u!50 &-1815195400988281533
 Rigidbody2D:
