@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Audio.GeneratorInstance;
 
@@ -26,4 +27,18 @@ public struct ProjectileProperties
     /// </summary>
     public float initialAngle;
     public float initialRotateVelocity;
+
+    public static ProjectileProperties operator +(ProjectileProperties first, ProjectileProperties second)
+    {
+        //is there a shortcut for this? oh well
+        ProjectileProperties result = new()
+        {
+            displace = first.displace + second.displace,
+            rotateMod = first.rotateMod + second.rotateMod,
+            initialSpeed = first.initialSpeed + second.initialSpeed,
+            initialAngle = first.initialAngle + second.initialAngle,
+            initialRotateVelocity = first.initialRotateVelocity + second.initialRotateVelocity
+        };
+        return result;
+    }
 }

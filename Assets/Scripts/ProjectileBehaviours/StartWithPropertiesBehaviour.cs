@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,6 +16,12 @@ public class StartWithPropertiesBehaviour : FlippableBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        StartingPropertiesAlterer[] alterers = GetComponents<StartingPropertiesAlterer>();
+        foreach (var alterer in alterers)
+        {
+            properties += alterer.Alterations;
+        }
+
         Vector3 displace = (Vector3)properties.displace;
         if (flip)
             displace.x *= -1;
