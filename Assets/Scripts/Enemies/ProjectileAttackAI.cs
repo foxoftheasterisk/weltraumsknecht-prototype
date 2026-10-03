@@ -6,6 +6,7 @@ namespace Weltraumsknecht.Enemies
     /// <summary>
     /// A basic attack that consists of firing one projectile or several identical projectiles from the enemy's position.
     /// </summary>
+    [AddComponentMenu("Enemies/Attacks/Projectile Attack")]
     public class ProjectileAttackAI : AttackAI
     {
 

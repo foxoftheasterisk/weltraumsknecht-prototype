@@ -16,6 +16,7 @@ namespace Weltraumsknecht.Enemies
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(MovementAI), typeof(Animator))]
     //[RequireComponent(typeof(AttackAI))]
+    [AddComponentMenu("Enemies/Enemy")]
     public class Enemy : MonoBehaviour
     {
         public AudioClip ouch;
