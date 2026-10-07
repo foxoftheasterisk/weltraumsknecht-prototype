@@ -51,19 +51,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.9
-  gravityModifier: 1
+  gravityModifier: 0.75
   velocity: {x: 0, y: 0}
   jumpAudio: {fileID: 8300000, guid: 67975c08d56ceb147bad38572d805aa8, type: 3}
   respawnAudio: {fileID: 8300000, guid: e18959d46b63f3c4c8cc020a433cf848, type: 3}
   ouchAudio: {fileID: 8300000, guid: 6c05149e5a2fba64ba172e25a61074b7, type: 3}
-  maxSpeed: 3
-  jumpTakeOffSpeed: 7
+  maxSpeed: 2.25
+  jumpTakeOffSpeed: 5.25
   jumpState: 0
   collider2d: {fileID: 0}
   audioSource: {fileID: 0}
   health: {fileID: 0}
   controlEnabled: 1
-  dashSpeed: 7
+  dashSpeed: 5.25
   maxDashDistance: 1000
   minDashDistance: 50
   westSlot: {fileID: 11400000, guid: c5496c35335139b44b74b5edaba38135, type: 2}

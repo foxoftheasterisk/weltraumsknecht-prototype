@@ -40,8 +40,8 @@ namespace Platformer.Mechanics
         
         private bool dashExpended = false;
         public float dashSpeed = 7;
-        public float maxDashDistance = 1000;
-        public float minDashDistance = 50;
+        public float maxDashDistance = 7;
+        public float minDashDistance = 1;
         private bool stopDash;
         private float dashDistance = 0;
 
@@ -267,7 +267,7 @@ namespace Platformer.Mechanics
                     break;
                 case JumpState.DashingLeft:
                 case JumpState.DashingRight:
-                    dashDistance += dashSpeed;
+                    dashDistance += dashSpeed * Time.deltaTime;
                     if (dashDistance > maxDashDistance)
                     {
                         jumpState = JumpState.InFlight;
