@@ -248,6 +248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5b3246d3c3ea44ca22d1ebca1dd0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Enemies.FlyingAI
+  targetPosition: {x: 0, y: 1.5}
+  maxSpeed: 1
+  acceleration: 2
 --- !u!95 &7186735651045723290
 Animator:
   serializedVersion: 7

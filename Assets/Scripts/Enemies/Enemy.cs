@@ -105,11 +105,13 @@ namespace Weltraumsknecht.Enemies
         /// </summary>
         protected void Act()
         {
-            movementAI.Move();
+            Vector2 playerPos = PlayerController.player.transform.position - transform.position;
+
+            movementAI.Move(playerPos);
 
             if (!inCooldown)
             {
-                CheckAttacks();
+                CheckAttacks(playerPos);
             }
         }
 
@@ -135,10 +137,8 @@ namespace Weltraumsknecht.Enemies
             IsFacingLeft = !IsFacingLeft;
         }
 
-        protected void CheckAttacks()
+        protected void CheckAttacks(Vector2 playerPos)
         {
-            Vector2 playerPos = PlayerController.player.transform.position - transform.position;
-
             List<AttackAI> possibleAttacks = new List<AttackAI>();
             int priority = 0;
             foreach (AttackAI attack in attacks)
