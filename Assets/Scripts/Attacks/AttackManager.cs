@@ -5,6 +5,7 @@ using UnityEngine;
 using Weltraumsknecht.Projectiles;
 using Weltraumsknecht.Weapons;
 using static Weltraumsknecht.Weapons.WeaponDefinition;
+using static Weltraumsknecht.Attacks.AttackTransition;
 
 
 namespace Weltraumsknecht.Attacks
@@ -19,8 +20,25 @@ namespace Weltraumsknecht.Attacks
     {
         private List<ActivePhase> activePhases;
 
+        private WeaponInfo? weaponInfo;
+
         public AttackManager(AttackPhase initialPhase)
         {
+            weaponInfo = null;
+            activePhases = new()
+            {
+                initialPhase.Activate()
+            };
+        }
+
+        public AttackManager(AttackPhase initialPhase, WeaponInstance weapon)
+        {
+            weaponInfo = new()
+            {
+                WeaponInstance = weapon,
+                WeaponDefinition = weapon.definition,
+                Player = weapon.Player
+            };
             activePhases = new()
             {
                 initialPhase.Activate()
@@ -30,7 +48,7 @@ namespace Weltraumsknecht.Attacks
         public void Update()
         {
             List<ActivePhase> inactive = new();
-            List<Tuple<ActivePhase, List<WeaponTransition>>> transitioning = new();
+            List<Tuple<ActivePhase, List<AttackTransition>>> transitioning = new();
             foreach (ActivePhase phase in activePhases)
             {
                 if (!phase.IsActive())
@@ -42,7 +60,7 @@ namespace Weltraumsknecht.Attacks
                 else
                 {
                     phase.AdvanceTime(Time.deltaTime);
-                    List<WeaponTransition> activating = CheckTransitions(phase, WeaponTransition.TriggerType.Update, new WeaponEvent(phase, Player));
+                    List<AttackTransition> activating = CheckTransitions(phase, TriggerType.Update, GenerateEvent(phase, TriggerType.Update));
                     if (activating.Count > 0)
                     {
                         transitioning.Add(new(phase, activating));
@@ -55,7 +73,7 @@ namespace Weltraumsknecht.Attacks
                 activePhases.Remove(phase);
             }
 
-            foreach (Tuple<ActivePhase, List<WeaponTransition>> activePair in transitioning)
+            foreach (Tuple<ActivePhase, List<AttackTransition>> activePair in transitioning)
             {
                 ProcessTransitions(activePair.Item1, activePair.Item2);
             }
@@ -63,39 +81,41 @@ namespace Weltraumsknecht.Attacks
             //Destroy this if no phases are active
         }
 
-        public void ButtonPressed()
-        {
-            ProcessAllTransitions(WeaponTransition.TriggerType.ButtonPress);
-        }
-
-        public void ButtonReleased()
-        {
-            ProcessAllTransitions(WeaponTransition.TriggerType.ButtonRelease);
-        }
-
         //TODO: move transition checking to ActivePhase?
-        private void ProcessAllTransitions(WeaponTransition.TriggerType triggerType)
+        public void InvokeTrigger(AttackTransition.TriggerType triggerType)
         {
-            List<Tuple<ActivePhase, List<WeaponTransition>>> activatingTransitions = new();
+            List<Tuple<ActivePhase, List<AttackTransition>>> activatingTransitions = new();
+
+            
 
             foreach (ActivePhase phase in activePhases)
             {
-                List<WeaponTransition> transitions = CheckTransitions(phase, triggerType, new WeaponEvent(phase, Player));
+                List<AttackTransition> transitions = CheckTransitions(phase, triggerType, GenerateEvent(phase, triggerType));
                 if (transitions.Count > 0)
                 {
                     activatingTransitions.Add(new(phase, transitions));
                 }
             }
 
-            foreach (Tuple<ActivePhase, List<WeaponTransition>> phaseTransitions in activatingTransitions)
+            foreach (Tuple<ActivePhase, List<AttackTransition>> phaseTransitions in activatingTransitions)
             {
                 ProcessTransitions(phaseTransitions.Item1, phaseTransitions.Item2);
             }
         }
 
-        private void ProcessTransitions(ActivePhase phase, List<WeaponTransition> transitions)
+        private AttackEvent GenerateEvent(ActivePhase phase, AttackTransition.TriggerType triggerType)
         {
-            foreach (WeaponTransition transition in transitions)
+            return new()
+            {
+                eventTriggerType = triggerType,
+                phaseInfo = new() { TriggeringPhase = phase},
+                weaponInfo = weaponInfo
+            };
+        }
+
+        private void ProcessTransitions(ActivePhase phase, List<AttackTransition> transitions)
+        {
+            foreach (AttackTransition transition in transitions)
             {
                 AdvancePhase(phase, transition);
                 if (transition.destroyLastPhase)
@@ -105,10 +125,10 @@ namespace Weltraumsknecht.Attacks
             }
         }
 
-        private List<WeaponTransition> CheckTransitions(ActivePhase phase, WeaponTransition.TriggerType triggerType, WeaponEvent e)
+        private List<AttackTransition> CheckTransitions(ActivePhase phase, AttackTransition.TriggerType triggerType, AttackEvent e)
         {
-            List<WeaponTransition> activating = new List<WeaponTransition>();
-            foreach (WeaponTransition transition in phase.potentialTransitions)
+            List<AttackTransition> activating = new List<AttackTransition>();
+            foreach (AttackTransition transition in phase.potentialTransitions)
             {
                 if (transition.triggerType == triggerType && transition.ShouldAdvance(e))
                     activating.Add(transition);
@@ -127,7 +147,7 @@ namespace Weltraumsknecht.Attacks
             return false;
         }
 
-        internal void AdvancePhase(ActivePhase lastPhase, WeaponTransition transition)
+        internal void AdvancePhase(ActivePhase lastPhase, AttackTransition transition)
         {
             if (transition.nextPhase != null)
             {
@@ -142,7 +162,7 @@ namespace Weltraumsknecht.Attacks
             }
         }
 
-        private void StartPhase(WeaponPhase phase, GameObject lastPhaseObject = null, bool lastPhaseFlipped = false)
+        private void StartPhase(AttackPhase phase, GameObject lastPhaseObject = null, bool lastPhaseFlipped = false)
         {
             if (!phase.isWarmup)
             {
@@ -164,18 +184,18 @@ namespace Weltraumsknecht.Attacks
 
             switch (phase.locale)
             {
-                case WeaponPhase.ProjectileLocale.Melee:
-                case WeaponPhase.ProjectileLocale.Ranged:
+                case AttackPhase.ProjectileLocale.Melee:
+                case AttackPhase.ProjectileLocale.Ranged:
                     flip = Player.IsFacingLeft();
-                    projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, Player.GameObject(), flip, phase.locale == WeaponPhase.ProjectileLocale.Melee, phaseProps);
+                    projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, Player.GameObject(), flip, phase.locale == AttackPhase.ProjectileLocale.Melee, phaseProps);
                     break;
-                case WeaponPhase.ProjectileLocale.Remote:
+                case AttackPhase.ProjectileLocale.Remote:
                     if (lastPhaseObject == null)
                         throw new MissingReferenceException("Tried to start remote phase with no parent!");
                     flip = lastPhaseFlipped;
                     projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, lastPhaseObject, lastPhaseFlipped, false, phaseProps);
                     break;
-                case WeaponPhase.ProjectileLocale.Replace:
+                case AttackPhase.ProjectileLocale.Replace:
                     if (lastPhaseObject == null)
                         throw new MissingReferenceException("Tried to start replace phase with no parent!");
                     flip = lastPhaseFlipped;
@@ -190,20 +210,11 @@ namespace Weltraumsknecht.Attacks
                 WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
                 foreach (WeaponProjectile wp in wps)
                 {
-                    wp.Create(this, phase.locale == WeaponPhase.ProjectileLocale.Melee);
+                    wp.Create(this, phase.locale == AttackPhase.ProjectileLocale.Melee);
                 }
             }
 
             activePhases.Add(new ActivePhase(phase, projectile, this, flip));
-        }
-
-        public int GetDamage(bool crit)
-        {
-            //TODO: pass along to actor? or whatever. get the damage, somehow.
-            if (crit)
-                return definition.critDamage;
-            else
-                return definition.standardDamage;
         }
 
         public virtual bool IsBlockingFacing()
