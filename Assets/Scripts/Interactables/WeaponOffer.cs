@@ -34,7 +34,7 @@ public class WeaponOffer : Interactable
         }
     }
 
-    public override void Interact(PlayerMovementController player)
+    public override void Interact(PlayerAttackController player)
     {
         //TODO: allow choosing which slot to use (including replacing)
 
@@ -67,7 +67,7 @@ public class WeaponOffer : Interactable
         descriptionPanel.enabled = false;
     }
 
-    private void GiveWeapon(WeaponSlot slot, PlayerMovementController player)
+    private void GiveWeapon(WeaponSlot slot, PlayerAttackController player)
     {
         WeaponInstance instance = new WeaponInstance(weapon);
         slot.weapon = instance;

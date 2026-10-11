@@ -120,7 +120,7 @@ namespace Weltraumsknecht.Player
 
                 if(m_InteractAction.WasPressedThisFrame() && nearbyInteractable != null)
                 {
-                    nearbyInteractable.Interact(this);
+                    nearbyInteractable.Interact(attackController);
                 }
             }
             else

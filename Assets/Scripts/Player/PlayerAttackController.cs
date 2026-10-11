@@ -39,7 +39,7 @@ namespace Weltraumsknecht.Player
                 eastSlot.weapon = null;
 
             if (kickSlot.HasWeapon())
-                kickSlot.weapon.Initialize(movementController);
+                kickSlot.weapon.Initialize(this);
 
             m_WestWeaponAction = InputSystem.actions.FindAction("Player/WeaponWest");
             m_NorthWeaponAction = InputSystem.actions.FindAction("Player/WeaponNorth");

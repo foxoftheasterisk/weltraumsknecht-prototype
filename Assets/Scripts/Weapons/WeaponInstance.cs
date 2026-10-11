@@ -28,7 +28,7 @@ namespace Weltraumsknecht.Weapons
         //we will probably eventually want a public ReduceCooldown method
 
         [HideInInspector, DoNotSerialize]
-        public PlayerMovementController Player
+        public PlayerAttackController Player
         {
             get;
             private set;
@@ -39,7 +39,7 @@ namespace Weltraumsknecht.Weapons
             definition = _definition;
         }
 
-        public void Initialize(PlayerMovementController player)
+        public void Initialize(PlayerAttackController player)
         {
             Player = player;
         }
@@ -79,7 +79,7 @@ namespace Weltraumsknecht.Weapons
 
         protected virtual void Fire()
         {
-            currentAttack = new(definition.initialPhase);
+            currentAttack = new(Player, definition.initialPhase, this);
         }
 
         public bool IsActive()
