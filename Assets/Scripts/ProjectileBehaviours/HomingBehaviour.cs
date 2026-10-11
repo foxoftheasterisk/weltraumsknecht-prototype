@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ProjectileUtils;
 
+using Weltraumsknecht.Player;
+
 [RequireComponent(typeof(Rigidbody2D))]
 [AddComponentMenu("Projectile Behaviours/Homing")]
 public class HomingBehaviour : MonoBehaviour

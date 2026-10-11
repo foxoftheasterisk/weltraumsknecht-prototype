@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 using Weltraumsknecht.Attacks;
 
+using Weltraumsknecht.Player;
+
 namespace Weltraumsknecht.Attacks
 {
 

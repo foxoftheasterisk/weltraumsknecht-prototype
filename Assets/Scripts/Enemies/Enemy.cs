@@ -9,6 +9,7 @@ using UnityEngine.Scripting.APIUpdating;
 using static Platformer.Core.Simulation;
 using Weltraumsknecht.Projectiles;
 using Weltraumsknecht.Attacks;
+using Weltraumsknecht.Player;
 
 namespace Weltraumsknecht.Enemies
 {

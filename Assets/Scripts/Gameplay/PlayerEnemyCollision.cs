@@ -5,6 +5,8 @@ using UnityEngine;
 using Weltraumsknecht.Enemies;
 using static Platformer.Core.Simulation;
 
+using Weltraumsknecht.Player;
+
 namespace Platformer.Gameplay
 {
 

@@ -2,6 +2,8 @@ using Platformer.Mechanics;
 using System.Linq;
 using UnityEngine;
 
+using Weltraumsknecht.Player;
+
 /// <summary>
 /// A behaviour that redirects any StartWithPropertiesBehaviour(s) on the object such that 0 degrees is aimed at the player,
 /// then destroys itself.

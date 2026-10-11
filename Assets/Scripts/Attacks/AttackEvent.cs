@@ -2,6 +2,7 @@ using Platformer.Mechanics;
 using UnityEngine;
 
 using Weltraumsknecht.Weapons;
+using Weltraumsknecht.Player;
 
 namespace Weltraumsknecht.Attacks
 {

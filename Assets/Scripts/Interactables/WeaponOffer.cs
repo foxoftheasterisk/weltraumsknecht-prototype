@@ -2,6 +2,7 @@ using Platformer.Mechanics;
 using TMPro;
 using UnityEngine;
 using Weltraumsknecht.Weapons;
+using Weltraumsknecht.Player;
 
 public class WeaponOffer : Interactable
 {

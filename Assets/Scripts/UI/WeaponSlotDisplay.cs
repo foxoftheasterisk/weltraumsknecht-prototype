@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Weltraumsknecht.Weapons;
+using Weltraumsknecht.Player;
 
 public class WeaponSlotDisplay : MonoBehaviour
 {

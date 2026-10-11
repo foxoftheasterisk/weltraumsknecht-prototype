@@ -3,6 +3,8 @@ using Platformer.Mechanics;
 using Platformer.Model;
 using UnityEngine;
 
+using Weltraumsknecht.Player;
+
 namespace Platformer.Gameplay
 {
     /// <summary>

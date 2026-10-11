@@ -3,6 +3,7 @@ using Platformer.Mechanics;
 using UnityEngine;
 using Weltraumsknecht.Enemies;
 using Weltraumsknecht.Weapons;
+using Weltraumsknecht.Player;
 
 using static Platformer.Core.Simulation;
 

@@ -2,6 +2,7 @@ using Platformer.Mechanics;
 using System;
 using UnityEngine;
 using Weltraumsknecht.Enemies;
+using Weltraumsknecht.Player;
 
 public static class ProjectileUtils
 {

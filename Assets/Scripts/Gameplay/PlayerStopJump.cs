@@ -1,6 +1,8 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 
+using Weltraumsknecht.Player;
+
 namespace Platformer.Gameplay
 {
     /// <summary>

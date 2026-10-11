@@ -4,8 +4,8 @@ using Platformer.Model;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 
-using Weltraumsknecht.Enemies;
 using Weltraumsknecht.Projectiles;
+using Weltraumsknecht.Player;
 
 namespace Platformer.Gameplay
 {
