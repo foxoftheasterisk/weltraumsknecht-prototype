@@ -15,7 +15,7 @@ namespace Platformer.Gameplay
     public class PlayerEnemyCollision : Simulation.Event<PlayerEnemyCollision>
     {
         public Enemy enemy;
-        public PlayerController player;
+        public PlayerMovementController player;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 

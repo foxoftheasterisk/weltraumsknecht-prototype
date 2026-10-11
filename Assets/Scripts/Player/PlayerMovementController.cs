@@ -7,16 +7,20 @@ using Platformer.Model;
 using Platformer.Core;
 using UnityEngine.InputSystem;
 
-namespace Platformer.Mechanics
+using Platformer.Mechanics;
+
+namespace Weltraumsknecht.Player
 {
     /// <summary>
     /// This is the main class used to implement control of the player.
     /// It is a superset of the AnimationController class, but is inlined to allow for any kind of customisation.
     /// </summary>
-    public class PlayerController : KinematicObject
+    [RequireComponent(typeof(PlayerAttackController))]
+    public class PlayerMovementController : GroundBasedEntity
     {
-        public static PlayerController player;
+        public static PlayerMovementController player;
         //This seems Wrong, but I'm not sure how else to get the player's location for determining if in enemy ranges.
+        //...I figured it out, just need to implement it now.
 
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
@@ -52,22 +56,14 @@ namespace Platformer.Mechanics
         internal Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+        private PlayerAttackController attackController;
+
         private InputAction m_MoveAction;
         private InputAction m_JumpAction;
         private InputAction m_DashLeftAction;
         private InputAction m_DashRightAction;
         
-        private InputAction m_WestWeaponAction;
-        private InputAction m_NorthWeaponAction;
-        private InputAction m_EastWeaponAction;
-        private InputAction m_KickAction;
-
         public Bounds Bounds => collider2d.bounds;
-        
-        public WeaponSlot westSlot;
-        public WeaponSlot northSlot;
-        public WeaponSlot eastSlot;
-        public WeaponSlot kickSlot;
 
         //Having PlayerController track this feels awkward, but I'm not really sure how else to do it...?
         //It also definitely gets weird if multiple interactables overlap (or are close enough the player bounds can touch both)
@@ -84,17 +80,7 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
-
-            //TODO: make weapons clear only on game reset
-            if (westSlot.HasWeapon())
-                westSlot.weapon = null;
-            if (northSlot.HasWeapon())
-                northSlot.weapon = null;
-            if (eastSlot.HasWeapon())
-                eastSlot.weapon = null;
-
-            if (kickSlot.HasWeapon())
-                kickSlot.weapon.Initialize(this);
+            attackController = GetComponent<PlayerAttackController>();
 
             m_MoveAction = InputSystem.actions.FindAction("Player/Move");
             m_JumpAction = InputSystem.actions.FindAction("Player/Jump");
@@ -105,16 +91,6 @@ namespace Platformer.Mechanics
             m_JumpAction.Enable();
             m_DashLeftAction.Enable();
             m_DashRightAction.Enable();
-            
-            m_WestWeaponAction = InputSystem.actions.FindAction("Player/WeaponWest");
-            m_NorthWeaponAction = InputSystem.actions.FindAction("Player/WeaponNorth");
-            m_EastWeaponAction = InputSystem.actions.FindAction("Player/WeaponEast");
-            m_KickAction = InputSystem.actions.FindAction("Player/Kick");
-            
-            m_WestWeaponAction.Enable();
-            m_NorthWeaponAction.Enable();
-            m_EastWeaponAction.Enable();
-            m_KickAction.Enable();
 
             m_InteractAction = InputSystem.actions.FindAction("Player/Interact");
             m_InteractAction.Enable();
@@ -141,43 +117,6 @@ namespace Platformer.Mechanics
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
                 }
-                
-                bool weaponsBlocked = AreWeaponsBlocked();
-                
-                //still need to feed through input for the weapon that's blocking other weapons
-                if (westSlot.HasWeapon() && (!weaponsBlocked || westSlot.weapon.IsBlockingWeapons()))
-                {
-                    if (m_WestWeaponAction.WasPressedThisFrame())
-                        westSlot.weapon.ButtonPressed();
-                    if (m_WestWeaponAction.WasReleasedThisFrame())
-                        westSlot.weapon.ButtonReleased();
-                }
-                
-                if (northSlot.HasWeapon() && (!weaponsBlocked || northSlot.weapon.IsBlockingWeapons()))
-                {
-                    if (m_NorthWeaponAction.WasPressedThisFrame())
-                        northSlot.weapon.ButtonPressed();
-                    if (m_NorthWeaponAction.WasReleasedThisFrame())
-                        northSlot.weapon.ButtonReleased();
-                }
-                
-                if (eastSlot.HasWeapon() && (!weaponsBlocked || eastSlot.weapon.IsBlockingWeapons()))
-                {
-                    if (m_EastWeaponAction.WasPressedThisFrame())
-                        eastSlot.weapon.ButtonPressed();
-                    if (m_EastWeaponAction.WasReleasedThisFrame())
-                        eastSlot.weapon.ButtonReleased();
-                }
-                
-                if (kickSlot.HasWeapon() && (!weaponsBlocked || kickSlot.weapon.IsBlockingWeapons()))
-                {
-                    if (m_KickAction.WasPressedThisFrame())
-                        kickSlot.weapon.ButtonPressed();
-                    if (m_KickAction.WasReleasedThisFrame())
-                        kickSlot.weapon.ButtonReleased();
-                }
-                //this block seems awkward, but I'm not really sure how else to do it...
-
 
                 if(m_InteractAction.WasPressedThisFrame() && nearbyInteractable != null)
                 {
@@ -189,7 +128,7 @@ namespace Platformer.Mechanics
                 move.x = 0;
             }
             
-            if(IsDashing() || IsMovementBlocked())
+            if(IsDashing() || attackController.IsMovementBlocked())
             {
                 gravityModifier = 0;
                 body.gravityScale = 0;
@@ -203,16 +142,15 @@ namespace Platformer.Mechanics
             
             wasFacingLeft = IsFacingLeft();
             spriteRenderer.flipX = wasFacingLeft;
-            UpdateWeapons();
             UpdateJumpState();
             base.Update();
         }
         
         void StartDash()
         {
-            if (IsMovementBlocked())
+            if (attackController.IsMovementBlocked())
             {
-                bool cancelled = AttemptDashCancel();
+                bool cancelled = attackController.AttemptDashCancel();
                 if (!cancelled)
                     return;
             }
@@ -225,17 +163,6 @@ namespace Platformer.Mechanics
                 jumpState = JumpState.DashingRight;
         }
 
-        private void UpdateWeapons()
-        {
-            if (westSlot.HasWeapon())
-                westSlot.weapon.Update();
-            if (northSlot.HasWeapon())
-                northSlot.weapon.Update();
-            if (eastSlot.HasWeapon())
-                eastSlot.weapon.Update();
-            if (kickSlot.HasWeapon())
-                kickSlot.weapon.Update();
-        }
         //*/
 
         void UpdateJumpState()
@@ -279,7 +206,7 @@ namespace Platformer.Mechanics
 
         public bool IsFacingLeft()
         {
-            if (IsFacingBlocked())
+            if (attackController.IsFacingBlocked())
                 return wasFacingLeft;
             else if (move.x > 0.01f)
                 return false;
@@ -298,40 +225,10 @@ namespace Platformer.Mechanics
         {
             return !IsGrounded;
         }
-        
-        private bool IsFacingBlocked()
-        {
-            return IsDashing() || (westSlot.HasWeapon() && westSlot.weapon.IsBlockingFacing()) 
-                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingFacing()) 
-                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingFacing()) 
-                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingFacing());
-        }
-        
-        private bool IsMovementBlocked()
-        {
-            return (westSlot.HasWeapon() && westSlot.weapon.IsBlockingMovement()) 
-                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingMovement()) 
-                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingMovement()) 
-                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingMovement());
-        }
-        
-        private bool AreWeaponsBlocked()
-        {
-            return (westSlot.HasWeapon() && westSlot.weapon.IsBlockingWeapons()) 
-                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingWeapons()) 
-                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingWeapons()) 
-                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingWeapons());
-        }
-
-        private bool AttemptDashCancel()
-        {
-            //TODO: this
-            return false;
-        }
 
         protected override void ComputeVelocity()
         {
-            if (IsMovementBlocked())
+            if (attackController.IsMovementBlocked())
             {
                 targetVelocity = Vector2.zero;
                 velocity = Vector2.zero;

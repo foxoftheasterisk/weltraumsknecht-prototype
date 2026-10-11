@@ -44,7 +44,7 @@ namespace Weltraumsknecht.Enemies
                 return;
             //This invoke was meant for a *different* attack.
 
-            ProjectileUtils.CreateProjectile(projectile, gameObject, enemy.IsFacingLeft, melee, projectileProperties[projectilesFired]);
+            ProjectileUtils.CreateProjectile(projectile, gameObject, enemy.IsFacingLeft(), melee, projectileProperties[projectilesFired]);
             projectilesFired++;
             if (projectilesFired == projectileProperties.Length)
             {

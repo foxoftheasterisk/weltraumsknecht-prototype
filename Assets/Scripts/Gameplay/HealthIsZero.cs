@@ -17,7 +17,7 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             GameObject obj = health.gameObject;
-            PlayerController player = obj.GetComponent<PlayerController>();
+            PlayerMovementController player = obj.GetComponent<PlayerMovementController>();
             if (player != null)
             {
                 Schedule<PlayerDeath>();

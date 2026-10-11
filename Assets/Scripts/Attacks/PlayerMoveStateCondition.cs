@@ -26,7 +26,7 @@ namespace Weltraumsknecht.Attacks
             if (e.weaponInfo is null)
                 throw new ArgumentNullException("PlayerMoveStateCondition cannot be used when weaponInfo is null!");
 
-            PlayerController player = e.weaponInfo?.Player;
+            PlayerMovementController player = e.weaponInfo?.Player;
             switch (targetState)
             {
                 case PlayerMoveState.Air:

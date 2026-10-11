@@ -6,6 +6,7 @@ using UnityEngine;
 using static Weltraumsknecht.Weapons.WeaponDefinition;
 
 using Weltraumsknecht.Attacks;
+using Weltraumsknecht.Player;
 
 namespace Weltraumsknecht.Weapons
 {
@@ -27,7 +28,7 @@ namespace Weltraumsknecht.Weapons
         //we will probably eventually want a public ReduceCooldown method
 
         [HideInInspector, DoNotSerialize]
-        public PlayerController Player
+        public PlayerMovementController Player
         {
             get;
             private set;
@@ -38,7 +39,7 @@ namespace Weltraumsknecht.Weapons
             definition = _definition;
         }
 
-        public void Initialize(PlayerController player)
+        public void Initialize(PlayerMovementController player)
         {
             Player = player;
         }

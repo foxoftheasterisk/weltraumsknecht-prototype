@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Scripting.APIUpdating;
 using static Platformer.Core.Simulation;
 using Weltraumsknecht.Projectiles;
+using Weltraumsknecht.Attacks;
 
 namespace Weltraumsknecht.Enemies
 {
@@ -17,7 +18,7 @@ namespace Weltraumsknecht.Enemies
     [RequireComponent(typeof(Rigidbody2D), typeof(MovementAI), typeof(Animator))]
     //[RequireComponent(typeof(AttackAI))]
     [AddComponentMenu("Enemies/Enemy")]
-    public class Enemy : MonoBehaviour
+    public class Enemy : Attacker
     {
         public AudioClip ouch;
 
@@ -48,11 +49,7 @@ namespace Weltraumsknecht.Enemies
         internal MovementAI movementAI;
         internal AttackAI[] attacks;
 
-        public bool IsFacingLeft
-        {
-            get;
-            private set;
-        } = false;
+        private bool wasFacingLeft;
 
         public bool IsDying
         {
@@ -72,7 +69,7 @@ namespace Weltraumsknecht.Enemies
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            var player = collision.gameObject.GetComponent<PlayerController>();
+            var player = collision.gameObject.GetComponent<PlayerMovementController>();
             if (player != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
@@ -105,7 +102,7 @@ namespace Weltraumsknecht.Enemies
         /// </summary>
         protected void Act()
         {
-            Vector2 playerPos = PlayerController.player.transform.position - transform.position;
+            Vector2 playerPos = PlayerMovementController.player.transform.position - transform.position;
 
             movementAI.Move(playerPos);
 
@@ -117,12 +114,12 @@ namespace Weltraumsknecht.Enemies
 
         public void FaceTowardsPlayer()
         {
-            Vector2 playerPos = PlayerController.player.transform.position;
-            if (playerPos.x < transform.position.x && !IsFacingLeft)
+            Vector2 playerPos = PlayerMovementController.player.transform.position;
+            if (playerPos.x < transform.position.x && !IsFacingLeft())
             {
                 Flip();
             }
-            else if (playerPos.x > transform.position.x && IsFacingLeft)
+            else if (playerPos.x > transform.position.x && IsFacingLeft())
             {
                 Flip();
             }
@@ -134,7 +131,7 @@ namespace Weltraumsknecht.Enemies
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
-            IsFacingLeft = !IsFacingLeft;
+            wasFacingLeft = !IsFacingLeft();
         }
 
         protected void CheckAttacks(Vector2 playerPos)
@@ -248,6 +245,11 @@ namespace Weltraumsknecht.Enemies
         public void FinishDying()
         {
             Destroy(gameObject);
+        }
+
+        public override bool IsFacingLeft()
+        {
+            return wasFacingLeft;
         }
     }
 }

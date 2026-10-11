@@ -7,7 +7,7 @@ namespace Platformer.Mechanics
     /// <summary>
     /// Implements game physics for some in game entity.
     /// </summary>
-    public class KinematicObject : MonoBehaviour
+    public class GroundBasedEntity : MonoBehaviour
     {
         /// <summary>
         /// The minimum normal (dot product) considered suitable for the entity sit on.

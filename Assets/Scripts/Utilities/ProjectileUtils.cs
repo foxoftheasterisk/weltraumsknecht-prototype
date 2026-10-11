@@ -92,7 +92,7 @@ public static class ProjectileUtils
         {
             TargetType.Enemy => gameObject.TryGetComponent(out Enemy _),
             TargetType.Environment => gameObject.layer == LayerMask.NameToLayer("Environment"),
-            TargetType.Player => gameObject.TryGetComponent(out PlayerController _),
+            TargetType.Player => gameObject.TryGetComponent(out PlayerMovementController _),
             _ => throw new NotImplementedException("Object type " + type.ToString() + " is not implemented in TargetType.Matches()"),
         };
     }

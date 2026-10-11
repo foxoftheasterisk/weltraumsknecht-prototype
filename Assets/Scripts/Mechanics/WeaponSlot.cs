@@ -7,7 +7,7 @@ using Weltraumsknecht.Weapons;
 public class WeaponSlot : ScriptableObject
 {
     public WeaponInstance weapon;
-    PlayerController player;
+    PlayerMovementController player;
     
     public bool HasWeapon()
     {

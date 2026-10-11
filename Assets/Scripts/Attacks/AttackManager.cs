@@ -6,6 +6,7 @@ using Weltraumsknecht.Projectiles;
 using Weltraumsknecht.Weapons;
 using static Weltraumsknecht.Weapons.WeaponDefinition;
 using static Weltraumsknecht.Attacks.AttackTransition;
+using Platformer.Mechanics;
 
 
 namespace Weltraumsknecht.Attacks
@@ -20,10 +21,12 @@ namespace Weltraumsknecht.Attacks
     {
         private List<ActivePhase> activePhases;
 
+        private Attacker attacker;
         private WeaponInfo? weaponInfo;
 
-        public AttackManager(AttackPhase initialPhase)
+        public AttackManager(Attacker attacker, AttackPhase initialPhase)
         {
+            this.attacker = attacker;
             weaponInfo = null;
             activePhases = new()
             {
@@ -31,8 +34,9 @@ namespace Weltraumsknecht.Attacks
             };
         }
 
-        public AttackManager(AttackPhase initialPhase, WeaponInstance weapon)
+        public AttackManager(Attacker attacker, AttackPhase initialPhase, WeaponInstance weapon)
         {
+            this.attacker = attacker;
             weaponInfo = new()
             {
                 WeaponInstance = weapon,
@@ -186,8 +190,8 @@ namespace Weltraumsknecht.Attacks
             {
                 case AttackPhase.ProjectileLocale.Melee:
                 case AttackPhase.ProjectileLocale.Ranged:
-                    flip = Player.IsFacingLeft();
-                    projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, Player.GameObject(), flip, phase.locale == AttackPhase.ProjectileLocale.Melee, phaseProps);
+                    flip = attacker.IsFacingLeft();
+                    projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, attacker.GameObject(), flip, phase.locale == AttackPhase.ProjectileLocale.Melee, phaseProps);
                     break;
                 case AttackPhase.ProjectileLocale.Remote:
                     if (lastPhaseObject == null)
@@ -210,7 +214,7 @@ namespace Weltraumsknecht.Attacks
                 WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
                 foreach (WeaponProjectile wp in wps)
                 {
-                    wp.Create(this, phase.locale == AttackPhase.ProjectileLocale.Melee);
+                    wp.Create(weaponInfo?.WeaponInstance, phase.locale == AttackPhase.ProjectileLocale.Melee);
                 }
             }
 

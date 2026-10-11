@@ -25,7 +25,7 @@ namespace Weltraumsknecht.Attacks
 
     internal struct WeaponInfo
     {
-        internal PlayerController Player;
+        internal PlayerMovementController Player;
         internal WeaponInstance WeaponInstance;
         internal WeaponDefinition WeaponDefinition;
     }

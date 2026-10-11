@@ -41,11 +41,11 @@ namespace Platformer.Mechanics
         void OnTriggerEnter2D(Collider2D other)
         {
             //only exectue OnPlayerEnter if the player collides with this token.
-            var player = other.gameObject.GetComponent<PlayerController>();
+            var player = other.gameObject.GetComponent<PlayerMovementController>();
             if (player != null) OnPlayerEnter(player);
         }
 
-        void OnPlayerEnter(PlayerController player)
+        void OnPlayerEnter(PlayerMovementController player)
         {
             if (collected) return;
             //disable the gameObject and remove it from the controller update list.
