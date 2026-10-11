@@ -5,8 +5,9 @@ using UnityEngine;
 using static ProjectileUtils;
 
 using Weltraumsknecht.Enemies;
+using Weltraumsknecht.Weapons;
 
-namespace Weltraumsknecht.Weapons
+namespace Weltraumsknecht.Attacks
 {
 
     /// <summary>
@@ -18,15 +19,13 @@ namespace Weltraumsknecht.Weapons
 
         public TargetType type;
 
-        internal override bool CheckCondition(WeaponEvent e)
+        internal override bool CheckCondition(AttackEvent e)
         {
-            if (e is not WeaponCollisionEvent)
+            if (e.collisionInfo is null)
             {
-                throw new System.Exception("CollideWithObjectTypeCondition used in a non-collision context!");
+                throw new ArgumentNullException("CollideWithObjectTypeCondition used where collisionInfo is null!");
             }
-            WeaponCollisionEvent collisionEvent = (WeaponCollisionEvent) e;
-
-            return type.Matches(collisionEvent.CollidingObject);
+            return type.Matches(e.collisionInfo?.collidingObject);
         }
     }
 }

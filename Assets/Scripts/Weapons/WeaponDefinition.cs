@@ -5,12 +5,14 @@ using Unity.Tutorials.Core.Editor;
 using UnityEngine;
 using UnityEngine.Localization;
 
+using Weltraumsknecht.Attacks;
+
 namespace Weltraumsknecht.Weapons
 {
     [CreateAssetMenu(fileName = "WeaponDefinition", menuName = "Scriptable Objects/WeaponDefinition")]
     public class WeaponDefinition : ScriptableObject
     {
-        public WeaponPhase initialPhase;
+        public AttackPhase initialPhase;
     
         public int standardDamage = 10;
         public int critDamage = 20;

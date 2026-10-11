@@ -1,7 +1,7 @@
 using Platformer.Mechanics;
 using UnityEngine;
 
-namespace Weltraumsknecht.Weapons
+namespace Weltraumsknecht.Attacks
 {
 
     /// <summary>
@@ -16,9 +16,9 @@ namespace Weltraumsknecht.Weapons
         //The maximum amount of time elapsed.
         public float maximumTime = float.PositiveInfinity;
 
-        internal override bool CheckCondition(WeaponEvent e)
+        internal override bool CheckCondition(AttackEvent e)
         {
-            ActivePhase phaseState = e.CurrentPhase;
+            ActivePhase phaseState = e.phaseInfo.TriggeringPhase;
             return (phaseState.TimeInPhase >= minimumTime && phaseState.TimeInPhase <= maximumTime);
         }
     }

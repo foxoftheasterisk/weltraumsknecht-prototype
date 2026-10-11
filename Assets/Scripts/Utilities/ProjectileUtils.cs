@@ -85,6 +85,9 @@ public static class ProjectileUtils
 
     public static bool Matches(this TargetType type, GameObject gameObject)
     {
+        if (gameObject == null)
+            return false;
+
         return type switch
         {
             TargetType.Enemy => gameObject.TryGetComponent(out Enemy _),

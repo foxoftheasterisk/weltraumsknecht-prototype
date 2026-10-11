@@ -4,7 +4,9 @@ using UnityEngine;
 using Weltraumsknecht.Projectiles;
 using static UnityEngine.UI.Selectable;
 
-namespace Weltraumsknecht.Weapons
+using Weltraumsknecht.Weapons;
+
+namespace Weltraumsknecht.Attacks
 {
     /// <summary>
     /// Holds the data of a currently-running phase.
@@ -13,7 +15,7 @@ namespace Weltraumsknecht.Weapons
     //TODO: it should probably manage itself, for best code practices
     internal class ActivePhase
     {
-        public WeaponPhase Definition
+        public AttackPhase Definition
         {
             get;
             private set;
@@ -33,7 +35,7 @@ namespace Weltraumsknecht.Weapons
             private set;
         }
 
-        public List<WeaponTransition> potentialTransitions;
+        public List<AttackTransition> potentialTransitions;
 
         public bool IsActive()
         {
@@ -46,22 +48,22 @@ namespace Weltraumsknecht.Weapons
             return true;
         }
 
-        private readonly WeaponInstance parent;
+        private readonly AttackManager manager;
 
-        public ActivePhase(WeaponPhase definition, GameObject projectile, WeaponInstance _parent, bool flipped)
+        public ActivePhase(AttackPhase definition, GameObject projectile, AttackManager _manager, bool flipped)
         {
             Definition = definition;
             linkedProjectile = projectile;
-            parent = _parent;
+            manager = _manager;
             Flipped = flipped;
 
-            potentialTransitions = new List<WeaponTransition>(Definition.transitions);
+            potentialTransitions = new List<AttackTransition>(Definition.transitions);
 
-            if(potentialTransitions.Any(p => p.triggerType == WeaponTransition.TriggerType.Contact))
+            if(potentialTransitions.Any(p => p.triggerType == AttackTransition.TriggerType.Contact))
             {
                 if (projectile.TryGetComponent<Projectile>(out Projectile proj))
                 {
-                    proj.AddListener(p => CheckTransitions(WeaponTransition.TriggerType.Contact, new WeaponCollisionEvent(this, parent.Player, p)));
+                    proj.AddListener(p => CheckTransitions(AttackTransition.TriggerType.Contact, new AttackEvent(this, manager.Player, p)));
                 }
                 else
                 {
@@ -76,20 +78,20 @@ namespace Weltraumsknecht.Weapons
             TimeInPhase += deltaTime;
         }
 
-        public void CheckTransitions(WeaponTransition.TriggerType triggerType, WeaponEvent e)
+        public void CheckTransitions(AttackTransition.TriggerType triggerType, AttackEvent e)
         {
             Debug.Log("Checking transitions " + triggerType);
 
-            List<WeaponTransition> activating = new List<WeaponTransition>();
-            foreach (WeaponTransition transition in potentialTransitions)
+            List<AttackTransition> activating = new List<AttackTransition>();
+            foreach (AttackTransition transition in potentialTransitions)
             {
                 if (transition.triggerType == triggerType && transition.ShouldAdvance(e))
                     activating.Add(transition);
             }
 
-            foreach(WeaponTransition transition in activating)
+            foreach(AttackTransition transition in activating)
             {
-                parent.AdvancePhase(this, transition);
+                manager.AdvancePhase(this, transition);
                 if (transition.destroyLastPhase)
                     return;
                 else

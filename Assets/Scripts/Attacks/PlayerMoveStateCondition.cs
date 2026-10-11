@@ -1,8 +1,9 @@
 using Platformer.Mechanics;
 using System;
 using UnityEngine;
+using Weltraumsknecht.Attacks;
 
-namespace Weltraumsknecht.Weapons
+namespace Weltraumsknecht.Attacks
 {
 
     /// <summary>
@@ -20,9 +21,12 @@ namespace Weltraumsknecht.Weapons
         }
         public PlayerMoveState targetState;
 
-        internal override bool CheckCondition(WeaponEvent e)
+        internal override bool CheckCondition(AttackEvent e)
         {
-            PlayerController player = e.Player;
+            if (e.weaponInfo is null)
+                throw new ArgumentNullException("PlayerMoveStateCondition cannot be used when weaponInfo is null!");
+
+            PlayerController player = e.weaponInfo?.Player;
             switch (targetState)
             {
                 case PlayerMoveState.Air:

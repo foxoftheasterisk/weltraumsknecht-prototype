@@ -2,7 +2,7 @@ using Platformer.Mechanics;
 using System;
 using UnityEngine;
 
-namespace Weltraumsknecht.Weapons
+namespace Weltraumsknecht.Attacks
 {
 
     /// <summary>
@@ -12,7 +12,7 @@ namespace Weltraumsknecht.Weapons
     /// any required data should be obtained from the ActivePhase.
     /// </summary>
     [Serializable]
-    public class WeaponTransition
+    public class AttackTransition
     {
         public bool destroyLastPhase = true;
 
@@ -21,7 +21,7 @@ namespace Weltraumsknecht.Weapons
         /// Note that phases can repeat or even have multiple active instances at once.
         /// If null, the transition will process but no new phase will start. (This is useful for ending phases on triggers.)
         /// </summary>
-        public WeaponPhase nextPhase;
+        public AttackPhase nextPhase;
 
         /// <summary>
         /// Controls when the weapon should check if the phase is ready to advance.
@@ -45,7 +45,7 @@ namespace Weltraumsknecht.Weapons
         /// </summary>
         public TransitionCondition[] conditions;
 
-        internal bool ShouldAdvance(WeaponEvent e)
+        internal bool ShouldAdvance(AttackEvent e)
         {
             foreach (TransitionCondition condition in conditions)
             {

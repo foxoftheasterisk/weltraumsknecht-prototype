@@ -1,8 +1,9 @@
 using Platformer.Mechanics;
 using System;
 using UnityEngine;
+using Weltraumsknecht.Attacks;
 
-namespace Weltraumsknecht.Weapons
+namespace Weltraumsknecht.Attacks
 {
 
     /// <summary>
@@ -27,9 +28,9 @@ namespace Weltraumsknecht.Weapons
         public Vector2 direction = Vector2.zero;
         public float maxAngle = 360;
 
-        internal override bool CheckCondition(WeaponEvent e)
+        internal override bool CheckCondition(AttackEvent e)
         {
-            ActivePhase phaseState = e.CurrentPhase;
+            ActivePhase phaseState = e.phaseInfo.TriggeringPhase;
 
             if(phaseState.linkedProjectile == null)
             {

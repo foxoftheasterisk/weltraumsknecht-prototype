@@ -1,7 +1,7 @@
 using Platformer.Mechanics;
 using UnityEngine;
 
-namespace Weltraumsknecht.Weapons
+namespace Weltraumsknecht.Attacks
 {
 
     /// <summary>
@@ -10,6 +10,6 @@ namespace Weltraumsknecht.Weapons
     /// </summary>
     public abstract class TransitionCondition : ScriptableObject
     {
-        abstract internal bool CheckCondition(WeaponEvent e);
+        abstract internal bool CheckCondition(AttackEvent e);
     }
 }

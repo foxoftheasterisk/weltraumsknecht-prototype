@@ -1,13 +1,15 @@
 using UnityEngine;
 
-namespace Weltraumsknecht.Weapons
+using Weltraumsknecht.Weapons;
+
+namespace Weltraumsknecht.Attacks
 {
     /// <summary>
     /// A phase in a weapon's activation.
     /// Most weapons have at least a warmup phase and a projectile phase.
     /// </summary>
     [CreateAssetMenu(fileName = "WeaponPhase", menuName = "Scriptable Objects/WeaponPhase")]
-    public class WeaponPhase : ScriptableObject
+    public class AttackPhase : ScriptableObject
     {
         /// <summary>
         /// A weapon's cooldown is not triggered until it enters a non-warmup phase.
@@ -65,6 +67,6 @@ namespace Weltraumsknecht.Weapons
         /// If multiple transitions are triggered simultaneously, they will be processed in the order they appear in this array.
         /// Once the phase has been destroyed, no further transitions will be processed.
         /// </summary>
-        public WeaponTransition[] transitions;
+        public AttackTransition[] transitions;
     }
 }
