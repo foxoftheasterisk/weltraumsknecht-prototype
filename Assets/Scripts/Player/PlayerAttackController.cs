@@ -8,7 +8,8 @@ namespace Weltraumsknecht.Player
     [RequireComponent(typeof(PlayerMovementController))]
     public class PlayerAttackController : Attacker
     {
-        private PlayerMovementController movementController;
+        public PlayerMovementController MovementController
+        { get; private set; }
 
         private InputAction m_WestWeaponAction;
         private InputAction m_NorthWeaponAction;
@@ -22,13 +23,13 @@ namespace Weltraumsknecht.Player
 
         public override bool IsFacingLeft()
         {
-            return movementController.IsFacingLeft();
+            return MovementController.IsFacingLeft();
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
-            movementController = GetComponent<PlayerMovementController>();
+            MovementController = GetComponent<PlayerMovementController>();
 
             //TODO: make weapons clear only on game reset
             if (westSlot.HasWeapon())
@@ -110,7 +111,7 @@ namespace Weltraumsknecht.Player
 
         internal bool IsFacingBlocked()
         {
-            return movementController.IsDashing() || (westSlot.HasWeapon() && westSlot.weapon.IsBlockingFacing())
+            return MovementController.IsDashing() || (westSlot.HasWeapon() && westSlot.weapon.IsBlockingFacing())
                     || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingFacing())
                     || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingFacing())
                     || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingFacing());
