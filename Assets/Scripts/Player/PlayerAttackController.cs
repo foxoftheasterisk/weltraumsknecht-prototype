@@ -57,7 +57,7 @@ namespace Weltraumsknecht.Player
         // Update is called once per frame
         void Update()
         {
-            bool weaponsBlocked = AreWeaponsBlocked();
+            bool weaponsBlocked = IsAttackingBlocked();
 
             //still need to feed through input for the weapon that's blocking other weapons
             if (westSlot.HasWeapon() && (!weaponsBlocked || westSlot.weapon.IsBlockingWeapons()))
@@ -109,28 +109,9 @@ namespace Weltraumsknecht.Player
                 kickSlot.weapon.Update();
         }
 
-        internal bool IsFacingBlocked()
+        public override bool IsFacingBlocked()
         {
-            return MovementController.IsDashing() || (westSlot.HasWeapon() && westSlot.weapon.IsBlockingFacing())
-                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingFacing())
-                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingFacing())
-                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingFacing());
-        }
-
-        internal bool IsMovementBlocked()
-        {
-            return (westSlot.HasWeapon() && westSlot.weapon.IsBlockingMovement())
-                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingMovement())
-                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingMovement())
-                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingMovement());
-        }
-
-        internal bool AreWeaponsBlocked()
-        {
-            return (westSlot.HasWeapon() && westSlot.weapon.IsBlockingWeapons())
-                    || (northSlot.HasWeapon() && northSlot.weapon.IsBlockingWeapons())
-                    || (eastSlot.HasWeapon() && eastSlot.weapon.IsBlockingWeapons())
-                    || (kickSlot.HasWeapon() && kickSlot.weapon.IsBlockingWeapons());
+            return base.IsFacingBlocked() || MovementController.IsDashing();
         }
 
         internal bool AttemptDashCancel()
