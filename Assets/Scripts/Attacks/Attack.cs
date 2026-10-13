@@ -17,24 +17,22 @@ namespace Weltraumsknecht.Attacks
     /// </summary>
     // Should this be a MonoBehaviour attached to an Actor?
     // (Or not attached, so that independent phases can continue if the Actor is destroyed?)
-    public class AttackManager
+    public class Attack
     {
         private List<ActivePhase> activePhases;
 
         private Attacker attacker;
         private WeaponInfo? weaponInfo;
 
-        public AttackManager(Attacker attacker, AttackPhase initialPhase)
+        public Attack(Attacker attacker, AttackPhase initialPhase)
         {
             this.attacker = attacker;
             weaponInfo = null;
-            activePhases = new()
-            {
-                initialPhase.Activate()
-            };
+            activePhases = new();
+            StartPhase(initialPhase);
         }
 
-        public AttackManager(Attacker attacker, AttackPhase initialPhase, WeaponInstance weapon)
+        public Attack(Attacker attacker, AttackPhase initialPhase, WeaponInstance weapon)
         {
             this.attacker = attacker;
             weaponInfo = new()
@@ -43,10 +41,8 @@ namespace Weltraumsknecht.Attacks
                 WeaponDefinition = weapon.definition,
                 Player = weapon.Player
             };
-            activePhases = new()
-            {
-                initialPhase.Activate()
-            };
+            activePhases = new();
+            StartPhase(initialPhase);
         }
 
         public void Update()
@@ -107,13 +103,14 @@ namespace Weltraumsknecht.Attacks
             }
         }
 
-        private AttackEvent GenerateEvent(ActivePhase phase, AttackTransition.TriggerType triggerType)
+        internal AttackEvent GenerateEvent(ActivePhase phase, AttackTransition.TriggerType triggerType, CollisionInfo? collisionInfo = null)
         {
             return new()
             {
                 eventTriggerType = triggerType,
                 phaseInfo = new() { TriggeringPhase = phase},
-                weaponInfo = weaponInfo
+                weaponInfo = weaponInfo,
+                collisionInfo = collisionInfo
             };
         }
 
@@ -141,11 +138,30 @@ namespace Weltraumsknecht.Attacks
             return activating;
         }
 
-        public bool IsActive()
+        /// <summary>
+        /// Returns true if any phase not marked as independent is active. This means that the Attacker is still performing the attack.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsPerforming()
         {
             foreach (ActivePhase phase in activePhases)
             {
                 if (phase.IsActive() && phase.Definition.activeLink)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if any part of the attack is still active, independent or not.
+        /// When this is false, the attack will be destroyed and can no longer recieve updates or messages.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsActive()
+        {
+            foreach (ActivePhase phase in activePhases)
+            {
+                if (phase.IsActive())
                     return true;
             }
             return false;

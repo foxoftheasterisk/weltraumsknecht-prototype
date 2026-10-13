@@ -17,7 +17,7 @@ namespace Weltraumsknecht.Weapons
         [SerializeField]
         public WeaponDefinition definition;
 
-        private AttackManager currentAttack;
+        private Attack currentAttack;
 
         [DoNotSerialize]
         public float CooldownRemaining

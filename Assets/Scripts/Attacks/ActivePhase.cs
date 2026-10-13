@@ -48,9 +48,9 @@ namespace Weltraumsknecht.Attacks
             return true;
         }
 
-        private readonly AttackManager manager;
+        private readonly Attack manager;
 
-        public ActivePhase(AttackPhase definition, GameObject projectile, AttackManager _manager, bool flipped)
+        public ActivePhase(AttackPhase definition, GameObject projectile, Attack _manager, bool flipped)
         {
             Definition = definition;
             linkedProjectile = projectile;
@@ -63,7 +63,14 @@ namespace Weltraumsknecht.Attacks
             {
                 if (projectile.TryGetComponent<Projectile>(out Projectile proj))
                 {
-                    proj.AddListener(p => CheckTransitions(AttackTransition.TriggerType.Contact, new AttackEvent(this, manager.Player, p)));
+                    proj.AddListener(p => CheckTransitions(
+                        AttackTransition.TriggerType.Contact,
+                        manager.GenerateEvent(this,
+                            AttackTransition.TriggerType.Contact,
+                            new CollisionInfo()
+                            {
+                                collidingObject = p
+                            }))); //This is very messy, should probably be exported.
                 }
                 else
                 {
