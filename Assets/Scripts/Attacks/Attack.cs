@@ -24,25 +24,24 @@ namespace Weltraumsknecht.Attacks
         private Attacker attacker;
         private WeaponInfo? weaponInfo;
 
-        public Attack(Attacker attacker, AttackPhase initialPhase)
+        public Attack(Attacker attacker, AttackPhase initialPhase, WeaponInstance weapon = null)
         {
             this.attacker = attacker;
-            weaponInfo = null;
-            activePhases = new();
-            StartPhase(initialPhase);
-        }
-
-        public Attack(Attacker attacker, AttackPhase initialPhase, WeaponInstance weapon)
-        {
-            this.attacker = attacker;
-            weaponInfo = new()
+            if (weapon is not null)
             {
-                WeaponInstance = weapon,
-                WeaponDefinition = weapon.definition,
-                Player = weapon.Player
-            };
+                weaponInfo = new()
+                {
+                    WeaponInstance = weapon,
+                    WeaponDefinition = weapon.definition,
+                    Player = weapon.Player
+                };
+            }
+            else
+                weaponInfo = null;
+
             activePhases = new();
             StartPhase(initialPhase);
+            AttackManager.Instance.AddAttack(this);
         }
 
         public void Update()
