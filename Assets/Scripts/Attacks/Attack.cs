@@ -24,6 +24,8 @@ namespace Weltraumsknecht.Attacks
         private Attacker attacker;
         private WeaponInfo? weaponInfo;
 
+        private bool warmup = true;
+
         public Attack(Attacker attacker, AttackPhase initialPhase, WeaponInstance weapon = null)
         {
             this.attacker = attacker;
@@ -166,6 +168,15 @@ namespace Weltraumsknecht.Attacks
             return false;
         }
 
+        /// <summary>
+        /// Whether the attack is in warmup, i.e., if no phase not marked as warmup has started.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsWarmup()
+        {
+            return warmup;
+        }
+
         internal void AdvancePhase(ActivePhase lastPhase, AttackTransition transition)
         {
             if (transition.nextPhase != null)
@@ -183,9 +194,10 @@ namespace Weltraumsknecht.Attacks
 
         private void StartPhase(AttackPhase phase, GameObject lastPhaseObject = null, bool lastPhaseFlipped = false)
         {
-            if (!phase.isWarmup)
+            if (warmup && !phase.isWarmup)
             {
-                //TODO: send start cooldown message to actor, track that message has been sent.
+                attacker.EndWarmup();
+                warmup = false;
             }
 
             if (phase.projectilePrefab == null)

@@ -9,5 +9,10 @@ namespace Weltraumsknecht.Attacks
     public abstract class Attacker : MonoBehaviour
     {
         public abstract bool IsFacingLeft();
+
+        /// <summary>
+        /// Called by an attack when its first non-warmup phase is completed. Generally used to start cooldowns.
+        /// </summary>
+        public abstract void EndWarmup();
     }
 }
