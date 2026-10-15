@@ -17,22 +17,19 @@ namespace Weltraumsknecht.Weapons
         [SerializeField]
         public WeaponDefinition definition;
 
-        private Attack currentAttack;
-
         [DoNotSerialize]
         public float CooldownRemaining
         {
             get;
             private set;
         }
-        //we will probably eventually want a public ReduceCooldown method
 
         [HideInInspector, DoNotSerialize]
         public PlayerAttackController Player
         {
             get;
             private set;
-        }
+        }//TODO: I don't think this is needed anymore, but I'm not sure.
 
         public WeaponInstance(WeaponDefinition _definition)
         {
@@ -46,48 +43,15 @@ namespace Weltraumsknecht.Weapons
 
         public void Update()
         {
-            //call AttackManager's Update?
-
             if (CooldownRemaining > 0 && definition.cooldownType == CooldownType.Time)
                 CooldownRemaining -= Time.deltaTime;
         }
 
-        public void ButtonPressed()
         {
-            if (currentAttack != null)
-            {
-                currentAttack.InvokeTrigger(AttackTransition.TriggerType.ButtonPress);
-            }
-            else if (CanFire())
-            {
-                Fire();
-            }
-        }
-
-        public void ButtonReleased()
-        {
-            if (currentAttack != null)
-            {
-                currentAttack.InvokeTrigger(AttackTransition.TriggerType.ButtonRelease);
-            }
         }
 
         public bool CanFire()
         {
-            return !IsActive() && CooldownRemaining <= 0;
-        }
-
-        protected virtual void Fire()
-        {
-            currentAttack = new(Player, definition.initialPhase, this);
-        }
-
-        public bool IsActive()
-        {
-            if (currentAttack == null)
-                return false;
-            else
-                return currentAttack.IsActive();
         }
 
         public int GetDamage(bool crit)
@@ -98,25 +62,7 @@ namespace Weltraumsknecht.Weapons
                 return definition.standardDamage;
         }
 
-        public virtual bool IsBlockingFacing()
         {
-            if (!IsActive())
-                return false;
-            return currentAttack.IsBlockingFacing();
-        }
-
-        public virtual bool IsBlockingMovement()
-        {
-            if (!IsActive())
-                return false;
-            return currentAttack.IsBlockingMovement();
-        }
-
-        public virtual bool IsBlockingWeapons()
-        {
-            if (!IsActive())
-                return false;
-            return currentAttack.IsBlockingAttacks();
         }
     }
 }

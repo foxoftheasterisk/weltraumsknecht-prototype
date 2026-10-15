@@ -39,14 +39,7 @@ public class WeaponSlotDisplay : MonoBehaviour
             WeaponInstance weapon = slot.weapon;
             if (!weapon.CanFire())
             {
-                if (weapon.IsActive())
-                {
-                    display.color = Color.yellow;
-                }
-                else
-                {
-                    display.color = Color.gray;
-                }
+                display.color = Color.gray;
             }
             else
             {
