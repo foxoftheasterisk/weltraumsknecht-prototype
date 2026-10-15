@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weltraumsknecht.Attacks;
@@ -114,6 +115,20 @@ namespace Weltraumsknecht.Player
 
             activeSlot = slot;
             StartAttack(slot.weapon.definition.initialPhase, slot.weapon.GenerateWeaponInfo());
+        }
+
+        internal override void EndWarmup()
+        {
+            if (activeSlot == null || !activeSlot.HasWeapon())
+                throw new InvalidOperationException("No active weapon to end warmup of!");
+
+            activeSlot.weapon.StartCooldown();
+        }
+
+        internal override void EndAttack()
+        {
+            base.EndAttack();
+            activeSlot = null;
         }
     }
 }
