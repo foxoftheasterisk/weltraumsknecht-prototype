@@ -21,7 +21,7 @@ namespace Weltraumsknecht.Attacks
         /// Note that phases can repeat or even have multiple active instances at once.
         /// If null, the transition will process but no new phase will start. (This is useful for ending phases on triggers.)
         /// </summary>
-        public AttackPhase nextPhase;
+        public AttackPhaseDefinition nextPhase;
 
         /// <summary>
         /// Controls when the weapon should check if the phase is ready to advance.

@@ -26,7 +26,7 @@ namespace Weltraumsknecht.Attacks
 
         private bool warmup = true;
 
-        public Attack(Attacker attacker, AttackPhase initialPhase, WeaponInstance weapon = null)
+        public Attack(Attacker attacker, AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
         {
             this.attacker = attacker;
             if (weapon is not null)
@@ -192,7 +192,7 @@ namespace Weltraumsknecht.Attacks
             }
         }
 
-        private void StartPhase(AttackPhase phase, GameObject lastPhaseObject = null, bool lastPhaseFlipped = false)
+        private void StartPhase(AttackPhaseDefinition phase, GameObject lastPhaseObject = null, bool lastPhaseFlipped = false)
         {
             if (warmup && !phase.isWarmup)
             {
@@ -215,18 +215,18 @@ namespace Weltraumsknecht.Attacks
 
             switch (phase.locale)
             {
-                case AttackPhase.ProjectileLocale.Melee:
-                case AttackPhase.ProjectileLocale.Ranged:
+                case AttackPhaseDefinition.ProjectileLocale.Melee:
+                case AttackPhaseDefinition.ProjectileLocale.Ranged:
                     flip = attacker.IsFacingLeft();
-                    projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, attacker.GameObject(), flip, phase.locale == AttackPhase.ProjectileLocale.Melee, phaseProps);
+                    projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, attacker.GameObject(), flip, phase.locale == AttackPhaseDefinition.ProjectileLocale.Melee, phaseProps);
                     break;
-                case AttackPhase.ProjectileLocale.Remote:
+                case AttackPhaseDefinition.ProjectileLocale.Remote:
                     if (lastPhaseObject == null)
                         throw new MissingReferenceException("Tried to start remote phase with no parent!");
                     flip = lastPhaseFlipped;
                     projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, lastPhaseObject, lastPhaseFlipped, false, phaseProps);
                     break;
-                case AttackPhase.ProjectileLocale.Replace:
+                case AttackPhaseDefinition.ProjectileLocale.Replace:
                     if (lastPhaseObject == null)
                         throw new MissingReferenceException("Tried to start replace phase with no parent!");
                     flip = lastPhaseFlipped;
@@ -241,7 +241,7 @@ namespace Weltraumsknecht.Attacks
                 WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
                 foreach (WeaponProjectile wp in wps)
                 {
-                    wp.Create(weaponInfo?.WeaponInstance, phase.locale == AttackPhase.ProjectileLocale.Melee);
+                    wp.Create(weaponInfo?.WeaponInstance, phase.locale == AttackPhaseDefinition.ProjectileLocale.Melee);
                 }
             }
 

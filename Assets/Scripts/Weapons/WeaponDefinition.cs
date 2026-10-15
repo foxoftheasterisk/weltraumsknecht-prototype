@@ -12,7 +12,7 @@ namespace Weltraumsknecht.Weapons
     [CreateAssetMenu(fileName = "WeaponDefinition", menuName = "Scriptable Objects/WeaponDefinition")]
     public class WeaponDefinition : ScriptableObject
     {
-        public AttackPhase initialPhase;
+        public AttackPhaseDefinition initialPhase;
     
         public int standardDamage = 10;
         public int critDamage = 20;

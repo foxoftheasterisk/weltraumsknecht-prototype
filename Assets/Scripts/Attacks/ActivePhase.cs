@@ -15,7 +15,7 @@ namespace Weltraumsknecht.Attacks
     //TODO: it should probably manage itself, for best code practices
     internal class ActivePhase
     {
-        public AttackPhase Definition
+        public AttackPhaseDefinition Definition
         {
             get;
             private set;
@@ -50,7 +50,7 @@ namespace Weltraumsknecht.Attacks
 
         private readonly Attack manager;
 
-        public ActivePhase(AttackPhase definition, GameObject projectile, Attack _manager, bool flipped)
+        public ActivePhase(AttackPhaseDefinition definition, GameObject projectile, Attack _manager, bool flipped)
         {
             Definition = definition;
             linkedProjectile = projectile;

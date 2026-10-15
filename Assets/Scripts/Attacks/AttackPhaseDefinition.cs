@@ -1,25 +1,30 @@
 using UnityEngine;
-
+using UnityEngine.Serialization;
 using Weltraumsknecht.Weapons;
 
 namespace Weltraumsknecht.Attacks
 {
     /// <summary>
-    /// A phase in a weapon's activation.
-    /// Most weapons have at least a warmup phase and a projectile phase.
+    /// A phase in an attack's activation.
+    /// Most attacks have at least a warmup phase and a projectile phase.
     /// </summary>
-    [CreateAssetMenu(fileName = "WeaponPhase", menuName = "Scriptable Objects/WeaponPhase")]
-    public class AttackPhase : ScriptableObject
+    [CreateAssetMenu(fileName = "AttackPhaseDefinition", menuName = "Scriptable Objects/AttackPhase")]
+    public class AttackPhaseDefinition : ScriptableObject
     {
         /// <summary>
         /// A weapon's cooldown is not triggered until it enters a non-warmup phase.
         /// (Thus, if the weapon's activation is interrupted during its warmup, the cooldown is not triggered.)
         /// </summary>
         public bool isWarmup;
-        
+
+        /// <summary>
+        /// A phase that is performed means that it is linked to actions by the Attacker; thus, it may be canceled if the Attacker can no longer perform the attack.
+        /// A phase that is not performed is generally a ranged projectile. It will continue even if the Attacker cancels the attack or dies.
+        /// </summary>
+        public bool isPerformed;
+
         public bool blocksMovement;
         public float moveSpeedPenalty = 0; //1 for no volitional movement, 0 for no penalty
-        public bool blocksWeapons;
         public bool blocksFacing;
 
         /// <summary>
