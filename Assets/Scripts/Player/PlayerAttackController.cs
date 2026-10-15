@@ -11,15 +11,12 @@ namespace Weltraumsknecht.Player
         public PlayerMovementController MovementController
         { get; private set; }
 
-        private InputAction m_WestWeaponAction;
-        private InputAction m_NorthWeaponAction;
-        private InputAction m_EastWeaponAction;
-        private InputAction m_KickAction;
-
         public WeaponSlot westSlot;
         public WeaponSlot northSlot;
         public WeaponSlot eastSlot;
         public WeaponSlot kickSlot;
+
+        private WeaponSlot activeSlot = null;
 
         public override bool IsFacingLeft()
         {
@@ -42,57 +39,42 @@ namespace Weltraumsknecht.Player
             if (kickSlot.HasWeapon())
                 kickSlot.weapon.Initialize(this);
 
-            m_WestWeaponAction = InputSystem.actions.FindAction("Player/WeaponWest");
-            m_NorthWeaponAction = InputSystem.actions.FindAction("Player/WeaponNorth");
-            m_EastWeaponAction = InputSystem.actions.FindAction("Player/WeaponEast");
-            m_KickAction = InputSystem.actions.FindAction("Player/Kick");
+            westSlot.button = InputSystem.actions.FindAction("Player/WeaponWest");
+            northSlot.button = InputSystem.actions.FindAction("Player/WeaponNorth");
+            eastSlot.button = InputSystem.actions.FindAction("Player/WeaponEast");
+            kickSlot.button = InputSystem.actions.FindAction("Player/Kick");
 
-            m_WestWeaponAction.Enable();
-            m_NorthWeaponAction.Enable();
-            m_EastWeaponAction.Enable();
-            m_KickAction.Enable();
+            westSlot.button.Enable();
+            northSlot.button.Enable();
+            eastSlot.button.Enable();
+            kickSlot.button.Enable();
 
         }
 
         // Update is called once per frame
         void Update()
         {
-            bool weaponsBlocked = IsAttackingBlocked();
+            bool weaponsBlocked = IsAttacking();
 
-            //still need to feed through input for the weapon that's blocking other weapons
-            if (westSlot.HasWeapon() && (!weaponsBlocked || westSlot.weapon.IsBlockingWeapons()))
+            if(IsAttacking())
             {
-                if (m_WestWeaponAction.WasPressedThisFrame())
-                    westSlot.weapon.ButtonPressed();
-                if (m_WestWeaponAction.WasReleasedThisFrame())
-                    westSlot.weapon.ButtonReleased();
+                if (activeSlot.button.WasPressedThisFrame())
+                    currentAttack.InvokeTrigger(AttackTransition.TriggerType.ButtonPress);
+                if (activeSlot.button.WasReleasedThisFrame())
+                    currentAttack.InvokeTrigger(AttackTransition.TriggerType.ButtonRelease);
             }
-
-            if (northSlot.HasWeapon() && (!weaponsBlocked || northSlot.weapon.IsBlockingWeapons()))
+            else
             {
-                if (m_NorthWeaponAction.WasPressedThisFrame())
-                    northSlot.weapon.ButtonPressed();
-                if (m_NorthWeaponAction.WasReleasedThisFrame())
-                    northSlot.weapon.ButtonReleased();
+                //Else-ifs so multiple weapons cannot start attacking on the same frame.
+                if (SlotShouldAttack(westSlot))
+                    StartAttack(westSlot);
+                else if (SlotShouldAttack(northSlot))
+                    StartAttack(northSlot);
+                else if (SlotShouldAttack(eastSlot))
+                    StartAttack(eastSlot);
+                else if (SlotShouldAttack(kickSlot))
+                    StartAttack(kickSlot);
             }
-
-            if (eastSlot.HasWeapon() && (!weaponsBlocked || eastSlot.weapon.IsBlockingWeapons()))
-            {
-                if (m_EastWeaponAction.WasPressedThisFrame())
-                    eastSlot.weapon.ButtonPressed();
-                if (m_EastWeaponAction.WasReleasedThisFrame())
-                    eastSlot.weapon.ButtonReleased();
-            }
-
-            if (kickSlot.HasWeapon() && (!weaponsBlocked || kickSlot.weapon.IsBlockingWeapons()))
-            {
-                if (m_KickAction.WasPressedThisFrame())
-                    kickSlot.weapon.ButtonPressed();
-                if (m_KickAction.WasReleasedThisFrame())
-                    kickSlot.weapon.ButtonReleased();
-            }
-            //this block seems awkward, but I'm not really sure how else to do it...
-            //good news, past me! it's probably changing
 
             UpdateWeapons();
         }
@@ -118,6 +100,11 @@ namespace Weltraumsknecht.Player
         {
             //TODO: this
             return false;
+        }
+
+        private bool SlotShouldAttack(WeaponSlot slot)
+        {
+            return slot.button.WasPressedThisFrame() && slot.HasWeapon() && slot.weapon.CanFire();
         }
 
         private void StartAttack(WeaponSlot slot)

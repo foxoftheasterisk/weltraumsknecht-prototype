@@ -1,6 +1,7 @@
 using UnityEngine;
 using Platformer.Mechanics;
 using Weltraumsknecht.Weapons;
+using UnityEngine.InputSystem;
 
 namespace Weltraumsknecht.Player
 {
@@ -11,6 +12,9 @@ namespace Weltraumsknecht.Player
     {
         public WeaponInstance weapon;
         PlayerAttackController player;
+
+        internal InputAction button;
+
 
         public bool HasWeapon()
         {
