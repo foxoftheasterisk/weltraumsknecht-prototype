@@ -47,11 +47,14 @@ namespace Weltraumsknecht.Weapons
                 CooldownRemaining -= Time.deltaTime;
         }
 
+        public void StartCooldown()
         {
+            CooldownRemaining = definition.cooldown;
         }
 
         public bool CanFire()
         {
+            return CooldownRemaining <= 0;
         }
 
         public int GetDamage(bool crit)
