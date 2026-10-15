@@ -30,17 +30,7 @@ namespace Weltraumsknecht.Attacks
         public Attack(Attacker attacker, AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
         {
             this.attacker = attacker;
-            if (weapon is not null)
-            {
-                weaponInfo = new()
-                {
-                    WeaponInstance = weapon,
-                    WeaponDefinition = weapon.definition,
-                    Player = weapon.Player
-                };
-            }
-            else
-                weaponInfo = null;
+            this.weaponInfo = weaponInfo;
 
             activePhases = new();
             StartPhase(initialPhase);

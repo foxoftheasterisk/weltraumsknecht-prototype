@@ -62,7 +62,13 @@ namespace Weltraumsknecht.Weapons
                 return definition.standardDamage;
         }
 
+        internal WeaponInfo GenerateWeaponInfo()
         {
+            return new()
+            {
+                WeaponInstance = this,
+                WeaponDefinition = definition
+            };
         }
     }
 }

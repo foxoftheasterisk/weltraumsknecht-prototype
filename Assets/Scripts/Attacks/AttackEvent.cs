@@ -11,7 +11,7 @@ namespace Weltraumsknecht.Attacks
     /// Carries information about events that inform whether TransitionConditions should fire.
     /// Some of these only apply in some cases.
     /// </summary>
-    internal struct AttackEvent
+    public struct AttackEvent
     {
         internal AttackTransition.TriggerType eventTriggerType;
         internal PhaseInfo phaseInfo;
@@ -19,19 +19,18 @@ namespace Weltraumsknecht.Attacks
         internal CollisionInfo? collisionInfo;
     }
 
-    internal struct PhaseInfo
+    public struct PhaseInfo
     {
         internal ActivePhase TriggeringPhase;
     }
 
-    internal struct WeaponInfo
+    public struct WeaponInfo
     {
-        internal PlayerAttackController Player;
-        internal WeaponInstance WeaponInstance;
-        internal WeaponDefinition WeaponDefinition;
+        public WeaponInstance WeaponInstance;
+        public WeaponDefinition WeaponDefinition;
     }
 
-    internal struct CollisionInfo
+    public struct CollisionInfo
     {
         internal GameObject collidingObject;
     }

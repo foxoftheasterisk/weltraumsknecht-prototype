@@ -119,5 +119,14 @@ namespace Weltraumsknecht.Player
             //TODO: this
             return false;
         }
+
+        private void StartAttack(WeaponSlot slot)
+        {
+            if (!slot.HasWeapon() || !slot.weapon.CanFire())
+                throw new ArgumentException("No ready weapon in the given slot!");
+
+            activeSlot = slot;
+            StartAttack(slot.weapon.definition.initialPhase, slot.weapon.GenerateWeaponInfo());
+        }
     }
 }
