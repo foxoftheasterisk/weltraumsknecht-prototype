@@ -25,6 +25,7 @@ namespace Weltraumsknecht.Attacks
         private WeaponInfo? weaponInfo;
 
         private bool warmup = true;
+        private bool performing = true;
 
         public Attack(Attacker attacker, AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
         {
@@ -189,6 +190,8 @@ namespace Weltraumsknecht.Attacks
                 activePhases.Remove(lastPhase);
                 if (lastPhase.linkedProjectile != null)
                     GameObject.Destroy(lastPhase.linkedProjectile);
+                if (performing && lastPhase.Definition.isPerformed && !IsPerforming())
+                    attacker.EndAttack();
             }
         }
 
