@@ -13,6 +13,7 @@ namespace Weltraumsknecht.Attacks
     /// </summary>
     public struct AttackEvent
     {
+        internal Attacker attacker;
         internal AttackTransition.TriggerType eventTriggerType;
         internal PhaseInfo phaseInfo;
         internal WeaponInfo? weaponInfo;

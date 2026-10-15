@@ -25,23 +25,19 @@ namespace Weltraumsknecht.Attacks
 
         internal override bool CheckCondition(AttackEvent e)
         {
-            if (e.weaponInfo is null)
-                throw new ArgumentNullException("PlayerMoveStateCondition cannot be used when weaponInfo is null!");
-
-            PlayerMovementController player = e.weaponInfo?.Player.MovementController;
-            switch (targetState)
+            if (e.attacker.TryGetComponent<PlayerMovementController>(out PlayerMovementController player))
             {
-                case PlayerMoveState.Air:
-                    return !player.IsGrounded;
-                case PlayerMoveState.Ground:
-                    return player.IsGrounded;
-                case PlayerMoveState.Dashing:
-                    return player.IsDashing();
-                case PlayerMoveState.NotDashing:
-                    return !player.IsDashing();
-                default:
-                    throw new NotImplementedException("Undefined PlayerMoveState for PlayerMoveStateCondition!");
+                return targetState switch
+                {
+                    PlayerMoveState.Air => !player.IsGrounded,
+                    PlayerMoveState.Ground => player.IsGrounded,
+                    PlayerMoveState.Dashing => player.IsDashing(),
+                    PlayerMoveState.NotDashing => !player.IsDashing(),
+                    _ => throw new NotImplementedException("Undefined PlayerMoveState for PlayerMoveStateCondition!"),
+                };
             }
+            else
+                throw new ArgumentException("PlayerMoveStateCondition cannot be used when attacker is not the player!");
         }
     }
 }

@@ -95,12 +95,13 @@ namespace Weltraumsknecht.Attacks
             }
         }
 
-        internal AttackEvent GenerateEvent(ActivePhase phase, AttackTransition.TriggerType triggerType, CollisionInfo? collisionInfo = null)
+        internal AttackEvent GenerateEvent(ActivePhase phase, TriggerType triggerType, CollisionInfo? collisionInfo = null)
         {
             return new()
             {
+                attacker = attacker,
                 eventTriggerType = triggerType,
-                phaseInfo = new() { TriggeringPhase = phase},
+                phaseInfo = new() { TriggeringPhase = phase },
                 weaponInfo = weaponInfo,
                 collisionInfo = collisionInfo
             };
