@@ -281,7 +281,7 @@ namespace Weltraumsknecht.Attacks
                 return false;
             foreach (ActivePhase phase in activePhases)
             {
-                if (phase.Definition.blocksWeapons && phase.IsActive())
+                if (phase.Definition.isPerformed && phase.IsActive())
                     return true;
             }
             return false;

@@ -60,12 +60,9 @@ namespace Weltraumsknecht.Attacks
             return currentAttack.IsBlockingMovement();
         }
 
-        public virtual bool IsAttackingBlocked()
+        public virtual bool IsAttacking()
         {
-            if (currentAttack is null)
-                return false;
-
-            return currentAttack.IsBlockingAttacks();
+            return currentAttack is not null;
         }
     }
 }
