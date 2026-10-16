@@ -252,5 +252,11 @@ namespace Weltraumsknecht.Enemies
         {
             return wasFacingLeft;
         }
+
+        internal override void EndWarmup()
+        {
+            inCooldown = true;
+            Invoke(nameof(EndCooldown), cooldownBetweenAttacks);
+        }
     }
 }
