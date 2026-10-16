@@ -39,38 +39,21 @@ namespace Weltraumsknecht.Attacks
 
         public void Update()
         {
-            List<ActivePhase> inactive = new();
-            List<Tuple<ActivePhase, List<AttackTransition>>> transitioning = new();
-            foreach (ActivePhase phase in activePhases)
-            {
-                if (!phase.IsActive())
-                {
-                    inactive.Add(phase); 
-                    //Checks for phases that have become inactive without the use of a trigger.
-                    //This should be avoided when possible but there are still some cases for it (e.g. weapons that destroy enemy projectiles).
-                }
-                else
-                {
-                    phase.AdvanceTime(Time.deltaTime);
-                    List<AttackTransition> activating = CheckTransitions(phase, TriggerType.Update, GenerateEvent(phase, TriggerType.Update));
-                    if (activating.Count > 0)
-                    {
-                        transitioning.Add(new(phase, activating));
-                    }
-                }
-            }
 
+            List<ActivePhase> inactive = activePhases.FindAll(p => !p.IsActive());
             foreach (ActivePhase phase in inactive)
             {
-                activePhases.Remove(phase);
+                EndPhase(phase);
             }
 
-            foreach (Tuple<ActivePhase, List<AttackTransition>> activePair in transitioning)
+            //This is one more iteration than is strictly necessary,
+            //but the phase lists should be short enough it doesn't really matter.
+            foreach(ActivePhase phase in activePhases)
             {
-                ProcessTransitions(activePair.Item1, activePair.Item2);
+                phase.AdvanceTime(Time.deltaTime);
             }
-            
-            //Destroy this if no phases are active
+
+            InvokeTrigger(TriggerType.Update);
         }
 
         //TODO: move transition checking to ActivePhase?
@@ -78,14 +61,13 @@ namespace Weltraumsknecht.Attacks
         {
             List<Tuple<ActivePhase, List<AttackTransition>>> activatingTransitions = new();
 
-            
-
             foreach (ActivePhase phase in activePhases)
             {
                 List<AttackTransition> transitions = CheckTransitions(phase, triggerType, GenerateEvent(phase, triggerType));
                 if (transitions.Count > 0)
                 {
                     activatingTransitions.Add(new(phase, transitions));
+                    //Have to store these since if we processed the transitions immediately, it could remove the phase and mess up the iteration.
                 }
             }
 
@@ -146,18 +128,13 @@ namespace Weltraumsknecht.Attacks
         }
 
         /// <summary>
-        /// Returns true if any part of the attack is still active, independent or not.
+        /// Returns true if any phase of the attack is still active, independent or not.
         /// When this is false, the attack will be destroyed and can no longer recieve updates or messages.
         /// </summary>
         /// <returns></returns>
         public bool IsActive()
         {
-            foreach (ActivePhase phase in activePhases)
-            {
-                if (phase.IsActive())
-                    return true;
-            }
-            return false;
+            return activePhases.Count != 0;
         }
 
         /// <summary>
@@ -178,11 +155,7 @@ namespace Weltraumsknecht.Attacks
 
             if (transition.destroyLastPhase)
             {
-                activePhases.Remove(lastPhase);
-                if (lastPhase.linkedProjectile != null)
-                    GameObject.Destroy(lastPhase.linkedProjectile);
-                if (performing && lastPhase.Definition.isPerformed && !IsPerforming())
-                    attacker.EndAttack();
+                EndPhase(lastPhase);
             }
         }
 
@@ -240,6 +213,20 @@ namespace Weltraumsknecht.Attacks
             }
 
             activePhases.Add(new ActivePhase(phase, projectile, this, flip));
+        }
+
+        private void EndPhase(ActivePhase phase)
+        {
+            if (!activePhases.Contains(phase))
+                return; //This phase has already been ended
+
+            activePhases.Remove(phase);
+
+            if (phase.linkedProjectile != null)
+                GameObject.Destroy(phase.linkedProjectile);
+
+            if (performing && !IsPerforming())
+                attacker.EndAttack();
         }
 
         public virtual bool IsBlockingFacing()
