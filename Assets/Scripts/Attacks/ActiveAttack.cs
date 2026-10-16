@@ -121,7 +121,7 @@ namespace Weltraumsknecht.Attacks
         {
             foreach (ActivePhase phase in activePhases)
             {
-                if (phase.IsActive() && phase.Definition.activeLink)
+                if (phase.IsActive() && phase.Definition.isPerformed)
                     return true;
             }
             return false;
@@ -166,6 +166,11 @@ namespace Weltraumsknecht.Attacks
                 attacker.EndWarmup();
                 warmup = false;
             }
+
+            //TODO: move the rest of this method into ActivePhase
+
+            if (phase.animation)
+                attacker.TriggerAnimation(phase.animationTriggerName);
 
             if (phase.projectilePrefab == null)
             {

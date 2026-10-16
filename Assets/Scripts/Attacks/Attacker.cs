@@ -1,15 +1,24 @@
 using System;
 using System.ComponentModel;
 using UnityEngine;
+using Weltraumsknecht.Enemies;
 
 namespace Weltraumsknecht.Attacks
 {
     /// <summary>
     /// Shared base for entities that can host attacks (e.g. enemies and player)
     /// </summary>
+    [RequireComponent(typeof(Animator))]
     public abstract class Attacker : MonoBehaviour
     {
         protected ActiveAttack currentAttack;
+
+        protected Animator animator;
+
+        void Awake()
+        {
+            animator = GetComponent<Animator>();
+        }
 
         public abstract bool IsFacingLeft();
 
@@ -63,6 +72,11 @@ namespace Weltraumsknecht.Attacks
         public virtual bool IsAttacking()
         {
             return currentAttack is not null;
+        }
+
+        internal void TriggerAnimation(string triggerName)
+        {
+            animator.SetTrigger(triggerName);
         }
     }
 }

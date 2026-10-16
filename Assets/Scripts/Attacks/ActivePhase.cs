@@ -10,7 +10,7 @@ namespace Weltraumsknecht.Attacks
 {
     /// <summary>
     /// Holds the data of a currently-running phase.
-    /// Managed by WeaponInstance.
+    /// Managed by ActiveAttack.
     /// </summary>
     //TODO: it should probably manage itself, for best code practices
     internal class ActivePhase
@@ -39,7 +39,7 @@ namespace Weltraumsknecht.Attacks
 
         public bool IsActive()
         {
-            if (Definition.linkedToProjectile)
+            if (Definition.createProjectile)
             {
                 if (linkedProjectile == null)
                     return false;

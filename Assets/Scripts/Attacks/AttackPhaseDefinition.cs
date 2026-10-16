@@ -22,10 +22,31 @@ namespace Weltraumsknecht.Attacks
         /// A phase that is not performed is generally a ranged projectile. It will continue even if the Attacker cancels the attack or dies.
         /// </summary>
         public bool isPerformed;
+        //TODO: determine this automatically?
+        //Warmups, melee projectiles, animations, and movements are all performed.
+        //Also, all phases that block movement, block facing, or have a move speed penalty are performed.
 
         public bool blocksMovement;
         public float moveSpeedPenalty = 0; //1 for no volitional movement, 0 for no penalty
         public bool blocksFacing;
+
+        /// <summary>
+        /// The set of possible transitions from this phase.
+        /// Each transition can only be activated once (per instance of the phase).
+        /// If multiple transitions are triggered simultaneously, they will be processed in the order they appear in this array.
+        /// Once the phase has been destroyed, no further transitions will be processed.
+        /// </summary>
+        public AttackTransition[] transitions;
+
+        // --- PHASE EFFECTS ---
+        
+        //(Wondering if I should make these be, like, a List of effects instead of just all the possible effects.
+        //Thing is, I don't think we'd want to allow the same effect more than once in a phase?)
+
+        #region CreateProjectile
+
+        [FormerlySerializedAs("linkedToProjectile")]
+        public bool createProjectile = false;
 
         /// <summary>
         /// If false, initialProperties will be ignored.
@@ -54,24 +75,22 @@ namespace Weltraumsknecht.Attacks
 
         public GameObject projectilePrefab;
 
-        /// <summary>
-        /// If true, this phase will become inactive when its projectile does not exist or is not active.
-        /// Use false for phases without projectile-creating effects, such as warmups.
-        /// </summary>
-        public bool linkedToProjectile = true;
+        #endregion
 
-        /// <summary>
-        /// If false, the weapon is considered inactive even if this phase is active.
-        /// In most cases, this is not desired.
-        /// </summary>
-        public bool activeLink = true;
+        #region Animation
 
-        /// <summary>
-        /// The set of possible transitions from this phase.
-        /// Each transition can only be activated once (per instance of the phase).
-        /// If multiple transitions are triggered simultaneously, they will be processed in the order they appear in this array.
-        /// Once the phase has been destroyed, no further transitions will be processed.
-        /// </summary>
-        public AttackTransition[] transitions;
+        public bool animation = false;
+
+        public string animationTriggerName;
+
+        #endregion
+
+        #region MoveAttacker
+
+        //TODO: this
+
+        #endregion
+
+        //TODO: Transition trigger?
     }
 }
