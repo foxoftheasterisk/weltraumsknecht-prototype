@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: toss_grenade
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 0
   blocksFacing: 0
   useProperties: 1
   initialProperties:

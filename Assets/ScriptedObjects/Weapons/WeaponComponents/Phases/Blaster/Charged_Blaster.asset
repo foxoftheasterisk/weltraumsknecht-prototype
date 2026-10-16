@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
   m_Name: Charged_Blaster
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
-  isWarmup: 0
+  isWarmup: 1
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 0
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 1932039013025941335, guid: 250330c19b1639344b580d8f5f444760,
     type: 3}

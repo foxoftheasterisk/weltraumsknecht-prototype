@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Charge3_Knives
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 1
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 0
   useProperties: 1
   initialProperties:
@@ -30,11 +30,6 @@ MonoBehaviour:
   linkedToProjectile: 1
   activeLink: 1
   transitions:
-  - destroyLastPhase: 0
-    nextPhase: {fileID: 0}
-    triggerType: 0
-    conditions:
-    - {fileID: 11400000, guid: a1b75816c97e0cc4da4887b412d0c455, type: 2}
   - destroyLastPhase: 1
     nextPhase: {fileID: 11400000, guid: 8aafd1e9e3f312a4497f6ca830838aed, type: 2}
     triggerType: 2

@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Swipe-rear_dagger
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 2736335973647754164, guid: 6d875a362d5f36d43b263c1edad8791f,
     type: 3}

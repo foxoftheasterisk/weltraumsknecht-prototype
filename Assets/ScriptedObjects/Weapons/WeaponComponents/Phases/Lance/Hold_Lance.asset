@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Hold_Lance
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
   useProperties: 0
   initialProperties:
     displace: {x: 0, y: 0}
     rotateMod: 0
-    initialVelocity: {x: 0, y: 0}
+    initialSpeed: 0
+    initialAngle: 0
     initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 7461316765189010005, guid: 9e5fc9dade34729438f4d5070d1f6a74,
