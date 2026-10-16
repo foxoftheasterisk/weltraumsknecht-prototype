@@ -34,7 +34,8 @@ namespace Weltraumsknecht.Attacks
             Update,
             ButtonPress,
             ButtonRelease,
-            Contact
+            Contact,
+            AnimationMessage
         }
         public TriggerType triggerType;
 
