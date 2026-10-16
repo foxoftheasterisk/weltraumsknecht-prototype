@@ -16,7 +16,7 @@ public class AimAtPlayerBehaviour : StartingPropertiesAlterer
 
     void OnEnable()
     {
-        Debug.Log("Aim starting");
+        //Debug.Log("Aim starting");
 
         Vector2 pos = transform.position;
         Vector2 playerPos = PlayerMovementController.player.transform.position;
