@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Settled_Caltrops
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 0
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 0
   blocksFacing: 0
   useProperties: 0
   initialProperties:
     displace: {x: 0, y: 0}
     rotateMod: 0
-    initialVelocity: {x: 0, y: 0}
+    initialSpeed: 0
+    initialAngle: 0
     initialRotateVelocity: 0
   locale: 3
   projectilePrefab: {fileID: 3737017168360966271, guid: aa82b8d248ef30f41b8296e66f651b2a,
@@ -38,3 +39,8 @@ MonoBehaviour:
     triggerType: 3
     conditions:
     - {fileID: 11400000, guid: 3adf5c36dce104745883d5959155d051, type: 2}
+  - destroyLastPhase: 1
+    nextPhase: {fileID: 0}
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: 4990494d015fc5a4c9fef9678f76ab3c, type: 2}
