@@ -266,12 +266,14 @@ namespace Weltraumsknecht.Attacks
         }
         
         /// <summary>
-        /// Ends the attack, canceling any phases that are linked to the actor.
-        /// Phases marked as independent may continue.
+        /// Ends the attack, canceling any phases that are performed by the actor.
+        /// Non-performed phases may continue.
         /// </summary>
         public void CancelAttack()
         {
-            //TODO: this
+            List<ActivePhase> performing = activePhases.FindAll(p => p.Definition.isPerformed);
+            foreach (ActivePhase phase in performing)
+                EndPhase(phase);
         }
 
     }
