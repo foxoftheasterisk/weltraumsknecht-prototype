@@ -9,7 +9,7 @@ namespace Weltraumsknecht.Attacks
     /// </summary>
     public abstract class Attacker : MonoBehaviour
     {
-        protected Attack currentAttack;
+        protected ActiveAttack currentAttack;
 
         public abstract bool IsFacingLeft();
 

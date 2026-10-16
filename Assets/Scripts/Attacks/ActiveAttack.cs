@@ -17,7 +17,7 @@ namespace Weltraumsknecht.Attacks
     /// </summary>
     // Should this be a MonoBehaviour attached to an Actor?
     // (Or not attached, so that independent phases can continue if the Actor is destroyed?)
-    public class Attack
+    public class ActiveAttack
     {
         private List<ActivePhase> activePhases;
 
@@ -27,7 +27,7 @@ namespace Weltraumsknecht.Attacks
         private bool warmup = true;
         private bool performing = true;
 
-        public Attack(Attacker attacker, AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
+        public ActiveAttack(Attacker attacker, AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
         {
             this.attacker = attacker;
             this.weaponInfo = weaponInfo;

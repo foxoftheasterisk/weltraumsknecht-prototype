@@ -48,9 +48,9 @@ namespace Weltraumsknecht.Attacks
             return true;
         }
 
-        private readonly Attack manager;
+        private readonly ActiveAttack manager;
 
-        public ActivePhase(AttackPhaseDefinition definition, GameObject projectile, Attack _manager, bool flipped)
+        public ActivePhase(AttackPhaseDefinition definition, GameObject projectile, ActiveAttack _manager, bool flipped)
         {
             Definition = definition;
             linkedProjectile = projectile;

@@ -13,7 +13,7 @@ namespace Weltraumsknecht.Attacks
         public static AttackManager Instance
         { get; private set; }
 
-        HashSet<Attack> activeAttacks;
+        HashSet<ActiveAttack> activeAttacks;
 
         void Awake()
         {
@@ -24,7 +24,7 @@ namespace Weltraumsknecht.Attacks
         // Update is called once per frame
         void Update()
         {
-            foreach (Attack attack in activeAttacks)
+            foreach (ActiveAttack attack in activeAttacks)
             {
                 attack.Update();
             }
@@ -32,12 +32,12 @@ namespace Weltraumsknecht.Attacks
             activeAttacks.RemoveWhere(a => !a.IsActive());
         }
 
-        public void AddAttack(Attack attack)
+        public void AddAttack(ActiveAttack attack)
         {
             activeAttacks.Add(attack);
         }
 
-        public void RemoveAttack(Attack attack)
+        public void RemoveAttack(ActiveAttack attack)
         {
             activeAttacks.Remove(attack);
         }
