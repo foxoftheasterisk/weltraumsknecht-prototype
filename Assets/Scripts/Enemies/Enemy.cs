@@ -42,7 +42,7 @@ namespace Weltraumsknecht.Enemies
         private AttackAI currentAttack = null;
         protected bool inCooldown = false;
 
-        internal Animator animator;
+        internal Animator animator_enemy;
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
         internal Rigidbody2D body;
@@ -60,7 +60,7 @@ namespace Weltraumsknecht.Enemies
 
         void Awake()
         {
-            animator = GetComponent<Animator>();
+            animator_enemy = GetComponent<Animator>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             body = GetComponent<Rigidbody2D>();
@@ -195,7 +195,7 @@ namespace Weltraumsknecht.Enemies
             body.linearVelocity = knockback * knockbackScale;
 
             InKnockback = true;
-            animator.SetBool("inFlinch", true);
+            animator_enemy.SetBool("inFlinch", true);
             Invoke(nameof(EndKnockback), iTimeAfterHit);
 
             if (currentAttack != null)
@@ -212,7 +212,7 @@ namespace Weltraumsknecht.Enemies
         public void EndKnockback()
         {
             InKnockback = false;
-            animator.SetBool("inFlinch", false);
+            animator_enemy.SetBool("inFlinch", false);
         }
 
         public void EndCooldown()
@@ -240,7 +240,7 @@ namespace Weltraumsknecht.Enemies
 
 
             _audio.PlayOneShot(ouch);
-            animator.SetTrigger("die");
+            animator_enemy.SetTrigger("die");
         }
 
         public void FinishDying()

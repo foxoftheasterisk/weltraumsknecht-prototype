@@ -82,6 +82,7 @@ namespace Weltraumsknecht.Enemies
         }
     }
 
+    /*
     [Serializable]
     public struct Range
     {
@@ -122,4 +123,5 @@ namespace Weltraumsknecht.Enemies
             return dist <= maxDistance && dist >= minDistance;
         }
     }
+    */
 }
