@@ -18,6 +18,7 @@ namespace Weltraumsknecht.Attacks
         internal PhaseInfo phaseInfo;
         internal WeaponInfo? weaponInfo;
         internal CollisionInfo? collisionInfo;
+        internal AnimationInfo? animationInfo;
     }
 
     public struct PhaseInfo
@@ -36,4 +37,8 @@ namespace Weltraumsknecht.Attacks
         internal GameObject collidingObject;
     }
 
+    public struct AnimationInfo
+    {
+        internal string message;
+    }
 }

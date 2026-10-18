@@ -82,7 +82,7 @@ namespace Weltraumsknecht.Attacks
         public void AnimationMessage(string message)
         {
             //TODO: make parameter do something
-            currentAttack.InvokeTrigger(AttackTransition.TriggerType.AnimationMessage);
+            currentAttack.InvokeTrigger(AttackTransition.TriggerType.AnimationMessage, animationInfo : new() { message = message });
         }
     }
 }
