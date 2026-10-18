@@ -5,6 +5,8 @@ namespace Weltraumsknecht.Enemies
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class MovementAI : MonoBehaviour
     {
+        public bool onlyFlipsWhenAttacking = false;
+
         public abstract void Move(Vector2 relativePlayerPosition);
 
         //TODO: Should movement AI handle knockback as well?

@@ -15,7 +15,7 @@ namespace Weltraumsknecht.Attacks
 
         protected Animator animator;
 
-        void Awake()
+        protected virtual void Awake()
         {
             animator = GetComponent<Animator>();
         }
@@ -36,7 +36,7 @@ namespace Weltraumsknecht.Attacks
             currentAttack = null;
         }
 
-        protected void StartAttack(AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
+        protected virtual void StartAttack(AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
         {
             if (currentAttack is not null)
                 throw new InvalidOperationException("Cannot start an attack while Attacker is already in an attack!");

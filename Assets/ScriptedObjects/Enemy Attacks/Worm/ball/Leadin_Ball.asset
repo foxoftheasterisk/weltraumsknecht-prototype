@@ -16,7 +16,7 @@ MonoBehaviour:
   isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksFacing: 0
+  blocksFacing: 1
   transitions:
   - destroyLastPhase: 1
     nextPhase: {fileID: 11400000, guid: e42c2b268575f024387de21bb4ac81ee, type: 2}
@@ -33,4 +33,4 @@ MonoBehaviour:
   locale: 0
   projectilePrefab: {fileID: 0}
   animation: 1
-  animationTriggerName: ball
+  animationTriggerName: fire

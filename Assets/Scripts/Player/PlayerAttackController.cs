@@ -25,8 +25,10 @@ namespace Weltraumsknecht.Player
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             MovementController = GetComponent<PlayerMovementController>();
 
             //TODO: make weapons clear only on game reset
