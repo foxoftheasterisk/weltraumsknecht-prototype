@@ -1,6 +1,7 @@
 using Platformer.Mechanics;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Weltraumsknecht.Attacks
 {
@@ -14,7 +15,11 @@ namespace Weltraumsknecht.Attacks
     [Serializable]
     public class AttackTransition
     {
-        public bool destroyLastPhase = true;
+        /// <summary>
+        /// If true, if this transition activates, no transitions below it in the list will be pinged about this trigger.
+        /// (Since the transition is removed after activating, this can be used for sequential phases.)
+        /// </summary>
+        public bool consumeTrigger = false;
 
         /// <summary>
         /// The phase to advance to.
@@ -22,6 +27,14 @@ namespace Weltraumsknecht.Attacks
         /// If null, the transition will process but no new phase will start. (This is useful for ending phases on triggers.)
         /// </summary>
         public AttackPhaseDefinition nextPhase;
+
+        /// <summary>
+        /// If true, this transition ends the phase it is attached to when it activates.
+        /// This also causes any ongoing effects of the phase, such as projectiles or Attacker movement, to be destroyed.
+        /// Additionally, it prevents any later transitions from activating.
+        /// </summary>
+        [FormerlySerializedAs("destroyLastPhase")]
+        public bool endLastPhase = true;
 
         /// <summary>
         /// Controls when the weapon should check if the phase is ready to advance.

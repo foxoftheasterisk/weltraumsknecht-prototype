@@ -63,7 +63,7 @@ namespace Weltraumsknecht.Attacks
             {
                 if (projectile.TryGetComponent<Projectile>(out Projectile proj))
                 {
-                    proj.AddListener(p => CheckTransitions(
+                    proj.AddListener(p => InvokeTrigger(
                         AttackTransition.TriggerType.Contact,
                         manager.GenerateEvent(this,
                             AttackTransition.TriggerType.Contact,
@@ -85,26 +85,11 @@ namespace Weltraumsknecht.Attacks
             TimeInPhase += deltaTime;
         }
 
-        public void CheckTransitions(AttackTransition.TriggerType triggerType, AttackEvent e)
+        public void InvokeTrigger(AttackTransition.TriggerType triggerType, AttackEvent e)
         {
-            Debug.Log("Checking transitions " + triggerType);
+            List<AttackTransition> activating = manager.CheckTransitions(this, triggerType, e);
 
-            List<AttackTransition> activating = new List<AttackTransition>();
-            foreach (AttackTransition transition in potentialTransitions)
-            {
-                if (transition.triggerType == triggerType && transition.ShouldAdvance(e))
-                    activating.Add(transition);
-            }
-
-            foreach(AttackTransition transition in activating)
-            {
-                manager.AdvancePhase(this, transition);
-                if (transition.destroyLastPhase)
-                    return;
-                else
-                    potentialTransitions.Remove(transition);
-                
-            }
+            manager.ProcessTransitions(this, activating);
         }
 
     }

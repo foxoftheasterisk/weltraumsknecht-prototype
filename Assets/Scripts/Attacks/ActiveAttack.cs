@@ -90,25 +90,29 @@ namespace Weltraumsknecht.Attacks
             };
         }
 
-        private void ProcessTransitions(ActivePhase phase, List<AttackTransition> transitions)
+        internal void ProcessTransitions(ActivePhase phase, List<AttackTransition> transitions)
         {
             foreach (AttackTransition transition in transitions)
             {
                 AdvancePhase(phase, transition);
-                if (transition.destroyLastPhase)
+                if (transition.endLastPhase)
                     return;
                 else
                     phase.potentialTransitions.Remove(transition);
             }
         }
 
-        private List<AttackTransition> CheckTransitions(ActivePhase phase, AttackTransition.TriggerType triggerType, AttackEvent e)
+        internal List<AttackTransition> CheckTransitions(ActivePhase phase, AttackTransition.TriggerType triggerType, AttackEvent e)
         {
-            List<AttackTransition> activating = new List<AttackTransition>();
+            List<AttackTransition> activating = new();
             foreach (AttackTransition transition in phase.potentialTransitions)
             {
                 if (transition.triggerType == triggerType && transition.ShouldAdvance(e))
+                {
                     activating.Add(transition);
+                    if (transition.consumeTrigger)
+                        break;
+                }
             }
 
             return activating;
@@ -154,7 +158,7 @@ namespace Weltraumsknecht.Attacks
                 StartPhase(transition.nextPhase, lastPhase.linkedProjectile, lastPhase.Flipped);
             }
 
-            if (transition.destroyLastPhase)
+            if (transition.endLastPhase)
             {
                 EndPhase(lastPhase);
             }
