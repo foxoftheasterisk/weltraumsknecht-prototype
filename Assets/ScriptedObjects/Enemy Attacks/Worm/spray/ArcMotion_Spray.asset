@@ -18,40 +18,41 @@ MonoBehaviour:
   moveSpeedPenalty: 0
   blocksFacing: 1
   transitions:
-  - destroyLastPhase: 0
+  - consumeTrigger: 1
     nextPhase: {fileID: 11400000, guid: 1bf812606a3125f48a13b5b7824d76eb, type: 2}
+    endLastPhase: 0
     triggerType: 0
     conditions: []
-  - destroyLastPhase: 0
+  - consumeTrigger: 1
     nextPhase: {fileID: 11400000, guid: f1ecef832932e1a4eb53d3cbd8b1cd33, type: 2}
+    endLastPhase: 0
     triggerType: 4
-    conditions:
-    - {fileID: 11400000, guid: 41d7b9c18c8a67844b8886714f7490aa, type: 2}
-  - destroyLastPhase: 0
+    conditions: []
+  - consumeTrigger: 1
     nextPhase: {fileID: 11400000, guid: 440b673bc1ce5c241adac0c2320a1c39, type: 2}
+    endLastPhase: 0
     triggerType: 4
-    conditions:
-    - {fileID: 11400000, guid: 2cce588d34ead114a98bca98201ccf6a, type: 2}
-  - destroyLastPhase: 0
+    conditions: []
+  - consumeTrigger: 1
     nextPhase: {fileID: 11400000, guid: 3cfee6407f918744f8b40d3f51ef532d, type: 2}
+    endLastPhase: 0
     triggerType: 4
-    conditions:
-    - {fileID: 11400000, guid: ddd2fed9a69582746aa77d6ccdb64d5d, type: 2}
-  - destroyLastPhase: 0
+    conditions: []
+  - consumeTrigger: 1
     nextPhase: {fileID: 11400000, guid: 2706b03293344194db8e8ba01b496e3c, type: 2}
+    endLastPhase: 0
     triggerType: 4
-    conditions:
-    - {fileID: 11400000, guid: 3c20de6782982f64eb0a8d892723f680, type: 2}
-  - destroyLastPhase: 0
+    conditions: []
+  - consumeTrigger: 1
     nextPhase: {fileID: 11400000, guid: be5866116cb466446a042c38f77e45c5, type: 2}
+    endLastPhase: 0
     triggerType: 4
-    conditions:
-    - {fileID: 11400000, guid: 1fede4f3f82aae14eb1ca66b8e2468d2, type: 2}
-  - destroyLastPhase: 1
+    conditions: []
+  - consumeTrigger: 1
     nextPhase: {fileID: 0}
+    endLastPhase: 1
     triggerType: 4
-    conditions:
-    - {fileID: 11400000, guid: 9cedf23743816084c972b1857b17e5df, type: 2}
+    conditions: []
   createProjectile: 0
   useProperties: 0
   initialProperties:
