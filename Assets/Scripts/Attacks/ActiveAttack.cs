@@ -57,13 +57,13 @@ namespace Weltraumsknecht.Attacks
         }
 
         //TODO: move transition checking to ActivePhase?
-        public void InvokeTrigger(AttackTransition.TriggerType triggerType, AnimationInfo? animationInfo = null)
+        public void InvokeTrigger(AttackTransition.TriggerType triggerType, AnimationInfo? animationInfo = null, CollisionInfo? collisionInfo = null)
         {
             List<Tuple<ActivePhase, List<AttackTransition>>> activatingTransitions = new();
 
             foreach (ActivePhase phase in activePhases)
             {
-                List<AttackTransition> transitions = CheckTransitions(phase, triggerType, GenerateEvent(phase, triggerType, animationInfo: animationInfo));
+                List<AttackTransition> transitions = CheckTransitions(phase, triggerType, GenerateEvent(phase, triggerType, collisionInfo: collisionInfo, animationInfo: animationInfo));
                 if (transitions.Count > 0)
                 {
                     activatingTransitions.Add(new(phase, transitions));

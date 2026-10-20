@@ -38,17 +38,20 @@ namespace Weltraumsknecht.Attacks
 
         /// <summary>
         /// Controls when the weapon should check if the phase is ready to advance.
-        /// Update: triggered each Update phase
-        /// ButtonPress, ButtonRelease: triggered when the action happens (not constantly while in the down or up state). (TODO: add handling for the other as well.)
-        /// Contact: triggered when the linked projectile enters a trigger/collision with another object.
+        /// Update: Triggered each Update phase (i.e. at all times)
+        /// ButtonPress, ButtonRelease: Triggered when the action happens (not constantly while in the down or up state). (TODO: add handling for the other as well.)
+        /// ProjectileContact: Triggered when the linked projectile enters a trigger/collision with another object.
+        /// AnimationMessage: Triggered "manually" by the Attacker's Animations.
+        /// AttackerContact: Triggered when the Attacker enters a trigger or collision with another object.
         /// </summary>
         public enum TriggerType
         {
             Update,
             ButtonPress,
             ButtonRelease,
-            Contact,
-            AnimationMessage
+            ProjectileContact,
+            AnimationMessage,
+            AttackerContact
         }
         public TriggerType triggerType;
 

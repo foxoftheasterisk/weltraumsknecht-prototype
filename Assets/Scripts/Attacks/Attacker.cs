@@ -6,9 +6,9 @@ using Weltraumsknecht.Enemies;
 namespace Weltraumsknecht.Attacks
 {
     /// <summary>
-    /// Shared base for entities that can host attacks (e.g. enemies and player)
+    /// Shared base for entities that can host attacks (i.e. enemies and player)
     /// </summary>
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Animator), typeof(ContactListener))]
     public abstract class Attacker : MonoBehaviour
     {
         protected ActiveAttack currentAttack;
@@ -18,6 +18,7 @@ namespace Weltraumsknecht.Attacks
         protected virtual void Awake()
         {
             animator = GetComponent<Animator>();
+            GetComponent<ContactListener>().function = AttackerCollision;
         }
 
         public abstract bool IsFacingLeft();
@@ -82,7 +83,12 @@ namespace Weltraumsknecht.Attacks
         public void AnimationMessage(string message)
         {
             //TODO: make parameter do something
-            currentAttack.InvokeTrigger(AttackTransition.TriggerType.AnimationMessage, animationInfo : new() { message = message });
+            currentAttack?.InvokeTrigger(AttackTransition.TriggerType.AnimationMessage, animationInfo : new() { message = message });
+        }
+
+        public void AttackerCollision(Collider2D other)
+        {
+            currentAttack?.InvokeTrigger(AttackTransition.TriggerType.AttackerContact, collisionInfo: new() { collidingObject = other.gameObject });
         }
     }
 }

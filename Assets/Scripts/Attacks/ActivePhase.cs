@@ -59,14 +59,14 @@ namespace Weltraumsknecht.Attacks
 
             potentialTransitions = new List<AttackTransition>(Definition.transitions);
 
-            if(potentialTransitions.Any(p => p.triggerType == AttackTransition.TriggerType.Contact))
+            if(potentialTransitions.Any(p => p.triggerType == AttackTransition.TriggerType.ProjectileContact))
             {
                 if (projectile.TryGetComponent<Projectile>(out Projectile proj))
                 {
                     proj.AddListener(p => InvokeTrigger(
-                        AttackTransition.TriggerType.Contact,
+                        AttackTransition.TriggerType.ProjectileContact,
                         manager.GenerateEvent(this,
-                            AttackTransition.TriggerType.Contact,
+                            AttackTransition.TriggerType.ProjectileContact,
                             new CollisionInfo()
                             {
                                 collidingObject = p

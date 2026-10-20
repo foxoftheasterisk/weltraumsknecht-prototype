@@ -13,17 +13,17 @@ public class ContactListener : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        function(collision.collider);
+        function?.Invoke(collision.collider);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        function(other);
+        function?.Invoke(other);
     }
 
     void Start()
     {
-        Debug.Log("ContactListener starting");
+        //Debug.Log("ContactListener starting");
     }
 
 }
