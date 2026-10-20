@@ -22,19 +22,19 @@ namespace Weltraumsknecht.Enemies
     {
         public AudioClip ouch;
 
-        public float iTimeAfterHit = .2f;
-        public float flinchTimeAfterHit = .2f;
+        public float iTimeAfterHit = .1f;
+        public float flinchTimeAfterHit = .8f;
         public bool InIFrames
         {
             get;
             private set;
         } = false;
-        public bool InKnockback
+
+        public bool InFlinch
         {
             get;
             private set;
         } = false;
-        public float knockbackScale = 1;
 
         public float cooldownAfterHit = 1;
 
@@ -81,7 +81,7 @@ namespace Weltraumsknecht.Enemies
 
         void Update()
         {
-            if (!InKnockback && !IsDying)
+            if (!InFlinch && !IsDying)
             {
                 Act();
             }
@@ -93,8 +93,10 @@ namespace Weltraumsknecht.Enemies
         protected void Act()
         {
             Vector2 playerPos = PlayerMovementController.player.transform.position - transform.position;
-            
-            if(!IsMovementBlocked())
+
+            if (IsMovementBlocked())
+                movementAI.StopMovement();
+            else
                 movementAI.Move(playerPos);
 
             if (!IsFacingBlocked())
@@ -156,22 +158,20 @@ namespace Weltraumsknecht.Enemies
             InIFrames = true;
             Invoke(nameof(EndIFrames), iTimeAfterHit);
 
-            SufferKnockback(projectile.GetKnockback(body.position));
+            movementAI.SufferKnockback(projectile.GetKnockback(body.position));
+            Flinch();
         }
 
         /// <summary>
-        /// SufferKnockback is called when knockback is inflicted on the enemy from a weapon projectile.
-        /// The default implementation sets the enemy's velocity to the knockback vector given times the knockback scale.
-        /// It also cancels all attacks currently being made.
+        /// Flinch is called when damage is inflicted on the enemy from a weapon projectile.
+        /// It cancels all attacks currently being made and prevents the enemy from starting new attacks until the flinch period ends.
         /// </summary>
         /// <param name="knockback"></param>
-        protected virtual void SufferKnockback(Vector2 knockback)
+        protected void Flinch()
         {
-            body.linearVelocity = knockback * knockbackScale;
-
-            InKnockback = true;
+            InFlinch = true;
             animator_enemy.SetBool("inFlinch", true);
-            Invoke(nameof(EndKnockback), flinchTimeAfterHit);
+            Invoke(nameof(EndFlinch), flinchTimeAfterHit);
 
             if (currentAttack != null)
             {
@@ -184,9 +184,9 @@ namespace Weltraumsknecht.Enemies
             InIFrames = false;
         }
 
-        public void EndKnockback()
+        public void EndFlinch()
         {
-            InKnockback = false;
+            InFlinch = false;
             animator_enemy.SetBool("inFlinch", false);
         }
 
@@ -231,7 +231,7 @@ namespace Weltraumsknecht.Enemies
 
         public override bool IsFacingBlocked()
         {
-            if (!IsAttacking() && movementAI.onlyFlipsWhenAttacking)
+            if (!IsAttacking() && movementAI.OnlyFlipsWhenAttacking)
                 return true;
             return base.IsFacingBlocked();
         }

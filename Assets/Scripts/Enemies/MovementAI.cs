@@ -2,20 +2,15 @@ using UnityEngine;
 
 namespace Weltraumsknecht.Enemies
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class MovementAI : MonoBehaviour
+    public interface MovementAI
     {
-        public bool onlyFlipsWhenAttacking = false;
+        public bool OnlyFlipsWhenAttacking
+        { get; }
 
-        public abstract void Move(Vector2 relativePlayerPosition);
+        public void Move(Vector2 relativePlayerPosition);
 
-        //TODO: Should movement AI handle knockback as well?
+        public void StopMovement();
 
-        protected Rigidbody2D body;
-
-        private void Start()
-        {
-            body = GetComponent<Rigidbody2D>();
-        }
+        public void SufferKnockback(Vector2 suggestedKnockback);
     }
 }

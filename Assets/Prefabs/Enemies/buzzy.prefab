@@ -248,10 +248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5b3246d3c3ea44ca22d1ebca1dd0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Enemies.FlyingAI
-  onlyFlipsWhenAttacking: 0
   targetPosition: {x: 0, y: 1.5}
   maxSpeed: 1
   acceleration: 2
+  knockbackScale: 1
 --- !u!95 &7186735651045723290
 Animator:
   serializedVersion: 7
@@ -287,9 +287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Enemies.Enemy
   ouch: {fileID: 8300000, guid: 6c05149e5a2fba64ba172e25a61074b7, type: 3}
-  iTimeAfterHit: 0.2
-  flinchTimeAfterHit: 0.2
-  knockbackScale: 1
+  iTimeAfterHit: 0.1
+  flinchTimeAfterHit: 0.8
   cooldownAfterHit: 1
   cooldownBetweenAttacks: 5
   attacks:
