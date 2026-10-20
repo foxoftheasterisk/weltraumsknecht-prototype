@@ -1,6 +1,8 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 
+using Weltraumsknecht.Player;
+
 namespace Platformer.Gameplay
 {
     /// <summary>
@@ -9,7 +11,7 @@ namespace Platformer.Gameplay
     /// <typeparam name="PlayerStopJump"></typeparam>
     public class PlayerStopJump : Simulation.Event<PlayerStopJump>
     {
-        public PlayerController player;
+        public PlayerMovementController player;
 
         public override void Execute()
         {

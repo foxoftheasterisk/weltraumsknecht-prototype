@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ProjectileUtils;
 
+using Weltraumsknecht.Player;
+
 [RequireComponent(typeof(Rigidbody2D))]
 [AddComponentMenu("Projectile Behaviours/Homing")]
 public class HomingBehaviour : MonoBehaviour
@@ -137,7 +139,7 @@ public class HomingBehaviour : MonoBehaviour
             switch (targetType)
             {
                 case TargetType.Player:
-                    target = PlayerController.player.GetComponent<Rigidbody2D>(); //no handling for null, which could be a problem but ehh.
+                    target = PlayerMovementController.player.GetComponent<Rigidbody2D>(); //no handling for null, which could be a problem but ehh.
                     break;
                 default:
                     throw new NotImplementedException("HomingBehaviour.FindTarget has no handling for " + targetType.ToString() + " without a bounding area!");

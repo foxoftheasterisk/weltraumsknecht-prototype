@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Warmup_Hammer
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 1
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 4566840149642243050, guid: 036a6545f6d794f41925cc9f0f0a30a6,
     type: 3}

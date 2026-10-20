@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Wavering_Lance
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
   useProperties: 1
   initialProperties:
     displace: {x: 0.5, y: -0.1}
     rotateMod: -30
-    initialVelocity: {x: 0, y: 0}
+    initialSpeed: 0
+    initialAngle: 0
     initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 7461316765189010005, guid: c851a8a96c1b5c44699ec1e562960acd,

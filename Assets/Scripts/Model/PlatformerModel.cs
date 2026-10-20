@@ -1,6 +1,8 @@
 using Platformer.Mechanics;
 using UnityEngine;
 
+using Weltraumsknecht.Player;
+
 namespace Platformer.Model
 {
     /// <summary>
@@ -20,7 +22,7 @@ namespace Platformer.Model
         /// The main component which controls the player sprite, controlled 
         /// by the user.
         /// </summary>
-        public PlayerController player;
+        public PlayerMovementController player;
 
         /// <summary>
         /// The spawn point in the scene.

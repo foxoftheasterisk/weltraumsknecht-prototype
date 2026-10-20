@@ -1,6 +1,8 @@
 using Platformer.Mechanics;
 using UnityEngine;
 
+using Weltraumsknecht.Player;
+
 public abstract class Interactable : MonoBehaviour
 {
     /// <summary>
@@ -13,7 +15,7 @@ public abstract class Interactable : MonoBehaviour
     /// Performed when the player pushes the Interact button while in the Interactable's zone.
     /// </summary>
     /// <param name="player"></param>
-    public abstract void Interact(PlayerController player);
+    public abstract void Interact(PlayerAttackController player);
 
     public abstract void OnPlayerEnteredRange();
     public abstract void OnPlayerLeftRange();

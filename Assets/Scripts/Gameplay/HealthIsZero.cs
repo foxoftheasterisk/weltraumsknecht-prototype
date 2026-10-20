@@ -1,6 +1,9 @@
 using UnityEngine;
 using Platformer.Core;
 using Platformer.Mechanics;
+
+using Weltraumsknecht.Player;
+
 using static Platformer.Core.Simulation;
 
 namespace Platformer.Gameplay
@@ -17,7 +20,7 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             GameObject obj = health.gameObject;
-            PlayerController player = obj.GetComponent<PlayerController>();
+            PlayerMovementController player = obj.GetComponent<PlayerMovementController>();
             if (player != null)
             {
                 Schedule<PlayerDeath>();

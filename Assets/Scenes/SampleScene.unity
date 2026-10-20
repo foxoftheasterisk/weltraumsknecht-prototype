@@ -101309,7 +101309,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 838423049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 709ee11994a2f44658e5fc9887c45081, type: 3}
+  m_Script: {fileID: 11500000, guid: f05805d63670be24fbaec8cea870b891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &838423049 stripped
@@ -250730,6 +250730,7 @@ GameObject:
   - component: {fileID: 1754240609}
   - component: {fileID: 1754240610}
   - component: {fileID: 1754240611}
+  - component: {fileID: 1754240612}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -250896,6 +250897,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1754240612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754240606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a52062f751edec4b9674d682a4ea9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Attacks.AttackManager
 --- !u!1 &1757862670
 GameObject:
   m_ObjectHideFlags: 0

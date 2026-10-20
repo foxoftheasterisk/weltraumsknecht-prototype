@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Main_Kick
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 0
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 1128737127766160964, guid: 3ca251c1e97b34048b350e9e85c0a780,
     type: 3}

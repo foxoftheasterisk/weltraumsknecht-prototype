@@ -2,6 +2,8 @@ using Platformer.Mechanics;
 using System.Linq;
 using UnityEngine;
 
+using Weltraumsknecht.Player;
+
 /// <summary>
 /// A behaviour that redirects any StartWithPropertiesBehaviour(s) on the object such that 0 degrees is aimed at the player,
 /// then destroys itself.
@@ -14,10 +16,10 @@ public class AimAtPlayerBehaviour : StartingPropertiesAlterer
 
     void OnEnable()
     {
-        Debug.Log("Aim starting");
+        //Debug.Log("Aim starting");
 
         Vector2 pos = transform.position;
-        Vector2 playerPos = PlayerController.player.transform.position;
+        Vector2 playerPos = PlayerMovementController.player.transform.position;
 
         Vector2 target = playerPos - pos;
         if (target.x < 0)

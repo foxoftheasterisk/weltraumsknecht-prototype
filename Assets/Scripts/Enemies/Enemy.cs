@@ -8,6 +8,8 @@ using UnityEngine.Rendering;
 using UnityEngine.Scripting.APIUpdating;
 using static Platformer.Core.Simulation;
 using Weltraumsknecht.Projectiles;
+using Weltraumsknecht.Attacks;
+using Weltraumsknecht.Player;
 
 namespace Weltraumsknecht.Enemies
 {
@@ -15,13 +17,13 @@ namespace Weltraumsknecht.Enemies
     /// A base class implementing common behavior for enemies
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(MovementAI), typeof(Animator))]
-    //[RequireComponent(typeof(AttackAI))]
     [AddComponentMenu("Enemies/Enemy")]
-    public class Enemy : MonoBehaviour
+    public class Enemy : Attacker
     {
         public AudioClip ouch;
 
         public float iTimeAfterHit = .2f;
+        public float flinchTimeAfterHit = .2f;
         public bool InIFrames
         {
             get;
@@ -37,22 +39,17 @@ namespace Weltraumsknecht.Enemies
         public float cooldownAfterHit = 1;
 
         public float cooldownBetweenAttacks = 5; //This maybe should be per-attack?
-        private AttackAI currentAttack = null;
         protected bool inCooldown = false;
 
-        internal Animator animator;
+        internal Animator animator_enemy;
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
         internal Rigidbody2D body;
 
         internal MovementAI movementAI;
-        internal AttackAI[] attacks;
+        public EnemyAttack[] attacks;
 
-        public bool IsFacingLeft
-        {
-            get;
-            private set;
-        } = false;
+        private bool wasFacingLeft;
 
         public bool IsDying
         {
@@ -60,19 +57,20 @@ namespace Weltraumsknecht.Enemies
             private set;
         } = false;
 
-        void Awake()
+        override protected void Awake()
         {
-            animator = GetComponent<Animator>();
+            base.Awake();
+
+            animator_enemy = GetComponent<Animator>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             body = GetComponent<Rigidbody2D>();
             movementAI = GetComponent<MovementAI>();
-            attacks = GetComponents<AttackAI>();
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            var player = collision.gameObject.GetComponent<PlayerController>();
+            var player = collision.gameObject.GetComponent<PlayerMovementController>();
             if (player != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
@@ -85,31 +83,24 @@ namespace Weltraumsknecht.Enemies
         {
             if (!InKnockback && !IsDying)
             {
-                if (currentAttack != null)
-                {
-                    currentAttack.Continue();
-                    if (!currentAttack.IsActive)
-                    {
-                        currentAttack = null;
-                        inCooldown = true;
-                        Invoke(nameof(EndCooldown), cooldownBetweenAttacks);
-                    }
-                }
-                else
-                    Act();
+                Act();
             }
         }
 
         /// <summary>
-        /// Act is called every frame that the enemy is capable of normal movement (i.e., when not suffering knockback, dying, or in the middle of an attack).
+        /// Act is called every frame that the enemy is capable of normal movement (i.e., when not suffering knockback or dying).
         /// </summary>
         protected void Act()
         {
-            Vector2 playerPos = PlayerController.player.transform.position - transform.position;
+            Vector2 playerPos = PlayerMovementController.player.transform.position - transform.position;
+            
+            if(!IsMovementBlocked())
+                movementAI.Move(playerPos);
 
-            movementAI.Move(playerPos);
+            if (!IsFacingBlocked())
+                FaceTowardsPlayer();
 
-            if (!inCooldown)
+            if (!IsAttacking() && !inCooldown)
             {
                 CheckAttacks(playerPos);
             }
@@ -117,12 +108,12 @@ namespace Weltraumsknecht.Enemies
 
         public void FaceTowardsPlayer()
         {
-            Vector2 playerPos = PlayerController.player.transform.position;
-            if (playerPos.x < transform.position.x && !IsFacingLeft)
+            Vector2 playerPos = PlayerMovementController.player.transform.position;
+            if (playerPos.x < transform.position.x && !IsFacingLeft())
             {
                 Flip();
             }
-            else if (playerPos.x > transform.position.x && IsFacingLeft)
+            else if (playerPos.x > transform.position.x && IsFacingLeft())
             {
                 Flip();
             }
@@ -134,20 +125,20 @@ namespace Weltraumsknecht.Enemies
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
-            IsFacingLeft = !IsFacingLeft;
+            wasFacingLeft = !IsFacingLeft();
         }
 
         protected void CheckAttacks(Vector2 playerPos)
         {
-            List<AttackAI> possibleAttacks = new List<AttackAI>();
+            List<EnemyAttack> possibleAttacks = new();
             int priority = 0;
-            foreach (AttackAI attack in attacks)
+            foreach (EnemyAttack attack in attacks)
             {
-                if (attack.priority <= priority && attack.IsInRange(playerPos))
+                if (attack.priority >= priority && attack.IsInRange(playerPos))
                 {
                     if (attack.priority > priority)
                     {
-                        possibleAttacks = new List<AttackAI>();
+                        possibleAttacks = new();
                     }
                     possibleAttacks.Add(attack);
                 }
@@ -155,26 +146,8 @@ namespace Weltraumsknecht.Enemies
 
             if (possibleAttacks.Count > 0)
             {
-                StartAttack(possibleAttacks[UnityEngine.Random.Range(0, possibleAttacks.Count)]);
+                StartAttack(possibleAttacks[UnityEngine.Random.Range(0, possibleAttacks.Count)].initialPhase);
             }
-        }
-
-        protected void StartAttack(AttackAI attack)
-        {
-            currentAttack = attack;
-            attack.StartWarmup();
-        }
-
-        private void CancelAttack()
-        {
-            inCooldown = true;
-            if (currentAttack.InAttack)
-                Invoke(nameof(EndCooldown), cooldownBetweenAttacks);
-            else
-                Invoke(nameof(EndCooldown), cooldownAfterHit);
-
-            currentAttack.CancelAttack();
-            currentAttack = null;
         }
 
         public void TookDamageFrom(WeaponProjectile projectile)
@@ -197,8 +170,8 @@ namespace Weltraumsknecht.Enemies
             body.linearVelocity = knockback * knockbackScale;
 
             InKnockback = true;
-            animator.SetBool("inFlinch", true);
-            Invoke(nameof(EndKnockback), iTimeAfterHit);
+            animator_enemy.SetBool("inFlinch", true);
+            Invoke(nameof(EndKnockback), flinchTimeAfterHit);
 
             if (currentAttack != null)
             {
@@ -214,17 +187,12 @@ namespace Weltraumsknecht.Enemies
         public void EndKnockback()
         {
             InKnockback = false;
-            animator.SetBool("inFlinch", false);
+            animator_enemy.SetBool("inFlinch", false);
         }
 
         public void EndCooldown()
         {
             inCooldown = false;
-        }
-
-        public bool IsAttacking()
-        {
-            return currentAttack != null;
         }
 
         /// <summary>
@@ -242,12 +210,36 @@ namespace Weltraumsknecht.Enemies
 
 
             _audio.PlayOneShot(ouch);
-            animator.SetTrigger("die");
+            animator_enemy.SetTrigger("die");
         }
 
         public void FinishDying()
         {
             Destroy(gameObject);
+        }
+
+        public override bool IsFacingLeft()
+        {
+            return wasFacingLeft;
+        }
+
+        internal override void EndWarmup()
+        {
+            inCooldown = true;
+            Invoke(nameof(EndCooldown), cooldownBetweenAttacks);
+        }
+
+        public override bool IsFacingBlocked()
+        {
+            if (!IsAttacking() && movementAI.onlyFlipsWhenAttacking)
+                return true;
+            return base.IsFacingBlocked();
+        }
+
+        protected override void StartAttack(AttackPhaseDefinition initialPhase, WeaponInfo? weaponInfo = null)
+        {
+            FaceTowardsPlayer(); //All enemies should face towards player when starting an attack, I think?
+            base.StartAttack(initialPhase, weaponInfo);
         }
     }
 }

@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Stab_glaive
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 1
   blocksMovement: 1
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 3114498546124109308, guid: 0414feefb0d539c4ab96cb61dee78c2e,
     type: 3}

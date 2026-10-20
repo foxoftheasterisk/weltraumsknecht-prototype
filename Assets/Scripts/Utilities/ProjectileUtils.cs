@@ -2,6 +2,7 @@ using Platformer.Mechanics;
 using System;
 using UnityEngine;
 using Weltraumsknecht.Enemies;
+using Weltraumsknecht.Player;
 
 public static class ProjectileUtils
 {
@@ -85,11 +86,14 @@ public static class ProjectileUtils
 
     public static bool Matches(this TargetType type, GameObject gameObject)
     {
+        if (gameObject == null)
+            return false;
+
         return type switch
         {
             TargetType.Enemy => gameObject.TryGetComponent(out Enemy _),
             TargetType.Environment => gameObject.layer == LayerMask.NameToLayer("Environment"),
-            TargetType.Player => gameObject.TryGetComponent(out PlayerController _),
+            TargetType.Player => gameObject.TryGetComponent(out PlayerMovementController _),
             _ => throw new NotImplementedException("Object type " + type.ToString() + " is not implemented in TargetType.Matches()"),
         };
     }

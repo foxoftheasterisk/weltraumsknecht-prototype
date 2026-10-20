@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Charge1_Knives
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 1
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 0
   useProperties: 1
   initialProperties:

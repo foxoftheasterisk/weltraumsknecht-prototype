@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Warmup_Lance
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 1
+  isPerformed: 1
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
   useProperties: 0
   initialProperties:

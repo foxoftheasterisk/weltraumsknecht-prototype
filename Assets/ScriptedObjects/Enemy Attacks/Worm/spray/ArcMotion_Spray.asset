@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
+  m_Name: ArcMotion_Spray
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Attacks.AttackPhaseDefinition
+  isWarmup: 1
+  isPerformed: 1
+  blocksMovement: 0
+  moveSpeedPenalty: 0
+  blocksFacing: 1
+  transitions:
+  - consumeTrigger: 1
+    nextPhase: {fileID: 11400000, guid: 1bf812606a3125f48a13b5b7824d76eb, type: 2}
+    endLastPhase: 0
+    triggerType: 0
+    conditions: []
+  - consumeTrigger: 1
+    nextPhase: {fileID: 11400000, guid: f1ecef832932e1a4eb53d3cbd8b1cd33, type: 2}
+    endLastPhase: 0
+    triggerType: 4
+    conditions: []
+  - consumeTrigger: 1
+    nextPhase: {fileID: 11400000, guid: 440b673bc1ce5c241adac0c2320a1c39, type: 2}
+    endLastPhase: 0
+    triggerType: 4
+    conditions: []
+  - consumeTrigger: 1
+    nextPhase: {fileID: 11400000, guid: 3cfee6407f918744f8b40d3f51ef532d, type: 2}
+    endLastPhase: 0
+    triggerType: 4
+    conditions: []
+  - consumeTrigger: 1
+    nextPhase: {fileID: 11400000, guid: 2706b03293344194db8e8ba01b496e3c, type: 2}
+    endLastPhase: 0
+    triggerType: 4
+    conditions: []
+  - consumeTrigger: 1
+    nextPhase: {fileID: 11400000, guid: be5866116cb466446a042c38f77e45c5, type: 2}
+    endLastPhase: 0
+    triggerType: 4
+    conditions: []
+  - consumeTrigger: 1
+    nextPhase: {fileID: 0}
+    endLastPhase: 1
+    triggerType: 4
+    conditions: []
+  createProjectile: 0
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
+  locale: 0
+  projectilePrefab: {fileID: 0}
+  animation: 1
+  animationTriggerName: fire

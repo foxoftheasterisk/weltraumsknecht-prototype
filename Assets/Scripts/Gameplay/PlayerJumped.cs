@@ -1,6 +1,8 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 
+using Weltraumsknecht.Player;
+
 namespace Platformer.Gameplay
 {
     /// <summary>
@@ -9,7 +11,7 @@ namespace Platformer.Gameplay
     /// <typeparam name="PlayerJumped"></typeparam>
     public class PlayerJumped : Simulation.Event<PlayerJumped>
     {
-        public PlayerController player;
+        public PlayerMovementController player;
 
         public override void Execute()
         {

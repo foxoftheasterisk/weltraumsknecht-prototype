@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e47efe0d77d654aac65205f7f073e8, type: 3}
+  m_Name: Warmup_Spit
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Attacks.AttackPhaseDefinition
+  isWarmup: 1
+  isPerformed: 1
+  blocksMovement: 0
+  moveSpeedPenalty: 0
+  blocksFacing: 0
+  transitions:
+  - consumeTrigger: 0
+    nextPhase: {fileID: 11400000, guid: 3d329c9d7d581cf44b174090445e1428, type: 2}
+    endLastPhase: 1
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: f5108631c19a7ca45a0e04e204cb6ddb, type: 2}
+  createProjectile: 0
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
+  locale: 0
+  projectilePrefab: {fileID: 0}
+  animation: 1
+  animationTriggerName: spit

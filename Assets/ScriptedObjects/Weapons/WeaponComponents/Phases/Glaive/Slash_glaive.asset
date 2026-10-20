@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Slash_glaive
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 1
   blocksMovement: 1
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 503919131007370825, guid: fbb1d9a274c1a1e4a8c7a847952625c9,
     type: 3}

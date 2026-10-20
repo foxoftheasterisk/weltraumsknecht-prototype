@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Warmup_Glaive
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 1
+  isPerformed: 1
   blocksMovement: 1
   moveSpeedPenalty: 0
-  blocksWeapons: 1
   blocksFacing: 1
+  useProperties: 0
+  initialProperties:
+    displace: {x: 0, y: 0}
+    rotateMod: 0
+    initialSpeed: 0
+    initialAngle: 0
+    initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 503919131007370825, guid: 4415a2368c58cc846bcece20b95b85f8,
     type: 3}

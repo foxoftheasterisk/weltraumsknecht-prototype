@@ -12,12 +12,12 @@ using Platformer.Mechanics;
 [AddComponentMenu("Projectile Behaviours/Pogo")]
 public class PogoBehaviour : MonoBehaviour
 {
-    private KinematicObject objectToBounce;
+    private GroundBasedEntity objectToBounce;
     public float bounceMagnitude = 4;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        KinematicObject parentKO;
+        GroundBasedEntity parentKO;
         Transform current = transform;
         do {
             if (current.parent == null)
@@ -27,7 +27,7 @@ public class PogoBehaviour : MonoBehaviour
                 return;
             }
 
-            parentKO = current.parent.GetComponent<KinematicObject>();
+            parentKO = current.parent.GetComponent<GroundBasedEntity>();
             current = current.parent;
         }
         while (parentKO == null);

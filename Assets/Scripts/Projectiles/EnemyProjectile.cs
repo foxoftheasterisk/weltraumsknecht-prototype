@@ -3,6 +3,7 @@ using Platformer.Mechanics;
 using UnityEngine;
 using Weltraumsknecht.Enemies;
 using Weltraumsknecht.Weapons;
+using Weltraumsknecht.Player;
 
 using static Platformer.Core.Simulation;
 
@@ -16,7 +17,7 @@ namespace Weltraumsknecht.Projectiles
 
         protected override void InteractWith(Collider2D other)
         {
-            if (other.TryGetComponent<PlayerController>(out PlayerController player))
+            if (other.TryGetComponent<PlayerMovementController>(out PlayerMovementController player))
             {
                 ProjectilePlayerCollision ev = Schedule<ProjectilePlayerCollision>();
                 ev.projectile = this;

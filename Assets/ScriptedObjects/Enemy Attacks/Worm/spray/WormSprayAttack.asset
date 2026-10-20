@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b2be9155f9eaa4caba8e87d14a10a6, type: 3}
+  m_Name: WormSprayAttack
+  m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Enemies.EnemyAttack
+  range:
+    direction: {x: 0, y: 1}
+    tolerance: 120
+    minDistance: 0
+    maxDistance: 3
+  priority: 0
+  initialPhase: {fileID: 11400000, guid: 163dc880e76a7554182074f492fb9446, type: 2}
