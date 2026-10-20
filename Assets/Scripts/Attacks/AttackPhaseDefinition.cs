@@ -57,19 +57,20 @@ namespace Weltraumsknecht.Attacks
 
         /// <summary>
         /// Defines a created projectile's behavior.
-        /// A Melee projectile is centered on the player, and follows them as they move;
-        /// a Ranged projectile is created at the player's location, but then moves independently;
-        /// a Remote projectile is created at the previous phase's center, and moves independently.
-        /// Replace will create the projectile at the previous phase's location and apply the same rotation and velocities 
-        /// (adding them to those defined by the new phase).
-        /// (Note that Replace does not automatically remove the last phase, that's controlled by DestroyLastPhase).
+        /// A Melee projectile is centered on the Attacker, and follows them as they move.
+        /// A Ranged projectile is created at the Attacker's location, but then moves independently.
+        /// A Remote projectile is created at the previous phase's center, and moves independently.
+        /// A Replace projectile is created at the previous phase's location and inherits its rotation and velocities (adding them to those defined by the new phase).
+        /// (Replace does not automatically destroy the previous phase's projectile).
+        /// A Guiding projectile is created centered on the Attacker, and the Attacker then follows the projectile's movement.
         /// </summary>
         public enum ProjectileLocale
         {
             Melee,
             Ranged,
             Remote,
-            Replace
+            Replace,
+            Guiding
         }
         public ProjectileLocale locale;
 

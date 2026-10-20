@@ -194,6 +194,7 @@ namespace Weltraumsknecht.Attacks
             {
                 case AttackPhaseDefinition.ProjectileLocale.Melee:
                 case AttackPhaseDefinition.ProjectileLocale.Ranged:
+                case AttackPhaseDefinition.ProjectileLocale.Guiding:
                     flip = attacker.IsFacingLeft();
                     projectile = ProjectileUtils.CreateProjectile(phase.projectilePrefab, attacker.GameObject(), flip, phase.locale == AttackPhaseDefinition.ProjectileLocale.Melee, phaseProps);
                     break;
@@ -218,8 +219,11 @@ namespace Weltraumsknecht.Attacks
                 WeaponProjectile[] wps = projectile.GetComponentsInChildren<WeaponProjectile>();
                 foreach (WeaponProjectile wp in wps)
                 {
-                    wp.Create(weaponInfo?.WeaponInstance, phase.locale == AttackPhaseDefinition.ProjectileLocale.Melee);
+                    wp.Create(weaponInfo?.WeaponInstance, phase.locale == AttackPhaseDefinition.ProjectileLocale.Melee || phase.locale == AttackPhaseDefinition.ProjectileLocale.Guiding);
                 }
+
+                if (phase.locale == AttackPhaseDefinition.ProjectileLocale.Guiding)
+                    attacker.transform.SetParent(projectile.transform);
             }
 
             activePhases.Add(new ActivePhase(phase, projectile, this, flip));
@@ -233,7 +237,11 @@ namespace Weltraumsknecht.Attacks
             activePhases.Remove(phase);
 
             if (phase.linkedProjectile != null)
+            {
+                if (phase.Definition.locale == AttackPhaseDefinition.ProjectileLocale.Guiding)
+                    attacker.transform.SetParent(phase.linkedProjectile.transform.parent);
                 GameObject.Destroy(phase.linkedProjectile);
+            }
 
             if (performing && !IsPerforming())
                 attacker.EndAttack();
