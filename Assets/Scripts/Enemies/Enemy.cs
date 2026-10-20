@@ -210,7 +210,7 @@ namespace Weltraumsknecht.Enemies
 
 
             _audio.PlayOneShot(ouch);
-            animator_enemy.SetTrigger("die");
+            animator_enemy.SetBool("dying", true);
         }
 
         public void FinishDying()
