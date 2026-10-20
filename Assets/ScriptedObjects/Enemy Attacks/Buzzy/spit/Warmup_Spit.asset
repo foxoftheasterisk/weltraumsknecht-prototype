@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Attacks.AttackPhaseDefinition
   isWarmup: 1
   isPerformed: 1
-  blocksMovement: 0
+  blocksMovement: 1
   moveSpeedPenalty: 0
   blocksFacing: 0
   transitions:
