@@ -17,16 +17,23 @@ MonoBehaviour:
   blocksMovement: 1
   moveSpeedPenalty: 0
   blocksFacing: 1
-  transitions: []
-  createProjectile: 0
-  useProperties: 0
+  transitions:
+  - consumeTrigger: 0
+    nextPhase: {fileID: 11400000, guid: 8601cddfe6b89e9428c3c7cf3aa131f8, type: 2}
+    endLastPhase: 1
+    triggerType: 5
+    conditions:
+    - {fileID: 11400000, guid: defb88c017a7c6e48a41143c1c1e8043, type: 2}
+  createProjectile: 1
+  useProperties: 1
   initialProperties:
     displace: {x: 0, y: 0}
     rotateMod: 0
-    initialSpeed: 0
-    initialAngle: 0
+    initialSpeed: 3
+    initialAngle: -90
     initialRotateVelocity: 0
-  locale: 0
-  projectilePrefab: {fileID: 0}
-  animation: 0
-  animationTriggerName: 
+  locale: 4
+  projectilePrefab: {fileID: 7971326486779489012, guid: 4214d04222e87d44ea0bbe310d3dc6e1,
+    type: 3}
+  animation: 1
+  animationTriggerName: drop

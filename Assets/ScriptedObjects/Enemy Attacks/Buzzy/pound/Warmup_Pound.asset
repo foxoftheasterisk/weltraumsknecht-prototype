@@ -19,7 +19,7 @@ MonoBehaviour:
   blocksFacing: 1
   transitions:
   - consumeTrigger: 0
-    nextPhase: {fileID: 0}
+    nextPhase: {fileID: 11400000, guid: 45eb7e23748d95b4fb42d7b7c468d897, type: 2}
     endLastPhase: 1
     triggerType: 0
     conditions:

@@ -18,4 +18,4 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 3
   priority: 1
-  initialPhase: {fileID: 0}
+  initialPhase: {fileID: 11400000, guid: 99203e83f7a06bf4681322ff1ef7ac44, type: 2}

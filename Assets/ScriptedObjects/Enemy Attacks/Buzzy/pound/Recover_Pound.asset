@@ -17,7 +17,12 @@ MonoBehaviour:
   blocksMovement: 0
   moveSpeedPenalty: 0
   blocksFacing: 0
-  transitions: []
+  transitions:
+  - consumeTrigger: 0
+    nextPhase: {fileID: 0}
+    endLastPhase: 1
+    triggerType: 0
+    conditions: []
   createProjectile: 0
   useProperties: 0
   initialProperties:
@@ -28,5 +33,5 @@ MonoBehaviour:
     initialRotateVelocity: 0
   locale: 0
   projectilePrefab: {fileID: 0}
-  animation: 0
-  animationTriggerName: 
+  animation: 1
+  animationTriggerName: recover

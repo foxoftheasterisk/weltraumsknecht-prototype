@@ -15,7 +15,7 @@ MonoBehaviour:
   range:
     direction: {x: 1, y: 0}
     tolerance: 60
-    minDistance: 1
+    minDistance: 2
     maxDistance: 5
   priority: 0
   initialPhase: {fileID: 11400000, guid: f82f19363e09b8f40b87a8be88e2dd82, type: 2}
