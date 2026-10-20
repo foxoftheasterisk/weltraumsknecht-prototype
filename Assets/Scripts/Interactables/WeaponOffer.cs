@@ -59,12 +59,14 @@ public class WeaponOffer : Interactable
 
     public override void OnPlayerEnteredRange()
     {
-        descriptionPanel.enabled = true;
+        if (descriptionPanel != null)
+            descriptionPanel.enabled = true;
     }
 
     public override void OnPlayerLeftRange()
     {
-        descriptionPanel.enabled = false;
+        if(descriptionPanel != null)
+            descriptionPanel.enabled = false;
     }
 
     private void GiveWeapon(WeaponSlot slot, PlayerAttackController player)

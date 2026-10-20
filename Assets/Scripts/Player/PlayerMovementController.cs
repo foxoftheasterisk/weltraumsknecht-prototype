@@ -301,11 +301,13 @@ namespace Weltraumsknecht.Player
 
         public void OnTriggerExit2D(Collider2D other)
         {
-            Interactable i = other.GetComponent<Interactable>();
-            if (i == nearbyInteractable)
+            if (other.TryGetComponent<Interactable>(out Interactable i))
             {
-                nearbyInteractable.OnPlayerLeftRange();
-                nearbyInteractable = null;
+                if (i == nearbyInteractable)
+                {
+                    nearbyInteractable.OnPlayerLeftRange();
+                    nearbyInteractable = null;
+                }
             }
         }
     }
