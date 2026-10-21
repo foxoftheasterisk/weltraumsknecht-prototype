@@ -244,7 +244,10 @@ namespace Weltraumsknecht.Attacks
             }
 
             if (performing && !IsPerforming())
+            {
+                performing = false;
                 attacker.EndAttack();
+            }
         }
 
         public virtual bool IsBlockingFacing()
