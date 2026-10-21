@@ -213,6 +213,17 @@ namespace Weltraumsknecht.Enemies
             animator_enemy.SetBool("dying", true);
         }
 
+        /// <summary>
+        /// For use in animations. Makes the enemy begin falling off the screen.
+        /// Not sure this should be in this class but *shrug*.
+        /// </summary>
+        public void FallingDeath()
+        {
+            body.bodyType = RigidbodyType2D.Dynamic;
+            body.gravityScale = .75f;
+            Invoke(nameof(FinishDying), 10);
+        }
+
         public void FinishDying()
         {
             Destroy(gameObject);
