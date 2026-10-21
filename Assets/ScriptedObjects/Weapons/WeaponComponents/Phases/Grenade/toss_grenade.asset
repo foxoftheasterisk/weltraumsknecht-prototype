@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: toss_grenade
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
-  isPerformed: 1
+  isPerformed: 0
   blocksMovement: 0
   moveSpeedPenalty: 0
   blocksFacing: 0
+  transitions:
+  - consumeTrigger: 0
+    nextPhase: {fileID: 11400000, guid: 6f5ef916a87cee04a9c1d283e4defd28, type: 2}
+    endLastPhase: 1
+    triggerType: 0
+    conditions:
+    - {fileID: 11400000, guid: 1113b01967fb7a94d951b95722afeda9, type: 2}
+  createProjectile: 1
   useProperties: 1
   initialProperties:
     displace: {x: 0.2, y: 0.2}
@@ -27,16 +35,5 @@ MonoBehaviour:
   locale: 1
   projectilePrefab: {fileID: 8733897078109884503, guid: b429db0b460e3e04aac68495097d0ca9,
     type: 3}
-  linkedToProjectile: 1
-  activeLink: 1
-  transitions:
-  - destroyLastPhase: 1
-    nextPhase: {fileID: 11400000, guid: 6f5ef916a87cee04a9c1d283e4defd28, type: 2}
-    triggerType: 1
-    conditions:
-    - {fileID: 11400000, guid: 0ed6e5d64d9719e4da6a056974f87f8a, type: 2}
-  - destroyLastPhase: 1
-    nextPhase: {fileID: 11400000, guid: 6f5ef916a87cee04a9c1d283e4defd28, type: 2}
-    triggerType: 0
-    conditions:
-    - {fileID: 11400000, guid: 1113b01967fb7a94d951b95722afeda9, type: 2}
+  animation: 0
+  animationTriggerName: 
