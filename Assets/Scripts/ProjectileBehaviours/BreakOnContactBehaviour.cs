@@ -3,7 +3,7 @@ using Weltraumsknecht.Projectiles;
 
 ///A simple script that causes the attached object to be destroyed after collisions.
 ///It can also have a number of non-destroying collisions beforehand.
-///(Because Destroy occurs at the end of the frame, other collision effects still apply.) TODO: confirm that
+///...Pretty sure this should no longer be used, but who knows?
 [AddComponentMenu("Projectile Behaviours/Break On Contact")]
 [RequireComponent(typeof(Projectile))]
 public class BreakOnContactBehaviour : MonoBehaviour

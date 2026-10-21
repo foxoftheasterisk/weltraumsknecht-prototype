@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: ThrowMid_Knives
   m_EditorClassIdentifier: Assembly-CSharp::Weltraumsknecht.Weapons.WeaponPhase
   isWarmup: 0
+  isPerformed: 0
   blocksMovement: 0
   moveSpeedPenalty: 0
-  blocksWeapons: 0
   blocksFacing: 0
+  transitions:
+  - consumeTrigger: 0
+    nextPhase: {fileID: 0}
+    endLastPhase: 1
+    triggerType: 3
+    conditions: []
+  createProjectile: 1
   useProperties: 1
   initialProperties:
     displace: {x: 0.15, y: 0.15}
@@ -27,6 +34,5 @@ MonoBehaviour:
   locale: 1
   projectilePrefab: {fileID: 156903581373400684, guid: 09e0084abf987b145aa79aa6b4c28ca5,
     type: 3}
-  linkedToProjectile: 1
-  activeLink: 1
-  transitions: []
+  animation: 0
+  animationTriggerName: 

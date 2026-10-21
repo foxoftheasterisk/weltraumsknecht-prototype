@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -41849569086182663}
   - component: {fileID: 1678646042530871605}
   - component: {fileID: 6200781602488770914}
-  - component: {fileID: 3363805646642769316}
   m_Layer: 8
   m_Name: worm-spray
   m_TagString: Untagged
@@ -186,16 +185,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
   damage: 1
---- !u!114 &3363805646642769316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3948513314074777505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ca33379d12ab84684280ed369723a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BreakOnContactBehaviour
-  nonDestroyingCollisions: 0
