@@ -21,7 +21,7 @@ namespace Weltraumsknecht.Attacks
     {
         private List<ActivePhase> activePhases;
 
-        private Attacker attacker;
+        private readonly Attacker attacker;
         private WeaponInfo? weaponInfo;
 
         private bool warmup = true;
