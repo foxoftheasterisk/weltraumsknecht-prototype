@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f83a895b2e376f94eba4837b13deeeb2
+guid: d285229c42b71e647b537a52c8356944
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,67 +110,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: worm-spray-attack_0
+      name: buzzy_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 21
-        height: 36
-      alignment: 9
-      pivot: {x: 0.1904762, y: 0}
+        x: 0
+        y: 2
+        width: 35
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09f3103cf395f344486d88ba7f8350fe
-      internalID: -1007586548
+      spriteID: 53ac08f6ad2a9304299c148a2aca3060
+      internalID: -1595530245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worm-spray-attack_1
+      name: buzzy_1
       rect:
         serializedVersion: 2
-        x: 24
-        y: 0
-        width: 17
-        height: 38
-      alignment: 9
-      pivot: {x: 0.23529412, y: 0}
+        x: 36
+        y: 2
+        width: 35
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e02dff29a0520d24aafd486a78076934
-      internalID: -1236390807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: worm-spray-attack_2
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 0
-        width: 13
-        height: 39
-      alignment: 9
-      pivot: {x: 0.30769232, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c51d793b2baa9942a19e0cd9de676b3
-      internalID: -761177372
+      spriteID: f34e33704d097de4e98da0b861f33938
+      internalID: -2114007433
       vertices: []
       indices: 
       edges: []
@@ -189,11 +167,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0625,"y":0.0},"pivotPixels":{"x":4.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      worm-spray-attack_0: -1007586548
-      worm-spray-attack_1: -1236390807
-      worm-spray-attack_2: -761177372
+      buzzy_0: -1595530245
+      buzzy_1: -2114007433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

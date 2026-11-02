@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 43c8ca69c51120244a932f1c5796e49e
+guid: c127f069a590d964bbc0f246a5b58386
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,9 +70,9 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,182 +110,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: orange tileset_0
+      name: buzzy-pound_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1
+        y: 2
+        width: 35
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5694444}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eabd61948dacc444a9efbc9872794fb0
-      internalID: 312265243
+      spriteID: c02c1c0caf1edb84c9922f3e5b571551
+      internalID: 1433755583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orange tileset_1
+      name: buzzy-pound_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 37
+        y: 2
+        width: 35
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5, y: 0.70689654}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e9e9aae2b4ab3846b0ff2995b1ddb6e
-      internalID: 180461005
+      spriteID: bb4bee3057194664090b56b2dc4cada3
+      internalID: -1677541209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orange tileset_2
+      name: buzzy-pound_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 8, y: -8}
-        - {x: -8, y: 8}
-        - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: df972e28037b83c449c61e3d5f5b811b
-      internalID: 675555640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orange tileset_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 75
+        y: 3
+        width: 28
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5714286, y: 0.59090906}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d64aabf8983bd13408c289ac469a058b
-      internalID: 123861348
+      spriteID: d05c3b34de49d51408771e62374b243a
+      internalID: -356043113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orange tileset_4
+      name: buzzy-pound_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 111
+        y: 3
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5416667, y: 0.78}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 604cfceb6d66dc740b0b7dfe6b7316af
-      internalID: -310670882
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orange tileset_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3adf08f059e50ea4385d45462a8fbed9
-      internalID: -437002825
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orange tileset_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 964f0478e8ccfb649b321aa3acbc8929
-      internalID: -917358940
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orange tileset_7
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e68289e42052a3c44a51faaf57017a3c
-      internalID: 1885922005
+      spriteID: 0f3ac54566bf443469a109f131c4dcef
+      internalID: 48874811
       vertices: []
       indices: 
       edges: []
@@ -304,16 +211,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      orange tileset_0: 312265243
-      orange tileset_1: 180461005
-      orange tileset_2: 675555640
-      orange tileset_3: 123861348
-      orange tileset_4: -310670882
-      orange tileset_5: -437002825
-      orange tileset_6: -917358940
-      orange tileset_7: 1885922005
+      buzzy-pound_0: 1433755583
+      buzzy-pound_1: -1677541209
+      buzzy-pound_2: -356043113
+      buzzy-pound_3: 48874811
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
