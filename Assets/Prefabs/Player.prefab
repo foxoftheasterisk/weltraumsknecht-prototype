@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6082575806313374961}
   - component: {fileID: 1824045667}
   - component: {fileID: 4774773369707409199}
+  - component: {fileID: 2181338072559669652}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -57,15 +58,15 @@ MonoBehaviour:
   jumpAudio: {fileID: 8300000, guid: 67975c08d56ceb147bad38572d805aa8, type: 3}
   respawnAudio: {fileID: 8300000, guid: e18959d46b63f3c4c8cc020a433cf848, type: 3}
   ouchAudio: {fileID: 8300000, guid: 6c05149e5a2fba64ba172e25a61074b7, type: 3}
-  maxSpeed: 7
-  jumpTakeOffSpeed: 7
+  maxSpeed: 3
+  jumpTakeOffSpeed: 6
   jumpState: 0
   collider2d: {fileID: 1824045667}
   audioSource: {fileID: 8509783501685719824}
   health: {fileID: 6082575806313374961}
   controlEnabled: 1
-  dashSpeed: 7
-  maxDashDistance: 7
+  dashSpeed: 9
+  maxDashDistance: 4
   minDashDistance: 1
 --- !u!212 &212064061491315838
 SpriteRenderer:
@@ -347,3 +348,15 @@ MonoBehaviour:
   northSlot: {fileID: 11400000, guid: 11de0154b9708954aa5cf647c9f16892, type: 2}
   eastSlot: {fileID: 11400000, guid: 950a25371d5bd994da94cadb2ba73e4d, type: 2}
   kickSlot: {fileID: 11400000, guid: 92cac553b829aea4dba468b8a45b0cf0, type: 2}
+--- !u!114 &2181338072559669652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208144871472054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c315cfb24295147a160a4aad7e7d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContactListener
