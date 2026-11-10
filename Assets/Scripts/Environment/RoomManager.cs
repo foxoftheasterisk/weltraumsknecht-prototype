@@ -19,5 +19,7 @@ public class RoomManager : MonoBehaviour
         CinemachineConfiner2D confinerScript = Simulation.GetModel<PlatformerModel>().virtualCamera.GetComponent<CinemachineConfiner2D>();
         confinerScript.BoundingShape2D = cameraConfiner;
         confinerScript.InvalidateBoundingShapeCache();
+
+        FindAnyObjectByType<MapController>().StartRoom(this);
     }
 }
