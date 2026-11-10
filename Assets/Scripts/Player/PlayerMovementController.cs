@@ -15,7 +15,7 @@ namespace Weltraumsknecht.Player
     /// This is the main class used to implement control of the player.
     /// It is a superset of the AnimationController class, but is inlined to allow for any kind of customisation.
     /// </summary>
-    [RequireComponent(typeof(PlayerAttackController))]
+    [RequireComponent(typeof(PlayerAttackController), typeof(Health))]
     public class PlayerMovementController : GroundBasedEntity
     {
         public static PlayerMovementController player;
@@ -94,6 +94,8 @@ namespace Weltraumsknecht.Player
 
             m_InteractAction = InputSystem.actions.FindAction("Player/Interact");
             m_InteractAction.Enable();
+
+            //DontDestroyOnLoad(this.gameObject);
         }
 
         protected override void Update()

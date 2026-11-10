@@ -17,6 +17,15 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             var player = model.player;
+
+            if (player.health == null)
+            {
+                Debug.Log("Health is null...??");
+                //what the fuck
+
+
+            }
+
             if (player.health.IsAlive)
             {
                 player.health.Die();
