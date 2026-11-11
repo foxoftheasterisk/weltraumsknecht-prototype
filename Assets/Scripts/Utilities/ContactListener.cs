@@ -5,6 +5,7 @@ using UnityEngine;
 /// A simple listener for contacts with the attached object. Accepts a single delegate.
 /// Listens to both collisions and triggers and does not distinguish between them.
 /// </summary>
+[RequireComponent(typeof(Collider2D))]
 public class ContactListener : MonoBehaviour
 {
 
