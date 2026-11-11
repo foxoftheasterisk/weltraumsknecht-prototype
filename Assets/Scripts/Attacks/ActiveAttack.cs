@@ -223,7 +223,7 @@ namespace Weltraumsknecht.Attacks
                 }
 
                 if (phase.locale == AttackPhaseDefinition.ProjectileLocale.Guiding)
-                    attacker.transform.SetParent(projectile.transform);
+                    attacker.AttachTo(projectile);
             }
 
             activePhases.Add(new ActivePhase(phase, projectile, this, flip));
@@ -239,7 +239,7 @@ namespace Weltraumsknecht.Attacks
             if (phase.linkedProjectile != null)
             {
                 if (phase.Definition.locale == AttackPhaseDefinition.ProjectileLocale.Guiding)
-                    attacker.transform.SetParent(phase.linkedProjectile.transform.parent);
+                    attacker.DetachFrom(phase.linkedProjectile);
                 GameObject.Destroy(phase.linkedProjectile);
             }
 

@@ -2,23 +2,29 @@ using System;
 using System.ComponentModel;
 using UnityEngine;
 using Weltraumsknecht.Enemies;
+using Weltraumsknecht.Projectiles;
 
 namespace Weltraumsknecht.Attacks
 {
     /// <summary>
     /// Shared base for entities that can host attacks (i.e. enemies and player)
     /// </summary>
-    [RequireComponent(typeof(Animator), typeof(ContactListener))]
+    [RequireComponent(typeof(Animator), typeof(ContactListener), typeof(Rigidbody2D))]
     public abstract class Attacker : MonoBehaviour
     {
         protected ActiveAttack currentAttack;
 
         protected Animator animator;
 
+        private Rigidbody2D body;
+        private RigidbodyType2D bodyType;
+
         protected virtual void Awake()
         {
             animator = GetComponent<Animator>();
             GetComponent<ContactListener>().function = AttackerCollision;
+            body = GetComponent<Rigidbody2D>();
+            bodyType = body.bodyType;
         }
 
         public abstract bool IsFacingLeft();
@@ -89,6 +95,18 @@ namespace Weltraumsknecht.Attacks
         public void AttackerCollision(Collider2D other)
         {
             currentAttack?.InvokeTrigger(AttackTransition.TriggerType.AttackerContact, collisionInfo: new() { collidingObject = other.gameObject });
+        }
+
+        public void AttachTo(GameObject guide)
+        {
+            transform.SetParent(guide.transform);
+            body.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        public void DetachFrom(GameObject guide)
+        {
+            transform.SetParent(guide.transform.parent);
+            body.bodyType = bodyType;
         }
     }
 }
