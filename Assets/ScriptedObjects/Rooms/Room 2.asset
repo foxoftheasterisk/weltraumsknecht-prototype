@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Room
   scene: room 2
   doorDestinations:
-  - room: {fileID: 0}
-    door: 0
+  - room: {fileID: 11400000, guid: 34176d44486058a47a17c9706a9b3485, type: 2}
+    door: 3
   - room: {fileID: 11400000, guid: b5c2c54a11bd2394f891106df5690eac, type: 2}
     door: 0
