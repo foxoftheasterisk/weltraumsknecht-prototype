@@ -96,6 +96,11 @@ namespace Weltraumsknecht.Projectiles
         public virtual void CollidedWithOther(GameObject other)
         {
             CollidedWith(other);
+
+            if (other.TryGetComponent<Breakable>(out _))
+            {
+                Destroy(other);
+            }
         }
     }
 }
