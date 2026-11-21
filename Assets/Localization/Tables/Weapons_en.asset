@@ -97,8 +97,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 695139447242752
-    m_Localized: Hold to charge up several knives, then throw them in a set pattern.
-      The last two charged will crit.
+    m_Localized: Hold to prepare up to three knives, then throw them in a set pattern.
+      The last knife will crit.
     m_Metadata:
       m_Items: []
   - m_Id: 695336319483904
