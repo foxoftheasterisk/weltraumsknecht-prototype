@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b3d44aaac7df24db7baead84c3d2e1, type: 3}
+  m_Name: Staircase Room
+  m_EditorClassIdentifier: Assembly-CSharp::RoomDefinition
+  scene: staircase room
+  doorDestinations:
+  - room: {fileID: 11400000, guid: 7bcca4a8a58d05a48ae40d0351f84e71, type: 2}
+    door: 3
+  - room: {fileID: 11400000, guid: 43d84bf85285f8e4997a1dca1aee1b1d, type: 2}
+    door: 2
+  - room: {fileID: 11400000, guid: d8e2710716e3c4f48ad7a9e133286e26, type: 2}
+    door: 0
